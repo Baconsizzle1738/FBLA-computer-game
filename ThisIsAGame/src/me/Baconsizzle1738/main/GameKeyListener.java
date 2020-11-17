@@ -13,6 +13,12 @@ public class GameKeyListener implements KeyListener{
 	
 	public GameKeyListener(GameHandler h) {
 		handler = h;
+		//searches for player ID GameObject
+		for (int i = 0; i<handler.objects.size(); i++) {
+			if (handler.objects.get(i).gettypeID()==ID.Player) {
+				player = handler.objects.get(i);
+			}
+		}
 	}
 
 	@Override
@@ -23,7 +29,6 @@ public class GameKeyListener implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
