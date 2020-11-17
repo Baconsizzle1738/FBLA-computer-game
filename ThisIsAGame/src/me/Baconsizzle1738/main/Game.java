@@ -25,10 +25,6 @@ public class Game extends Canvas implements Runnable{
 	GameHandler handler;
 	
 	
-	
-	
-	
-	
 	public Game() {
 		//make the handler first to prevent some possible errors
 		handler = new GameHandler();
@@ -37,7 +33,8 @@ public class Game extends Canvas implements Runnable{
 		
 		handler.addObject(new Player(100, 100, ID.Player, ID.AllLevels));
 		
-		
+		//takes keyboard inputs
+		this.addKeyListener(new GameKeyListener(handler));
 		
 		this.requestFocusInWindow();
 	}
@@ -62,32 +59,32 @@ public class Game extends Canvas implements Runnable{
 	@Override
 	public void run() {
 		//game timer/runner
-				long lastTime = System.nanoTime();
-				double amountOfTicks = 60.0;
-				double ns = 1000000000/amountOfTicks;
-				double delta = 0;
-				long timer = System.currentTimeMillis();
-				int frames = 0;
-				while (running) {
-					long now = System.nanoTime();
-					delta +=(now-lastTime)/ns;
-					lastTime = now;
-					while (delta >=1) {
-						tick();
-						delta--;
-					}
-					if (running) {
-						render();
-					}
-					frames++;
-					
-					if (System.currentTimeMillis()-timer > 1000) {
-						timer+=1000;
-						System.out.println("FPS: " + frames);
-						frames = 0;
-					}
-				}
-				stop();
+		long lastTime = System.nanoTime();
+		double amountOfTicks = 60.0;
+		double ns = 1000000000/amountOfTicks;
+		double delta = 0;
+		long timer = System.currentTimeMillis();
+		int frames = 0;
+		while (running) {
+			long now = System.nanoTime();
+			delta +=(now-lastTime)/ns;
+			lastTime = now;
+			while (delta >=1) {
+				tick();
+				delta--;
+			}
+			if (running) {
+				render();
+			}
+			frames++;
+			
+			if (System.currentTimeMillis()-timer > 1000) {
+				timer+=1000;
+				System.out.println("FPS: " + frames);
+				frames = 0;
+			}
+		}
+		stop();
 		
 	}
 	
@@ -108,7 +105,8 @@ public class Game extends Canvas implements Runnable{
 		
 		Graphics g = bs.getDrawGraphics();
 		//draw a rect over entire screen so no flashing
-		g.setColor(Color.black);
+		Color bkg = new Color(50,50,50);
+		g.setColor(bkg);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		//render game objects and HUD here

@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 
 public class GameKeyListener implements KeyListener{
 	GameHandler handler;
+	GameObject player;
 	
 	//in order of w, a, s, d
 	boolean[] keys = {false,false,false,false};
@@ -16,7 +17,7 @@ public class GameKeyListener implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		//nothing here for now
 		
 	}
 
@@ -28,7 +29,6 @@ public class GameKeyListener implements KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	
