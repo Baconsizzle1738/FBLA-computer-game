@@ -29,12 +29,34 @@ public class GameKeyListener implements KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		if (e.getKeyCode() == KeyEvent.VK_W && keys[0] == false) {
+			player.setVolY(-5);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_A && keys[1] == false) {
+			player.setVolX(-5);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_S && keys[2] == false) {
+			player.setVolY(5);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_D && keys[3] == false) {
+			player.setVolX(5);
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
+		if (e.getKeyCode() == KeyEvent.VK_W) {
+			player.setVolY(0);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_A) {
+			player.setVolX(0);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_S) {
+			player.setVolY(0);
+		}
+		if (e.getKeyCode() == KeyEvent.VK_D) {
+			player.setVolX(0);
+		}
 	}
 	
 	
