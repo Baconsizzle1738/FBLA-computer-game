@@ -16,8 +16,8 @@ public class Player extends GameObject{
 		x+=volX;
 		y+=volY;
 		
-		x = Game.clamp(x, 0, Game.WIDTH);
-		y = Game.clamp(y, 0, Game.HEIGHT);
+		x = Game.clamp(x, 0, Game.WIDTH-48);//x is 16 px off
+		y = Game.clamp(y, 0, Game.HEIGHT-71);//y is 39 px off
 	}
 
 	@Override
