@@ -31,7 +31,7 @@ public class Game extends Canvas implements Runnable{
 		
 		new Window(WIDTH,HEIGHT,"Game",this);
 		
-		handler.addObject(new Player(100, 100, ID.Player, ID.AllLevels));
+		handler.addObject(new Player(300, 300, ID.Player, ID.AllLevels));
 		
 		//takes keyboard inputs
 		this.addKeyListener(new GameKeyListener(handler));
