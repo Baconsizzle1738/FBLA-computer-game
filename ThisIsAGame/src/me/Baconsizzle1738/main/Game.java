@@ -23,18 +23,23 @@ public class Game extends Canvas implements Runnable{
 	
 	//the Handler
 	GameHandler handler;
+	HUD hud;
 	
 	
 	public Game() {
 		//make the handler first to prevent some possible errors
 		handler = new GameHandler();
+		hud = new HUD();
 		
 		new Window(WIDTH,HEIGHT,"Game",this);
 		
+		//this for test
 		handler.addObject(new Player(300, 300, ID.Player, ID.AllLevels));
 		
 		//takes keyboard inputs
 		this.addKeyListener(new GameKeyListener(handler));
+		//takes mouse inputs, only hud will use mouse functionality
+		this.addMouseListener(new GameMouseListener(hud));
 		
 		this.requestFocusInWindow();
 	}
@@ -92,6 +97,7 @@ public class Game extends Canvas implements Runnable{
 	public void tick() {
 		//calls update tick method in every object
 		handler.tick();
+		hud.tick();
 	}
 	
 	//actually renders the stuff.
@@ -111,6 +117,7 @@ public class Game extends Canvas implements Runnable{
 		
 		//render game objects and HUD here
 		handler.render(g);
+		hud.render(g);
 		
 		g.dispose();
 		bs.show();
