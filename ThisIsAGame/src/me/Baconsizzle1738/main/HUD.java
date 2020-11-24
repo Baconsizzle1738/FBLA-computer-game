@@ -39,7 +39,7 @@ public class HUD {
 		//healthbar health
 		g.setColor(Color.red);
 		g.fillRect(10 ,10, health*2, 10);
-		
+		//reeee
 	}
 	
 	public void tick() {
