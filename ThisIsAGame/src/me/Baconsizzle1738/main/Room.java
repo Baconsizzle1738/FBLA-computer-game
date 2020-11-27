@@ -1,6 +1,6 @@
 package me.Baconsizzle1738.main;
 
-public abstract class Room {
+public abstract class Room {  
 	private int initialX, initialY;
 	GameHandler handler;
 	public boolean complete = false;

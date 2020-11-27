@@ -1,10 +1,12 @@
 package me.Baconsizzle1738.main;
+
+
 //yay git works
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.util.Random;
+//import java.util.Random;
 
 public class Game extends Canvas implements Runnable{
 	/**
@@ -12,18 +14,23 @@ public class Game extends Canvas implements Runnable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//screen dimensions
-	public static final int WIDTH = 1300, HEIGHT = WIDTH*9/12;
+	//window dimensions, will remain static
+	public static final int WIDTH = 1000, HEIGHT = WIDTH*9/12;
 	
 	private Thread thread;
 	private boolean running = false;
+	public static boolean gameStarted = false;
 	
 	//for testing vvv
 	//private Random r;
 	
 	//the Handler
 	GameHandler handler;
+	//the HUD
 	HUD hud;
+	//the rooms
+	Levels levels;
+	//Room room;
 	
 	
 	public Game() {
@@ -31,20 +38,33 @@ public class Game extends Canvas implements Runnable{
 		handler = new GameHandler();
 		hud = new HUD();
 		
+		
+		
+		
 		new Window(WIDTH,HEIGHT,"Game",this);
 		
 		//this for test
-		handler.addObject(new Player(300, 300, ID.Player, ID.AllLevels));
+		//handler.addObject(new Player(300, 300, ID.Player, ID.AllLevels));
+		//handler.addObject(new StaticEnemy(500, 500, ID.Enemy, ID.Level1 ,50 , 50, 3, 4));
+		//handler.addObject(new StaticEnemy(70, 70, ID.Enemy, ID.Level1 ,300 , 2));
+		//handler.addObject(new StaticEnemy(70, 70, ID.Enemy, ID.Level1 ,300 , 2, 0));
 		
 		//takes keyboard inputs
 		this.addKeyListener(new GameKeyListener(handler));
-		//takes mouse inputs, only hud will use mouse functionality
+		//takes mouse inputs
 		this.addMouseListener(new GameMouseListener(hud));
 		
+		if (gameStarted) {
+			levels = new Levels(hud,handler);
+		}
+		
+		
+		//this fixes annoying window issue where you have to click on it for it to work
 		this.requestFocusInWindow();
 	}
 	
 	public synchronized void start() {
+		//starts game
 		//single thread
 		thread = new Thread(this);
 		thread.start();
@@ -52,6 +72,7 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	public synchronized void stop() {
+		//kills game
 		try {
 			//kills thread
 			thread.join();
@@ -123,7 +144,7 @@ public class Game extends Canvas implements Runnable{
 		bs.show();
 	}
 	
-	
+	//restrains a variable within a certain limit
 	public static int clamp(int var, int min, int max) {
 		if (var>max) {
 			return max;
@@ -135,6 +156,7 @@ public class Game extends Canvas implements Runnable{
 			return var;
 		}
 	}
+	
 	//make the game start in main
 	public static void main(String[] args) {
 		new Game();

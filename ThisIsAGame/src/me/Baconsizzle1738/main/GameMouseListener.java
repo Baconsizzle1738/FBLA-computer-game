@@ -35,7 +35,7 @@ public class GameMouseListener implements MouseListener{
 		int y = e.getY();
 		if (hud.startButton.contains(x, y)) {
 			hud.isOnButton = false;
-			hud.gameStarted = true;
+			Game.gameStarted = true;
 			//System.out.println("yeet");
 		}
 	}
