@@ -37,8 +37,9 @@ public class Game extends Canvas implements Runnable{
 		//make the handler first to prevent some possible errors
 		handler = new GameHandler();
 		hud = new HUD();
+		levels = new Levels(hud,handler);
 		
-		
+		handler.addObject(new Player(300, 300, ID.Player, ID.AllLevels));
 		
 		
 		new Window(WIDTH,HEIGHT,"Game",this);
@@ -54,9 +55,6 @@ public class Game extends Canvas implements Runnable{
 		//takes mouse inputs
 		this.addMouseListener(new GameMouseListener(hud));
 		
-		if (gameStarted) {
-			levels = new Levels(hud,handler);
-		}
 		
 		
 		//this fixes annoying window issue where you have to click on it for it to work
