@@ -24,6 +24,7 @@ public class Game extends Canvas implements Runnable{
 	//for testing vvv
 	//private Random r;
 	
+	
 	//the Handler
 	GameHandler handler;
 	//the HUD
