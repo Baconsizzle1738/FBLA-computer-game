@@ -9,9 +9,9 @@ public class StaticEnemy extends GameObject{
 	private int beginX, beginY, endX, endY, volX, volY;
 	
 	//an enemy that moves within a restrained location
-	public StaticEnemy(int x, int y, ID typeId, ID levelId, int x2, int y2, int volX, int volY) {
+	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int y2, int volX, int volY) {
 		
-		super(x, y, typeId, levelId);
+		super(x, y, typeId, level);
 		beginX = x;
 		beginY = y;
 		endX = x2;
@@ -27,9 +27,9 @@ public class StaticEnemy extends GameObject{
 		
 	}
 	
-	public StaticEnemy(int x, int y, ID typeId, ID levelId, int x2, int volX) {
+	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int volX) {
 		
-		super(x, y, typeId, levelId);
+		super(x, y, typeId, level);
 		beginX = x;
 		beginY = y;
 		endX = x2;
@@ -41,9 +41,9 @@ public class StaticEnemy extends GameObject{
 		}
 	}
 	
-	public StaticEnemy(int x, int y, ID typeId, ID levelId, int y2, int volY, int temp) {
+	public StaticEnemy(int x, int y, ID typeId, int level, int y2, int volY, int temp) {
 		
-		super(x, y, typeId, levelId);
+		super(x, y, typeId, level);
 		beginX = x;
 		beginY = y;
 		endX = x;
@@ -116,7 +116,6 @@ public class StaticEnemy extends GameObject{
 		
 		g.setColor(Color.red);
 		g.fillRect(x, y, 30, 30);
-		
 		
 	}
 

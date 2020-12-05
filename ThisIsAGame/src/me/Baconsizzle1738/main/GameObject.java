@@ -8,13 +8,13 @@ public abstract class GameObject {
 	//position and speed
 	protected int x,y,volX,volY;
 	protected ID typeId;
-	protected ID levelId;
+	protected int  levelId;
 	
-	public GameObject(int x, int y, ID typeId, ID levelId) {
+	public GameObject(int x, int y, ID typeId, int level) {
 		this.x = x;
 		this.y = y;
 		this.typeId = typeId;
-		this.levelId = levelId;
+		this.levelId = level;
 	}
 	
 	public abstract void tick();
@@ -37,13 +37,13 @@ public abstract class GameObject {
 	public void settypeID(ID id) {
 		this.typeId = id;
 	}
-	public void setLevelID(ID id) {
+	public void setLevelID(int id) {
 		this.levelId = id;
 	}
 	public ID gettypeID() {
 		return typeId;
 	}
-	public ID getlevelID() {
+	public int getlevelID() {
 		return levelId;
 	}
 	public void setVolX(int volX) {

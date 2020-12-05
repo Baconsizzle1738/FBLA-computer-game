@@ -15,7 +15,7 @@ public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 
 	//window dimensions, will remain static
-	public static final int WIDTH = 1000, HEIGHT = WIDTH*9/12;
+	public static final int WIDTH = 1000, HEIGHT = 600;
 	
 	private Thread thread;
 	private boolean running = false;
@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable{
 		hud = new HUD();
 		levels = new Levels(hud,handler);
 		
-		handler.addObject(new Player(300, 300, ID.Player, ID.AllLevels));
+		handler.addObject(new Player(300, 300, ID.Player, -1));
 		
 		
 		new Window(WIDTH,HEIGHT,"Game",this);

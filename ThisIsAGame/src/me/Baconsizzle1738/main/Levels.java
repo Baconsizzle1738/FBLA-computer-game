@@ -13,7 +13,9 @@ public class Levels {
 	}
 	
 	public void tick() {
-		
+		while (Game.gameStarted) {
+			
+		}
 	}
 	
 	

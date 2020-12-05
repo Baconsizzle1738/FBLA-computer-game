@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 
 public class Player extends GameObject{
 
-	public Player(int x, int y, ID typeId, ID levelId) {
-		super(x, y, typeId, levelId);
+	public Player(int x, int y, ID typeId, int level) {
+		super(x, y, typeId, level);
 		
 	}
 
