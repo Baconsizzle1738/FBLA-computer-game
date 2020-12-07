@@ -37,10 +37,10 @@ public class Game extends Canvas implements Runnable{
 	public Game() {
 		//make the handler first to prevent some possible errors
 		handler = new GameHandler();
-		hud = new HUD();
-		levels = new Levels(hud,handler);
 		
-		handler.addObject(new Player(300, 300, ID.Player, -1));
+		levels = new Levels(hud,handler);
+		hud = new HUD(levels);
+		//handler.addObject(new Player(300, 300, ID.Player, -1));
 		
 		
 		new Window(WIDTH,HEIGHT,"Game",this);

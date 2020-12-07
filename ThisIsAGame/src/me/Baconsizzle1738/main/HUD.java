@@ -1,6 +1,7 @@
 package me.Baconsizzle1738.main;
 
 import java.awt.Color;
+// import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 //import java.awt.event.MouseEvent;
@@ -19,7 +20,11 @@ public class HUD {
 	Color buttonColor = Color.red;
 	Color buttonBorderColor = Color.black;
 	
+	Levels levels;
 	
+	public HUD (Levels lvl) {
+		levels = lvl;
+	}
 	
 	
 	public void render(Graphics g) {
@@ -45,6 +50,11 @@ public class HUD {
 			//health bar health
 			g.setColor(Color.red);
 			g.fillRect(10 ,10, health*2, 10);
+			
+			
+			//level indicator4
+			g.setColor(new Color(200, 150, 0));
+			g.drawString("Level " + Levels.level, 230, 15);
 			
 			//pause button
 			
