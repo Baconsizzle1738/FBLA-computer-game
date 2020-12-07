@@ -1,14 +1,17 @@
 package me.Baconsizzle1738.main;
 
-public abstract class Room {  
-	private int initialX, initialY;
+import java.awt.Graphics;
+
+public class Room {  
+	private int initialX, initialY, num;
 	GameHandler handler;
 	public boolean complete = false;
 	
-	public Room(int spawnX, int spawnY, GameHandler h) {
+	public Room(int spawnX, int spawnY, GameHandler h, int num) {
 		initialX = spawnX;
 		initialY = spawnY;
 		handler = h;
+		this.num = num;
 	}
 	
 	public void SetPlayerSpawn() {
@@ -21,6 +24,10 @@ public abstract class Room {
 		}
 	}
 	
-	public abstract void tick();
-	public abstract void render();
+	public void tick() {
+		
+	}
+	public void render(Graphics g) {
+		
+	}
 }

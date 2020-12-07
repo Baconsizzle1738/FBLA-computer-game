@@ -6,11 +6,12 @@ public class Levels {
 	GameHandler handler;
 	HUD hud;
 	public static int level;
+	private Room room;
 	
 	public Levels(HUD hud, GameHandler handler) {
 		this.hud = hud;
 		this.handler = handler;
-		handler.addObject(new Player(500, 500, ID.Player, 0));
+		handler.addObject(new Player(500, 500, ID.Player, -1));
 		level = 0;
 	}
 	
