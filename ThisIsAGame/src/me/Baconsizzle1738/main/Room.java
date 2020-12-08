@@ -2,16 +2,16 @@ package me.Baconsizzle1738.main;
 
 import java.awt.Graphics;
 
-public class Room {  
-	private int initialX, initialY, num;
+public abstract class Room {  
+	private int initialX, initialY, lvl;
 	GameHandler handler;
 	public boolean complete = false;
 	
-	public Room(int spawnX, int spawnY, GameHandler h, int num) {
+	public Room(int spawnX, int spawnY, GameHandler h, int lvl) {
 		initialX = spawnX;
 		initialY = spawnY;
 		handler = h;
-		this.num = num;
+		this.lvl = lvl;
 	}
 	
 	public void SetPlayerSpawn() {
@@ -24,10 +24,13 @@ public class Room {
 		}
 	}
 	
-	public void tick() {
-		
+	public int getLevel() {
+		return lvl;
 	}
-	public void render(Graphics g) {
-		
-	}
+	
+	
+	//to see if the conditions for completing the levels are met
+	public abstract boolean isComplete (ID objectiveID);
+	public abstract void tick();
+	public abstract void render(Graphics g);
 }

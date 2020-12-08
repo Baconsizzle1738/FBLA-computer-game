@@ -13,6 +13,8 @@ public class Levels {
 		this.handler = handler;
 		handler.addObject(new Player(500, 500, ID.Player, -1));
 		level = 0;
+		//test
+		room = new RoomOne(1,1,handler,1);
 	}
 	
 	public void tick() {
