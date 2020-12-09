@@ -4,16 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class StaticEnemy extends GameObject{
+public class StaticEnemy extends Enemy{
 	
-	private int beginX, beginY, endX, endY, volX, volY, damageCooldown, damage;
-	private int cooldownTimer = 0;
-	private boolean canDoDamage = false;
+	private int beginX, beginY, endX, endY, volX, volY;
+	
 	
 	//an enemy that moves within a restrained location
 	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int y2, int volX, int volY, int dmg, int cd) {
 		
-		super(x, y, typeId, level);
+		super(x, y, typeId, level, cd, dmg);
 		beginX = x;
 		beginY = y;
 		endX = x2;
@@ -31,7 +30,7 @@ public class StaticEnemy extends GameObject{
 	
 	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int volX, int dmg, int cd) {
 		
-		super(x, y, typeId, level);
+		super(x, y, typeId, level, cd, dmg);
 		beginX = x;
 		beginY = y;
 		endX = x2;
@@ -45,7 +44,7 @@ public class StaticEnemy extends GameObject{
 	
 	public StaticEnemy(int x, int y, ID typeId, int level, int y2, int volY, int dmg, int cd, int temp) {
 		
-		super(x, y, typeId, level);
+		super(x, y, typeId, level, cd, dmg);
 		beginX = x;
 		beginY = y;
 		endX = x;
