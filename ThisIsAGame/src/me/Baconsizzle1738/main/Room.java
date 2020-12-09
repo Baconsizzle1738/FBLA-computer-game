@@ -3,9 +3,11 @@ package me.Baconsizzle1738.main;
 import java.awt.Graphics;
 
 public abstract class Room {  
-	private int initialX, initialY, lvl;
+	private int initialX, initialY;
+	protected int lvl;
 	GameHandler handler;
 	public boolean complete = false;
+	public boolean started = false;
 	
 	public Room(int spawnX, int spawnY, GameHandler h, int lvl) {
 		initialX = spawnX;
@@ -30,7 +32,8 @@ public abstract class Room {
 	
 	
 	//to see if the conditions for completing the levels are met
-	public abstract boolean isComplete (ID objectiveID);
+	public abstract void startLevel();
+	public abstract boolean isComplete ();
 	public abstract void tick();
 	public abstract void render(Graphics g);
 }

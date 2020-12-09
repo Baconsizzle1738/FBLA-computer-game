@@ -38,7 +38,10 @@ public class Game extends Canvas implements Runnable{
 		//make the handler first to prevent some possible errors
 		handler = new GameHandler();
 		
-		levels = new Levels(hud,handler);
+		//handles leveling system
+		levels = new Levels(/*hud,*/ handler);
+		
+		//heads up display
 		hud = new HUD(levels);
 		//handler.addObject(new Player(300, 300, ID.Player, -1));
 		
@@ -118,6 +121,7 @@ public class Game extends Canvas implements Runnable{
 		//calls update tick method in every object
 		handler.tick();
 		hud.tick();
+		levels.tick();
 	}
 	
 	//actually renders the stuff.

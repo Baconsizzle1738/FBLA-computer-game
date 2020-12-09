@@ -4,6 +4,6 @@ public enum ID {
 	//id game 
 	Player(),
 	Obstacle(),
-	Enemy();
+	StaticEnemy();
 	
 }

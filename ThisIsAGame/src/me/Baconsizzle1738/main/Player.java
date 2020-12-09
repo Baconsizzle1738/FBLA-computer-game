@@ -5,10 +5,10 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Player extends GameObject{
-
-	public Player(int x, int y, ID typeId, int level) {
+	GameHandler handler;
+	public Player(int x, int y, ID typeId, int level, GameHandler h) {
 		super(x, y, typeId, level);
-		
+		handler = h;
 	}
 
 	@Override
@@ -26,7 +26,20 @@ public class Player extends GameObject{
 		g.fillRect(x, y, 32, 32);
 		
 	}
-
+	
+	public boolean isHitByEnemy() {
+		for (int i = 0; i<handler.objects.size(); i++) {
+			if (handler.objects.get(i).gettypeID() == ID.StaticEnemy) {
+				StaticEnemy temp = (StaticEnemy) handler.objects.get(i);
+				if (this.getBounds().intersects(temp.getBounds())) {
+					temp.setDamageAbility(false);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	public Rectangle getBounds() {
 		// TODO Auto-generated method stub

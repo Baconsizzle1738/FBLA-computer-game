@@ -6,10 +6,12 @@ import java.awt.Rectangle;
 
 public class StaticEnemy extends GameObject{
 	
-	private int beginX, beginY, endX, endY, volX, volY;
+	private int beginX, beginY, endX, endY, volX, volY, damageCooldown, damage;
+	private int cooldownTimer = 0;
+	private boolean canDoDamage = false;
 	
 	//an enemy that moves within a restrained location
-	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int y2, int volX, int volY) {
+	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int y2, int volX, int volY, int dmg, int cd) {
 		
 		super(x, y, typeId, level);
 		beginX = x;
@@ -27,7 +29,7 @@ public class StaticEnemy extends GameObject{
 		
 	}
 	
-	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int volX) {
+	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int volX, int dmg, int cd) {
 		
 		super(x, y, typeId, level);
 		beginX = x;
@@ -41,7 +43,7 @@ public class StaticEnemy extends GameObject{
 		}
 	}
 	
-	public StaticEnemy(int x, int y, ID typeId, int level, int y2, int volY, int temp) {
+	public StaticEnemy(int x, int y, ID typeId, int level, int y2, int volY, int dmg, int cd, int temp) {
 		
 		super(x, y, typeId, level);
 		beginX = x;
@@ -57,6 +59,12 @@ public class StaticEnemy extends GameObject{
 
 	@Override
 	public void tick() {
+		if (!canDoDamage) {
+			cooldownTimer++;
+			if (cooldownTimer>=damageCooldown) {
+				canDoDamage = true;
+			}
+		}
 		
 		x+=volX;
 		y+=volY;
@@ -117,6 +125,10 @@ public class StaticEnemy extends GameObject{
 		g.setColor(Color.red);
 		g.fillRect(x, y, 30, 30);
 		
+	}
+	
+	public void setDamageAbility(boolean thing) {
+		canDoDamage = thing;
 	}
 
 	@Override
