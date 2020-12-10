@@ -62,6 +62,7 @@ public class StaticEnemy extends Enemy{
 			cooldownTimer++;
 			if (cooldownTimer>=damageCooldown) {
 				canDoDamage = true;
+				cooldownTimer = 0;
 			}
 		}
 		

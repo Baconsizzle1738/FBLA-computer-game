@@ -21,7 +21,8 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	public static boolean gameStarted = false;
 	
-	public int health;
+	
+	public static int health = 100;
 	
 	//for testing vvv
 	//private Random r;
@@ -46,7 +47,6 @@ public class Game extends Canvas implements Runnable{
 		//heads up display
 		hud = new HUD(levels);
 		
-		health = hud.health;
 		//handler.addObject(new Player(300, 300, ID.Player, -1));
 		
 		

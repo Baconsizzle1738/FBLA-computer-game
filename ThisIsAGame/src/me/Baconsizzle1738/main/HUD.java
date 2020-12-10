@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 //import java.awt.event.MouseMotionListener;
 
 public class HUD {
-	public static int health = 100;
+	public static int health = Game.health;
 	//public boolean gameStarted = false;
 	public Rectangle startButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
 	
@@ -17,8 +17,8 @@ public class HUD {
 	boolean isOnButton = false;
 	
 	//so button colors change when clicked
-	Color buttonColor = Color.red;
-	Color buttonBorderColor = Color.black;
+	private Color buttonColor = Color.red;
+	private Color buttonBorderColor = Color.black;
 	
 	Levels levels;
 	
@@ -49,7 +49,7 @@ public class HUD {
 			g.fillRect(10, 10, 200, 10);
 			//health bar health
 			g.setColor(Color.red);
-			g.fillRect(10 ,10, health*2, 10);
+			g.fillRect(10 ,10, Game.health*2, 10);
 			
 			
 			//level indicator4
@@ -65,7 +65,9 @@ public class HUD {
 	}
 	
 	public void tick() {
+		health = Game.health;
 		health = Game.clamp(health, 0, 100);
+		
 		
 		
 		//changes button color when clicked

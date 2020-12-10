@@ -17,6 +17,20 @@ public class Player extends GameObject{
 		x+=volX;
 		y+=volY;
 		
+		for (int i = 0; i<handler.objects.size(); i++) {
+			if (handler.objects.get(i).gettypeID() == ID.StaticEnemy) {
+				Enemy temp = (Enemy) handler.objects.get(i);
+				if (this.getBounds().intersects(temp.getBounds())) {
+					System.out.println("heq");
+					if (temp.canDoDamage) {
+						Game.health-=temp.damage;
+						System.out.println("hit");
+						temp.setDamageAbility(false);
+					}
+				}
+			}
+		}
+		
 		x = Game.clamp(x, 0, Game.WIDTH-48);//x is 16 px off
 		y = Game.clamp(y, 0, Game.HEIGHT-71);//y is 39 px off
 	}
@@ -28,18 +42,14 @@ public class Player extends GameObject{
 		
 	}
 	
-	public boolean isHitByEnemy() {
-		for (int i = 0; i<handler.objects.size(); i++) {
-			if (handler.objects.get(i).gettypeID() == ID.StaticEnemy) {
-				StaticEnemy temp = (StaticEnemy) handler.objects.get(i);
-				if (this.getBounds().intersects(temp.getBounds())) {
-					temp.setDamageAbility(false);
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+//	public boolean isHitByEnemy() {
+//		
+//		return false;
+//	}
+	
+//	public void hitByEnemy(Enemy e) {
+//		Game.health-=e.damage;
+//	}
 	
 	@Override
 	public Rectangle getBounds() {

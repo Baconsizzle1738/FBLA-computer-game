@@ -40,7 +40,7 @@ public class RoomOne extends Room {
 
 	@Override
 	public void startLevel() {
-		handler.addObject(new StaticEnemy(200, 200, ID.StaticEnemy, lvl, 500, 3, 1, 2000));
+		handler.addObject(new StaticEnemy(200, 200, ID.StaticEnemy, lvl, 500, 3, 1, 40));
 	}
 
 }
