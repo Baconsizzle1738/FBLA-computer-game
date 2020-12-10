@@ -51,6 +51,7 @@ public class Game extends Canvas implements Runnable{
 		
 		
 		new Window(WIDTH,HEIGHT,"Game",this);
+		this.requestFocusInWindow();
 		
 		//this for test
 		//handler.addObject(new Player(300, 300, ID.Player, ID.AllLevels));
@@ -66,7 +67,7 @@ public class Game extends Canvas implements Runnable{
 		
 		
 		//this fixes annoying window issue where you have to click on it for it to work
-		this.requestFocusInWindow();
+		
 	}
 	
 	public synchronized void start() {

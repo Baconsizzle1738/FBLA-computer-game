@@ -39,6 +39,7 @@ public class Levels {
 			GameObject temp = handler.objects.get(i);
 			if (temp.getlevelID() == level) {
 				handler.removeObject(temp);
+				i--;
 			}
 		}
 	}

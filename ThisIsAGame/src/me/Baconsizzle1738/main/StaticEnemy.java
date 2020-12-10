@@ -10,6 +10,8 @@ public class StaticEnemy extends Enemy{
 	
 	
 	//an enemy that moves within a restrained location
+	
+	//this is for enemy that moves in a "box"
 	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int y2, int volX, int volY, int dmg, int cd) {
 		
 		super(x, y, typeId, level, cd, dmg);
@@ -28,6 +30,7 @@ public class StaticEnemy extends Enemy{
 		
 	}
 	
+	//constrained only to the x axis
 	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int volX, int dmg, int cd) {
 		
 		super(x, y, typeId, level, cd, dmg);
@@ -42,6 +45,7 @@ public class StaticEnemy extends Enemy{
 		}
 	}
 	
+	//constrained only to the y axis, int temp is just to differentiate it doesn't actually do anything
 	public StaticEnemy(int x, int y, ID typeId, int level, int y2, int volY, int dmg, int cd, int temp) {
 		
 		super(x, y, typeId, level, cd, dmg);

@@ -29,7 +29,7 @@ public class RoomTwo extends Room{
 
 	@Override
 	public void startLevel() {
-		
+		handler.addObject(new StaticEnemy(210, 400, ID.StaticEnemy, lvl, 500, 3, 1, 40, -1));
 	}
 
 }

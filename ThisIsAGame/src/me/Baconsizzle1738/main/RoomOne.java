@@ -1,5 +1,6 @@
 package me.Baconsizzle1738.main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class RoomOne extends Room {
@@ -41,6 +42,7 @@ public class RoomOne extends Room {
 	@Override
 	public void startLevel() {
 		handler.addObject(new StaticEnemy(200, 200, ID.StaticEnemy, lvl, 500, 3, 1, 40));
+		handler.addObject(new Obstacle(300, 100, ID.Obstacle, lvl, 20, 100, new Color(50, 200, 0)));
 	}
 
 }

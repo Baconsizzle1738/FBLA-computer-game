@@ -21,10 +21,10 @@ public class Player extends GameObject{
 			if (handler.objects.get(i).gettypeID() == ID.StaticEnemy) {
 				Enemy temp = (Enemy) handler.objects.get(i);
 				if (this.getBounds().intersects(temp.getBounds())) {
-					System.out.println("heq");
+					//System.out.println("heq");
 					if (temp.canDoDamage) {
 						Game.health-=temp.damage;
-						System.out.println("hit");
+						//System.out.println("hit");
 						temp.setDamageAbility(false);
 					}
 				}
