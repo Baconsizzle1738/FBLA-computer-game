@@ -8,6 +8,22 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 //import java.util.Random;
 
+/**
+ * This game is a puzzle/riddle game where the player is trapped in a lot of
+ * rooms and the only way to escape is to solve the puzzle/riddle in the room,
+ * some of which will be a reference to other games. Every room has a different
+ * puzzle that the player has to solve, and upon completion
+ * will allow the player to move to the next room where there is another puzzle to solve.
+ * While solving the puzzle, the player will encounter enemies that will hurt them,
+ * some more than others.
+ * 
+ * 
+ * <code>Game</code> is the main class.
+ * 
+ * @author Baconsizzle 1738
+ *
+ */
+
 public class Game extends Canvas implements Runnable{
 	/**
 	 * 
