@@ -18,7 +18,10 @@ public class Player extends GameObject{
 		y+=volY;
 		
 		for (int i = 0; i<handler.objects.size(); i++) {
+			
+			//for enemy collision detection
 			if (handler.objects.get(i).gettypeID() == ID.StaticEnemy) {
+				
 				Enemy temp = (Enemy) handler.objects.get(i);
 				if (this.getBounds().intersects(temp.getBounds())) {
 					//System.out.println("heq");
@@ -28,6 +31,44 @@ public class Player extends GameObject{
 						temp.setDamageAbility(false);
 					}
 				}
+				
+			}
+			
+			//for obstacle collision detection
+			if (handler.objects.get(i).gettypeID() == ID.Obstacle) {
+				
+				Obstacle temp = (Obstacle) handler.objects.get(i);
+				if (this.getBounds().intersects(temp.getBounds())) {
+					
+					x-=volX;
+					y-=volY;
+					
+					if ((x+32)-temp.getX() != 0 && x+32 < temp.getX()) {
+						x += temp.getX()-(x+32);
+					}
+					
+					if (x - (temp.getX()+temp.getWidth()) != 0 && x > temp.getX()+temp.getWidth()) {
+						x -= x - (temp.getX()+temp.getWidth());
+					}
+					
+					//for y
+					if ((y+32)-temp.getY() != 0 && y+32 < temp.getY()) {
+						y += temp.getY()-(y+32);
+					}
+					
+					if (y - (temp.getY()+temp.getHeight()) != 0 && y > temp.getY()+temp.getHeight()) {
+						y -= y - (temp.getY()+temp.getHeight());
+					}
+					
+//					if (x+32>temp.getX()) {
+//						x = temp.getX()-32;
+//					}
+//					else if (x<temp.getX()) {
+//						x = temp.getX()+temp.getWidth();
+//					}
+					
+				}
+				
 			}
 		}
 		
@@ -53,7 +94,6 @@ public class Player extends GameObject{
 	
 	@Override
 	public Rectangle getBounds() {
-		// TODO Auto-generated method stub
 		return new Rectangle(x,y,32,32);
 	}
 

@@ -32,4 +32,9 @@ public class RoomBegin extends Room {
 		
 	}
 
+	@Override
+	public void reset() {
+		
+	}
+
 }

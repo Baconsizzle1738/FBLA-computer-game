@@ -15,6 +15,14 @@ public class Obstacle extends GameObject{
 		this.width = width;
 		color = col;
 	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
 
 	@Override
 	public void tick() {

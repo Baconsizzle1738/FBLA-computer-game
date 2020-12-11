@@ -3,6 +3,8 @@ package me.Baconsizzle1738.main;
 import java.awt.Color;
 import java.awt.Graphics;
 
+
+//based off the konami code
 public class RoomOne extends Room {
 
 	public RoomOne(int spawnX, int spawnY, GameHandler h, int lvl) {
@@ -41,8 +43,20 @@ public class RoomOne extends Room {
 
 	@Override
 	public void startLevel() {
+		
+		this.SetPlayerSpawn();
+		//test case
 		handler.addObject(new StaticEnemy(200, 200, ID.StaticEnemy, lvl, 500, 3, 1, 40));
+		handler.addObject(new StaticEnemy(200, 200, ID.StaticEnemy, lvl, 500, 4, 20, 100, 0));
 		handler.addObject(new Obstacle(300, 100, ID.Obstacle, lvl, 20, 100, new Color(50, 200, 0)));
+		
+		
+		
+	}
+
+	@Override
+	public void reset() {
+		this.startLevel();
 	}
 
 }

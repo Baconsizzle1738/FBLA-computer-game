@@ -28,7 +28,6 @@ public class Levels {
 				removeLevelObjects();
 				level++;
 				room.get(level).startLevel();
-				room.get(level).SetPlayerSpawn();
 			}
 		}
 	}

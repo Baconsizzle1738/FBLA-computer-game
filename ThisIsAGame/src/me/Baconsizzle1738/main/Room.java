@@ -33,6 +33,7 @@ public abstract class Room {
 	
 	//to see if the conditions for completing the levels are met
 	public abstract void startLevel();
+	public abstract void reset();
 	public abstract boolean isComplete ();
 	public abstract void tick();
 	public abstract void render(Graphics g);
