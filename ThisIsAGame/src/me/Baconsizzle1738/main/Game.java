@@ -20,7 +20,7 @@ import java.awt.image.BufferStrategy;
  * 
  * <code>Game</code> is the main class.
  * 
- * @author Baconsizzle 1738
+ * @author Baconsizzle1738
  *
  */
 

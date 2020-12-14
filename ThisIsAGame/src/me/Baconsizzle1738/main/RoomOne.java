@@ -52,7 +52,7 @@ public class RoomOne extends Room {
 		handler.addObject(new Obstacle(200, 50, ID.Obstacle, lvl, 5, 500, new Color(200, 200, 200)));
 		handler.addObject(new Obstacle(200, 50, ID.Obstacle, lvl, 500, 5, new Color(200, 200, 200)));
 		handler.addObject(new Obstacle(695, 50, ID.Obstacle, lvl, 5, 500, new Color(200, 200, 200)));
-		handler.addObject(new Obstacle(200, 550, ID.Obstacle, lvl, 500, 5, new Color(200, 200, 200)));
+		handler.addObject(new Obstacle(200, 545, ID.Obstacle, lvl, 500, 5, new Color(200, 200, 200)));
 		
 		
 	}

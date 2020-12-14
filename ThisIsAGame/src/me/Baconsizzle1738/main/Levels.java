@@ -3,12 +3,22 @@ package me.Baconsizzle1738.main;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+/**
+ * Controls leveling system.
+ * @author Baconsizzle1738
+ *
+ */
 public class Levels {
 	GameHandler handler;
 	//HUD hud;
 	public static int level;
 	private ArrayList<Room> room = new ArrayList<>();
 	
+	
+	/**
+	 * Takes handler into class and also creates a list of the levels, including the title screen.
+	 * @param handler
+	 */
 	public Levels(/* HUD hud, */ GameHandler handler) {
 		//this.hud = hud;
 		this.handler = handler;
@@ -21,6 +31,9 @@ public class Levels {
 		room.get(0).SetPlayerSpawn();
 	}
 	
+	/**
+	 * Checks status of level completion on every update.
+	 */
 	public void tick() {
 		if (Game.gameStarted) {
 			if (room.get(level).isComplete()) {
@@ -32,7 +45,9 @@ public class Levels {
 		}
 	}
 	
-	//removes all level specific objects
+	/**
+	 * Removes all level specific objects
+	 */
 	public void removeLevelObjects() {
 		for (int i = 0; i<handler.objects.size(); i++) {
 			GameObject temp = handler.objects.get(i);
@@ -43,7 +58,10 @@ public class Levels {
 		}
 	}
 	
-	
+	/**
+	 * Renders the room/level.
+	 * @param g	Graphics board to render <code>Room</code> on.
+	 */
 	public void render(Graphics g) {
 		room.get(level).render(g);
 	}

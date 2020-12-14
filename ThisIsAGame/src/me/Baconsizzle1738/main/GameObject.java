@@ -88,18 +88,43 @@ public abstract class GameObject {
 	public void settypeID(ID id) {
 		this.typeId = id;
 	}
-	public void setLevelID(int id) {
-		this.levelId = id;
+	
+	/**
+	 * Sets the <code>levelID</code> of <code>GameObject</code>.
+	 * @param lvl	Sets <code>levelId</code> to <code>lvl</code>.
+	 */
+	public void setLevelID(int lvl) {
+		this.levelId = lvl;
 	}
+	
+	/**
+	 * Returns object <code>ID</code>.
+	 * @return	Object <code>ID</code>.
+	 */
 	public ID gettypeID() {
 		return typeId;
 	}
+	
+	/**
+	 * Returns object level.
+	 * @return	Object <code>levelId</code>.
+	 */
 	public int getlevelID() {
 		return levelId;
 	}
+	
+	/**
+	 * Sets the horizontal velocity of the object.
+	 * @param volX	x velocity of <code>GameObject</code>.
+	 */
 	public void setVolX(int volX) {
 		this.volX = volX;
 	}
+	
+	/**
+	 * Sets the vertical velocity of the object.
+	 * @param volY	y velocity of <code>GameObject</code>.
+	 */
 	public void setVolY(int volY) {
 		this.volY = volY;
 	}

@@ -7,8 +7,16 @@ import java.awt.Rectangle;
 //import java.awt.event.MouseEvent;
 //import java.awt.event.MouseListener;
 //import java.awt.event.MouseMotionListener;
-
+/**
+ * <code>HUD</code> is the class that controls the heads up display.
+ * 
+ * @author Baconsizzle1738
+ *
+ */
 public class HUD {
+	/**
+	 * Health of the player.
+	 */
 	public static int health = Game.health;
 	//public boolean gameStarted = false;
 	public Rectangle startButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
@@ -22,11 +30,18 @@ public class HUD {
 	
 	Levels levels;
 	
+	/**
+	 * Constructor takes in <code>lvl</code> class as miuch of what happens in <code>HUD</code> is affected by <code>lvl</code>.
+	 * @param lvl
+	 */
 	public HUD (Levels lvl) {
 		levels = lvl;
 	}
 	
-	
+	/**
+	 * Renders the heads up display.
+	 * @param g	Graphics board to render <code>HUD</code> on.
+	 */
 	public void render(Graphics g) {
 		//stuff here only shows when game is not started
 		
@@ -64,8 +79,12 @@ public class HUD {
 		
 	}
 	
+	/**
+	 * Updates logic in <code>HUD</code>.
+	 */
 	public void tick() {
 		health = Game.health;
+		//constrains health to be inside healthbar.
 		health = Game.clamp(health, 0, 100);
 		
 		
