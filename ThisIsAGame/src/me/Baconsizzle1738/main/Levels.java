@@ -45,6 +45,6 @@ public class Levels {
 	
 	
 	public void render(Graphics g) {
-		
+		room.get(level).render(g);
 	}
 }

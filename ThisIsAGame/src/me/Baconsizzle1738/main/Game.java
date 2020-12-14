@@ -90,6 +90,9 @@ public class Game extends Canvas implements Runnable{
 		
 	}
 	
+	/**
+	 * The <code>start</code> method starts the game.
+	 */
 	public synchronized void start() {
 		//starts game
 		//single thread
@@ -98,6 +101,9 @@ public class Game extends Canvas implements Runnable{
 		running = true;
 	}
 	
+	/**
+	 * The <code>stop</code> method kills the game.
+	 */
 	public synchronized void stop() {
 		//kills game
 		try {
@@ -109,6 +115,11 @@ public class Game extends Canvas implements Runnable{
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * The <code>run</code> method continuously runs the game by calling
+	 * <code>tick</code> and <code>render</code>.
+	 */
 	@Override
 	public void run() {
 		//game timer/runner
@@ -141,7 +152,9 @@ public class Game extends Canvas implements Runnable{
 		
 	}
 	
-	//tick updates the render
+	/**
+	 * The <code>tick</code> method updates all of the game logic when called.
+	 */
 	public void tick() {
 		//calls update tick method in every object
 		handler.tick();
@@ -150,6 +163,10 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	//actually renders the stuff.
+	/**
+	 * The <code>render</code> method draws the game objects on the screen so long as the
+	 * game is running.
+	 */
 	public void render() {
 		//getBufferStrategy() is from canvas implementation
 		BufferStrategy bs = this.getBufferStrategy();
@@ -164,14 +181,23 @@ public class Game extends Canvas implements Runnable{
 		g.setColor(bkg);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		//render game objects and HUD here
+		//render game objects, levels, and HUD here
 		handler.render(g);
 		hud.render(g);
+		levels.render(g);
 		
 		g.dispose();
 		bs.show();
 	}
-	
+	/**
+	 * The <code>clamp</code> method restrains a changing variable to a certain <code>min</code>
+	 * and <code>max</code> limit.
+	 * 
+	 * @param var	This is the input variable.
+	 * @param min	This is the minimum value the variable can be.
+	 * @param max	This is the maximum value the variable can be.
+	 * @return		Returns <code>var</code> if the input is within the constrains, otherwise it will return <code>min</code> or <code>max</code> of it is to low or high respectively.
+	 */
 	//restrains a variable within a certain limit
 	public static int clamp(int var, int min, int max) {
 		if (var>max) {
@@ -185,6 +211,10 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 	
+	/**
+	 * This is the main method.
+	 * @param args	nothing here
+	 */
 	//make the game start in main
 	public static void main(String[] args) {
 		new Game();
