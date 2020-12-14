@@ -52,7 +52,11 @@ public class Game extends Canvas implements Runnable{
 	Levels levels;
 	//Room room;
 	
-	
+	/**
+	 * Constructor of <code>Game</code> class instantiates the game handler class <code>handler</code>,
+	 * the leveling system class <code>levels</code>, and the HUD class <code>hud</code>, and also adds 
+	 * keyboard and mouse listeners for the game.
+	 */
 	public Game() {
 		//make the handler first to prevent some possible errors
 		handler = new GameHandler();
