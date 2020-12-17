@@ -58,6 +58,10 @@ public class Levels {
 		}
 	}
 	
+	public void resetLevel() {
+		room.get(level).reset();
+	}
+	
 	/**
 	 * Renders the room/level.
 	 * @param g	Graphics board to render <code>Room</code> on.

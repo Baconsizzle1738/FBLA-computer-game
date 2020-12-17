@@ -6,18 +6,21 @@ import java.awt.event.KeyListener;
 
 public class GameKeyListener implements KeyListener{
 	GameHandler handler;
+	Levels levels;
 	
 	//in order of w, a, s, d
 	boolean[] keys = {false,false,false,false};
 	
-	public GameKeyListener(GameHandler h) {
+	public GameKeyListener(GameHandler h, Levels l) {
 		handler = h;
-		
+		levels = l;
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		//nothing here for now
+		if (e.getKeyCode() == KeyEvent.VK_R) {
+			
+		}
 		
 	}
 
@@ -30,19 +33,19 @@ public class GameKeyListener implements KeyListener{
 				GameObject player = handler.objects.get(i);
 				
 				if (e.getKeyCode() == KeyEvent.VK_W) {
-					player.setVolY(-5);
+					player.setVolY(-3);
 					keys[0] = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_A) {
-					player.setVolX(-5);
+					player.setVolX(-3);
 					keys[1] = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_S) {
-					player.setVolY(5);
+					player.setVolY(3);
 					keys[2] = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_D) {
-					player.setVolX(5);
+					player.setVolX(3);
 					keys[3] = true;
 				}
 			}

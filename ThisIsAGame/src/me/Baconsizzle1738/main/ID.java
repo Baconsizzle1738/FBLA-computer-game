@@ -9,6 +9,7 @@ public enum ID {
 	//id game 
 	Player(),
 	Obstacle(),
+	Interactable(),
 	StaticEnemy();
 	
 }

@@ -80,7 +80,7 @@ public class Game extends Canvas implements Runnable{
 		//handler.addObject(new StaticEnemy(70, 70, ID.Enemy, ID.Level1 ,300 , 2, 0));
 		
 		//takes keyboard inputs
-		this.addKeyListener(new GameKeyListener(handler));
+		this.addKeyListener(new GameKeyListener(handler, levels));
 		//takes mouse inputs
 		this.addMouseListener(new GameMouseListener(hud));
 		
