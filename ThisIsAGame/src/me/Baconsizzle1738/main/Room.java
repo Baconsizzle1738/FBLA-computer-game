@@ -8,12 +8,15 @@ public abstract class Room {
 	GameHandler handler;
 	public boolean complete = false;
 	public boolean started = false;
+	protected boolean canReset = false;
+	protected int resetCool;
 	
 	public Room(int spawnX, int spawnY, GameHandler h, int lvl) {
 		initialX = spawnX;
 		initialY = spawnY;
 		handler = h;
 		this.lvl = lvl;
+		resetCool = 0;
 	}
 	
 	public void SetPlayerSpawn() {

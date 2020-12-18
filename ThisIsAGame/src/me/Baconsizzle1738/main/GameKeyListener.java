@@ -18,14 +18,17 @@ public class GameKeyListener implements KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_R) {
-			
-		}
+		
 		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
+		
+		if (e.getKeyCode() == KeyEvent.VK_R) {
+			levels.resetLevel();
+		}
 		
 		for (int i = 0; i<handler.objects.size(); i++) {
 			if (handler.objects.get(i).gettypeID() == ID.Player) {

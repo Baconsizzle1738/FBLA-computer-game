@@ -43,6 +43,7 @@ public class Levels {
 				room.get(level).startLevel();
 			}
 		}
+		room.get(level).tick();
 	}
 	
 	/**
