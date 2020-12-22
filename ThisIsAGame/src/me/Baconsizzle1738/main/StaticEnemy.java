@@ -3,7 +3,11 @@ package me.Baconsizzle1738.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-
+/**
+ * StaticEnemy is an Enemy type that moves within a restrained location
+ * @author Baconsizzle1738
+ *
+ */
 public class StaticEnemy extends Enemy{
 	
 	private int beginX, beginY, endX, endY, volX, volY;
@@ -12,6 +16,20 @@ public class StaticEnemy extends Enemy{
 	//an enemy that moves within a restrained location
 	
 	//this is for enemy that moves in a "box"
+	/**
+	 *An enemy that moves within a restrained location
+	 *
+	 * @param x			Initial x position
+	 * @param y			Initial y position
+	 * @param typeId	ID of enemy
+	 * @param level		Level the enemy is in
+	 * @param x2		Second x position
+	 * @param y2		Second y position
+	 * @param volX		X velocity of StaticEnemy
+	 * @param volY		Y velocity of StaticEnemy
+	 * @param dmg		Magnitude of damage dealt by enemy per hit
+	 * @param cd		Damage cooldown timer(in ticks)
+	 */
 	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int y2, int volX, int volY, int dmg, int cd) {
 		
 		super(x, y, typeId, level, cd, dmg);
@@ -31,6 +49,18 @@ public class StaticEnemy extends Enemy{
 	}
 	
 	//constrained only to the x axis
+	/**
+	 * Enemy that moves within a constrained x axis
+	 * 
+	 * @param x			Initial x position
+	 * @param y			Initial y position
+	 * @param typeId	ID of enemy
+	 * @param level		Level the enemy is in
+	 * @param x2		Second x position
+	 * @param volX		X velocity of StaticEnemy
+	 * @param dmg		Magnitude of damage dealt by enemy per hit
+	 * @param cd		Damage cooldown timer(in ticks)
+	 */
 	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int volX, int dmg, int cd) {
 		
 		super(x, y, typeId, level, cd, dmg);
@@ -45,6 +75,18 @@ public class StaticEnemy extends Enemy{
 		}
 	}
 	
+	/**
+	 * Enemy that moves within a constrained y axis
+	 * 
+	 * @param x			Initial x position
+	 * @param y			Initial y position
+	 * @param typeId	ID of enemy
+	 * @param level		Level the enemy is in
+	 * @param y2		Second y position
+	 * @param volY		Y velocity of StaticEnemy
+	 * @param dmg		Magnitude of damage dealt by enemy per hit
+	 * @param cd		Damage cooldown timer(in ticks)
+	 */
 	//constrained only to the y axis, int temp is just to differentiate it doesn't actually do anything
 	public StaticEnemy(int x, int y, ID typeId, int level, int y2, int volY, int dmg, int cd, int temp) {
 		
@@ -59,7 +101,6 @@ public class StaticEnemy extends Enemy{
 			volX*=-1;
 		}
 	}
-
 	@Override
 	public void tick() {
 		if (!canDoDamage) {
@@ -130,6 +171,7 @@ public class StaticEnemy extends Enemy{
 		g.fillRect(x, y, 30, 30);
 		
 	}
+	
 	
 	public void setDamageAbility(boolean thing) {
 		canDoDamage = thing;

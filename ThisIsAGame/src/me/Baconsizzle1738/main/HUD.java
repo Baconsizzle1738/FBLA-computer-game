@@ -64,7 +64,7 @@ public class HUD {
 			g.fillRect(10, 10, 200, 10);
 			//health bar health
 			g.setColor(Color.red);
-			g.fillRect(10 ,10, Game.health*2, 10);
+			g.fillRect(10 ,10, health*2, 10);
 			
 			
 			//level indicator4

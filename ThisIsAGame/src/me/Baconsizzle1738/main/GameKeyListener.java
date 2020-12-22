@@ -36,19 +36,19 @@ public class GameKeyListener implements KeyListener{
 				GameObject player = handler.objects.get(i);
 				
 				if (e.getKeyCode() == KeyEvent.VK_W) {
-					player.setVolY(-3);
+					player.setVolY(-2);
 					keys[0] = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_A) {
-					player.setVolX(-3);
+					player.setVolX(-2);
 					keys[1] = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_S) {
-					player.setVolY(3);
+					player.setVolY(2);
 					keys[2] = true;
 				}
 				if (e.getKeyCode() == KeyEvent.VK_D) {
-					player.setVolX(3);
+					player.setVolX(2);
 					keys[3] = true;
 				}
 			}

@@ -26,7 +26,7 @@ public class Levels {
 		level = 0;
 		//test
 		room.add(new RoomBegin(350, 350, handler, 0));
-		room.add(new RoomOne(300, 300, handler, 1));
+		room.add(new RoomOne(305, 300, handler, 1));
 		room.add(new RoomTwo(200, 200, handler, 2));
 		room.get(0).SetPlayerSpawn();
 	}
