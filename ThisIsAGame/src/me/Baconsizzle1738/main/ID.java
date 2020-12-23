@@ -10,6 +10,7 @@ public enum ID {
 	Player(),
 	Obstacle(),
 	Interactable(),
+	Door(),
 	StaticEnemy();
 	
 }
