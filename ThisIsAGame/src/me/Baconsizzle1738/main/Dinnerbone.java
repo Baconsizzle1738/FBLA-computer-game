@@ -25,16 +25,15 @@ public class Dinnerbone extends GameObject{
 	public void render(Graphics g) {
 		
 		Graphics2D g2 = (Graphics2D) g.create();
-		g2.translate(-130, -545);
+		g2.translate(x, y);
 		
 		g2.rotate(Math.toRadians(orientation));
 		
 		g2.setColor(new Color(0, 150, 20));
-		g2.fillRect(x, y, 50, 50);
+		g2.fillRect(-25, -25, 50, 50);
 		g2.setColor(new Color(210, 210, 210));
-		g2.drawString("This side UP ^", x, y+10);
-		g2.translate(475, -175);
-		
+		g2.drawString("UP ^", -15, -5);
+		//g2.translate(100, 100);
 		
 	}
 
