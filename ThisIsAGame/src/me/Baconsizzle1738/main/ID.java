@@ -11,6 +11,7 @@ public enum ID {
 	Obstacle(),
 	Interactable(),
 	Door(),
-	StaticEnemy();
+	FollowEnemy(),
+	Enemy();
 	
 }

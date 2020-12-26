@@ -18,6 +18,8 @@ public class HUD {
 	 * Health of the player.
 	 */
 	public static int health = Game.health;
+	
+	public static int lives = 3;
 	//public boolean gameStarted = false;
 	public Rectangle startButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
 	
@@ -71,6 +73,9 @@ public class HUD {
 			g.setColor(new Color(200, 150, 0));
 			g.drawString("Level " + Levels.level, 230, 15);
 			
+			//life indicator
+			g.setColor(new Color(230,200,0));
+			g.drawString("Lives: " + lives, 230, 25);
 			//pause button
 			
 			
@@ -88,6 +93,15 @@ public class HUD {
 		health = Game.clamp(health, 0, 100);
 		
 		
+		//if health is 0 then player loses a life
+		//if life is 0 then GG rip.
+		if (health <= 0) {
+			if (lives>0) {
+				lives--;
+				Game.health = 100;
+				levels.resetLevel();
+			}
+		}
 		
 		//changes button color when clicked
 		if (isOnButton == true) {

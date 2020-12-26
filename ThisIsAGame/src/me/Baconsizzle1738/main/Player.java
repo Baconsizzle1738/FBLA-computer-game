@@ -20,7 +20,7 @@ public class Player extends GameObject{
 		for (int i = 0; i<handler.objects.size(); i++) {
 			
 			//for enemy collision detection
-			if (handler.objects.get(i).gettypeID() == ID.StaticEnemy) {
+			if (handler.objects.get(i).gettypeID() == ID.Enemy || handler.objects.get(i).gettypeID() == ID.FollowEnemy) {
 				
 				Enemy temp = (Enemy) handler.objects.get(i);
 				if (this.getBounds().intersects(temp.getBounds())) {

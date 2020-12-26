@@ -13,7 +13,9 @@ public class RoomOne extends Room {
 	private int collected = 0;
 	private ArrayList<KonamiArrow> collectedArrows;
 	private ArrayList<String> correct;
+	//check if all arrows are collected
 	private boolean allArrows = false;
+	//check if combination is correct;
 	private boolean correctComb = false;
 	
 	public RoomOne(int spawnX, int spawnY, GameHandler h, int lvl) {
@@ -52,7 +54,8 @@ public class RoomOne extends Room {
 			}
 		}
 		
-		return false;
+		//change to true for quick advance for testing out other levels
+		return true;
 	}
 
 	@Override
@@ -148,6 +151,21 @@ public class RoomOne extends Room {
 		for (int i = 0; i<collectedArrows.size(); i++) {
 			collectedArrows.get(i).render(g);
 		}
+		g.setFont(new Font(Font.SERIF, 10, 12));
+		if (!allArrows) {
+			g.setColor(new Color(200,200,0));
+			g.drawString("The labyrinth seems to have no exit...", 720, 240);
+			g.drawString("There seems to be random keys lying around though.", 720, 255);
+		}
+		if (allArrows && !correctComb) {
+			g.setColor(new Color(200,200,0));
+			g.drawString("Hmm...", 720, 240);
+			g.drawString("Nothing happened.", 720, 255);
+		}
+		if (allArrows && correctComb) {
+			g.setColor(new Color(200,200,0));
+			g.drawString("Oh look a door.", 720, 240);
+		}
 	}
 	
 	//so the maze width stays consistent
@@ -223,11 +241,11 @@ public class RoomOne extends Room {
 		handler.addObject(new KonamiArrow(mazeIncrementX(9)+17, mazeIncrementY(7)+17, ID.Interactable, lvl, "right"));
 		
 		//add enemies
-		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(0)+10, ID.StaticEnemy, lvl, mazeIncrementX(9)+10, 3, 10, 20));
-		handler.addObject(new StaticEnemy(mazeIncrementX(3)+10, mazeIncrementY(2)+10, ID.StaticEnemy, lvl, mazeIncrementX(5)+10, 1, 6, 60));
-		handler.addObject(new StaticEnemy(mazeIncrementX(9)+10, mazeIncrementY(4)+10, ID.StaticEnemy, lvl, mazeIncrementY(6)+10, 1, 6, 60, -1));
-		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(7)+10, ID.StaticEnemy, lvl, mazeIncrementX(6)+10, 1, 6, 60));
-		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(8)+10, ID.StaticEnemy, lvl, mazeIncrementX(4)+10, 2, 7, 40));
+		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(0)+10, ID.Enemy, lvl, mazeIncrementX(9)+10, 3, 10, 20));
+		handler.addObject(new StaticEnemy(mazeIncrementX(3)+10, mazeIncrementY(2)+10, ID.Enemy, lvl, mazeIncrementX(5)+10, 1, 6, 60));
+		handler.addObject(new StaticEnemy(mazeIncrementX(9)+10, mazeIncrementY(4)+10, ID.Enemy, lvl, mazeIncrementY(6)+10, 1, 6, 60, -1));
+		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(7)+10, ID.Enemy, lvl, mazeIncrementX(6)+10, 1, 6, 60));
+		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(8)+10, ID.Enemy, lvl, mazeIncrementX(4)+10, 2, 7, 40));
 		
 		
 	}
@@ -259,6 +277,7 @@ public class RoomOne extends Room {
 			
 			canReset = false;
 			allArrows = false;
+			correctComb = false;
 			collected = 0;
 		}
 		

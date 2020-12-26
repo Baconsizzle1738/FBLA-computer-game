@@ -173,9 +173,9 @@ public class StaticEnemy extends Enemy{
 	}
 	
 	
-	public void setDamageAbility(boolean thing) {
-		canDoDamage = thing;
-	}
+//	public void setDamageAbility(boolean thing) {
+//		canDoDamage = thing;
+//	}
 
 	@Override
 	public Rectangle getBounds() {
