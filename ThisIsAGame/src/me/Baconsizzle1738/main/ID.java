@@ -12,6 +12,7 @@ public enum ID {
 	Interactable(),
 	Door(),
 	FollowEnemy(),
+	Button1(),
 	Enemy();
 	
 }

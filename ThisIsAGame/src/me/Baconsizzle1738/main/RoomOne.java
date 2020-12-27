@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Random;
+//import java.util.Random;
 
 
 //based off the konami code
 public class RoomOne extends Room {
-	Random r;
+	//Random r;
 	private int collected = 0;
 	private ArrayList<KonamiArrow> collectedArrows;
 	private ArrayList<String> correct;
@@ -17,11 +17,11 @@ public class RoomOne extends Room {
 	private boolean allArrows = false;
 	//check if combination is correct;
 	private boolean correctComb = false;
+	Player p;
 	
 	public RoomOne(int spawnX, int spawnY, GameHandler h, int lvl) {
 		super(spawnX, spawnY, h, lvl);
-		//test
-		r = new Random();
+		//r = new Random();
 		collectedArrows = new ArrayList<>();
 		correct = new ArrayList<>();
 		correct.add("up");
@@ -32,23 +32,23 @@ public class RoomOne extends Room {
 		correct.add("right");
 		correct.add("left");
 		correct.add("right");
+		p = new Player(500, 500, ID.Player, this.lvl, this.handler);
+		handler.addObject(p);
 		
 	}
 	
 	@Override
 	public boolean isComplete() {
-		Player p = null;
 		KonamiDoor d= null;
 		
+		//checks if the combination is correct
 		if (correctComb) {
 			for (int i = 0; i<handler.objects.size(); i++) {
-				if (handler.objects.get(i).gettypeID() == ID.Player) {
-					p = (Player) handler.objects.get(i);
-				}
 				if (handler.objects.get(i).gettypeID() == ID.Door) {
 					d = (KonamiDoor) handler.objects.get(i);
 				}
 			}
+			//chack if player is at the door
 			if (p.getBounds().intersects(d.getBounds())) {
 				return true;
 			}
@@ -61,16 +61,7 @@ public class RoomOne extends Room {
 	@Override
 	public void tick() {
 		if (!allArrows) {
-			for (int i = 0; i<handler.objects.size(); i++) {
-				Player tempPlayer;
-				if (handler.objects.get(i).gettypeID() == ID.Player) {
-					tempPlayer = (Player) handler.objects.get(i);
-					//check if collecting an arrow
-					CollectArrow(tempPlayer);
-					break;
-				}
-				
-			}
+			CollectArrow();
 		}
 		
 		//level reset cooldown timer
@@ -89,7 +80,7 @@ public class RoomOne extends Room {
 	 * 
 	 * @param p	The player collecting the KonamiArrow
 	 */
-	private void CollectArrow(Player p) {
+	private void CollectArrow() {
 		for (int i = 0; i<handler.objects.size(); i++) {
 			KonamiArrow temp;
 			if (handler.objects.get(i).gettypeID() == ID.Interactable) {

@@ -7,9 +7,12 @@ import java.awt.Rectangle;
 public class Player extends GameObject{
 	GameHandler handler;
 	HUD hud;
+	public boolean using;
+	
 	public Player(int x, int y, ID typeId, int level, GameHandler h) {
 		super(x, y, typeId, level);
 		handler = h;
+		using = false;
 	}
 
 	@Override

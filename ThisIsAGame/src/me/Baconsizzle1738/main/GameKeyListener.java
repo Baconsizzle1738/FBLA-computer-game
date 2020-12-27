@@ -33,7 +33,7 @@ public class GameKeyListener implements KeyListener{
 		for (int i = 0; i<handler.objects.size(); i++) {
 			if (handler.objects.get(i).gettypeID() == ID.Player) {
 				
-				GameObject player = handler.objects.get(i);
+				Player player = (Player) handler.objects.get(i);
 				
 				if (e.getKeyCode() == KeyEvent.VK_W) {
 					player.setVolY(-2);
@@ -51,6 +51,9 @@ public class GameKeyListener implements KeyListener{
 					player.setVolX(2);
 					keys[3] = true;
 				}
+				if (e.getKeyCode() == KeyEvent.VK_E) {
+					player.using = true;
+				}
 			}
 		}
 		
@@ -62,7 +65,7 @@ public class GameKeyListener implements KeyListener{
 		for (int i = 0; i<handler.objects.size(); i++) {
 			if (handler.objects.get(i).gettypeID() == ID.Player) {
 				
-				GameObject player = handler.objects.get(i);
+				Player player = (Player) handler.objects.get(i);
 				
 				if (e.getKeyCode() == KeyEvent.VK_W) {
 					keys[0] = false;
@@ -83,6 +86,10 @@ public class GameKeyListener implements KeyListener{
 				}
 				if (!keys[1] && !keys[3]) {
 					player.setVolX(0);
+				}
+				
+				if (e.getKeyCode() == KeyEvent.VK_E) {
+					player.using = false;
 				}
 			}
 		}

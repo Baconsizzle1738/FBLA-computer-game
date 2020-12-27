@@ -22,13 +22,13 @@ public class Levels {
 	public Levels(/* HUD hud, */ GameHandler handler) {
 		//this.hud = hud;
 		this.handler = handler;
-		handler.addObject(new Player(500, 500, ID.Player, -1, this.handler));
-		level = 0;
+		//handler.addObject(new Player(500, 500, ID.Player, -1, this.handler));
+		level = 1;
 		//test
-		room.add(new RoomBegin(350, 350, handler, 0));
+		//room.add(new RoomBegin(350, 350, handler, 0));
 		room.add(new RoomOne(305, 300, handler, 1));
 		room.add(new RoomTwo(200, 200, handler, 2));
-		room.get(0).SetPlayerSpawn();
+		
 	}
 	
 	/**
@@ -36,14 +36,14 @@ public class Levels {
 	 */
 	public void tick() {
 		if (Game.gameStarted) {
-			if (room.get(level).isComplete()) {
+			if (room.get(level-1).isComplete()) {
 				//this is for test
 				removeLevelObjects();
 				level++;
-				room.get(level).startLevel();
+				room.get(level-1).startLevel();
 			}
 		}
-		room.get(level).tick();
+		room.get(level-1).tick();
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class Levels {
 	public void removeLevelObjects() {
 		for (int i = 0; i<handler.objects.size(); i++) {
 			GameObject temp = handler.objects.get(i);
-			if (temp.getlevelID() == level) {
+			if (temp.getlevelID() == level-1) {
 				handler.removeObject(temp);
 				i--;
 			}
@@ -60,7 +60,7 @@ public class Levels {
 	}
 	
 	public void resetLevel() {
-		room.get(level).reset();
+		room.get(level-1).reset();
 	}
 	
 	/**
@@ -68,6 +68,9 @@ public class Levels {
 	 * @param g	Graphics board to render <code>Room</code> on.
 	 */
 	public void render(Graphics g) {
-		room.get(level).render(g);
+		if (Game.gameStarted) {
+			room.get(level-1).render(g);
+		}
+		
 	}
 }
