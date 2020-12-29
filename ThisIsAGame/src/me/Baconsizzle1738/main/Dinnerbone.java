@@ -5,38 +5,99 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.HashMap;
+//import java.util.Iterator;
+//import java.util.Map.Entry;
+//import java.util.Set;
 
 public class Dinnerbone extends GameObject{
 	
 	private double orientation;
-	private HashMap<String, Integer> actions;
+	private HashMap<String, Double> actions;
+	private HashMap<String, Boolean> actionDone;
 	//private int test = 0;
 	
-	//The box the player has to flip over on level 2
+	/**
+	 * The box for the player to turn upside down on room 2
+	 * 
+	 * @param x			x position of box
+	 * @param y			y position of box
+	 * @param typeId	ID of box
+	 * @param level		level the box belongs in
+	 */
 	public Dinnerbone(int x, int y, ID typeId, int level) {
 		super(x, y, typeId, level);
 		orientation = 0;
+		
+		actions = new HashMap<String, Double>();
+		actionDone = new HashMap<String, Boolean>();
+		
+		actions.put("turn", 45.0);
+		actions.put("turn2", 90.0);
+		actions.put("reflect", 360-(2*orientation));
+		actions.put("turnR", -45.0);
+		
+		actionDone.put("turn", false);
+		actionDone.put("turn2", false);
+		actionDone.put("reflect", false);
+		actionDone.put("turnR", false);
 	}
 	
+	/**
+	 * Performs desired action on the box
+	 * @param a	Action to perform on the box
+	 */
 	public void doAction(String a) {
-		System.out.println(a);
+		//check if action has been done before
+		if (!actionDone.get(a)) {
+			orientation+=actions.get(a);
+			actionDone.replace(a, true);
+		}
+		else {
+			orientation-=actions.get(a);
+			actionDone.replace(a, false);
+		}
+		//update the reflect action to current orientation
+		actions.replace("reflect", 360-(2*orientation));
+		//actions.replace("turnR", 360-(2*orientation)+90);
 	}
 	
-	private void setOrientation (double o) {
-		orientation = o;
+//	public void setOrientation (double o) {
+//		orientation = o;
+//	}
+	
+	public void reset() {
+		//reset orientation
+		orientation = 0.0;
+		//make it as if no action has been performed yet
+		actionDone.replace("turn", false);
+		actionDone.replace("turn2", false);
+		actionDone.replace("reflect", false);
+		actionDone.replace("turR", false);
+		//update reflect action to 0.0 degrees
+		actions.replace("reflect", 0.0);
+		//actions.replace("turnR", 0.0);
 	}
 	
-	private void addOrientation (double o) {
-		orientation += o;
-	}
-	
+//	private void addOrientation (double o) {
+//		orientation += o;
+//	}
+	/**
+	 * Returns the orientation of the box in degrees
+	 * @return	Returns the orientation of the box in degrees (double)
+	 */
 	public double getOrientation() {
 		return orientation;
 	}
 	
 	@Override
 	public void tick() {
-		
+		//sets all angles to be coterminal to angles between 360 and 0.
+		if (orientation>=360) {
+			orientation-=360;
+		}
+		if (orientation<0) {
+			orientation+=360;
+		}
 	}
 
 	@Override
@@ -58,7 +119,7 @@ public class Dinnerbone extends GameObject{
 
 	@Override
 	public Rectangle getBounds() {
-		return null;
+		return new Rectangle(x, y, 50, 50);
 	}
 
 }
