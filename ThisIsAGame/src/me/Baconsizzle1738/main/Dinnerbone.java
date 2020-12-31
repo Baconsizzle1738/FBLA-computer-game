@@ -33,7 +33,7 @@ public class Dinnerbone extends GameObject{
 		
 		actions.put("turn", 45.0);
 		actions.put("turn2", 90.0);
-		actions.put("reflect", 360-(2*orientation));
+		actions.put("reflect", 0.0);
 		actions.put("turnR", -45.0);
 		
 		actionDone.put("turn", false);
@@ -50,21 +50,33 @@ public class Dinnerbone extends GameObject{
 		//check if action has been done before
 		if (!actionDone.get(a)) {
 			orientation+=actions.get(a);
-			actionDone.replace(a, true);
+			if (!a.equals("reflect")) {
+				actionDone.replace(a, true);
+			}
+			
 		}
 		else {
 			orientation-=actions.get(a);
 			actionDone.replace(a, false);
 		}
+		if (orientation>360) {
+			orientation-=360;
+		}
+		if (orientation<0) {
+			orientation+=360;
+		}
 		//update the reflect action to current orientation
-		actions.replace("reflect", 360-(2*orientation));
+		actions.remove("reflect");
+		actions.put("reflect", 360-2*orientation);
 		//actions.replace("turnR", 360-(2*orientation)+90);
 	}
 	
 //	public void setOrientation (double o) {
 //		orientation = o;
 //	}
-	
+	/**
+	 * Resets data of the box to default position (0.0 deg, no actions)
+	 */
 	public void reset() {
 		//reset orientation
 		orientation = 0.0;
@@ -72,7 +84,7 @@ public class Dinnerbone extends GameObject{
 		actionDone.replace("turn", false);
 		actionDone.replace("turn2", false);
 		actionDone.replace("reflect", false);
-		actionDone.replace("turR", false);
+		actionDone.replace("turnR", false);
 		//update reflect action to 0.0 degrees
 		actions.replace("reflect", 0.0);
 		//actions.replace("turnR", 0.0);
@@ -92,12 +104,7 @@ public class Dinnerbone extends GameObject{
 	@Override
 	public void tick() {
 		//sets all angles to be coterminal to angles between 360 and 0.
-		if (orientation>=360) {
-			orientation-=360;
-		}
-		if (orientation<0) {
-			orientation+=360;
-		}
+		
 	}
 
 	@Override
@@ -116,10 +123,9 @@ public class Dinnerbone extends GameObject{
 		g2.dispose();
 		
 	}
-
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 50, 50);
+		return new Rectangle(x-25, y-25, 50, 50);
 	}
 
 }

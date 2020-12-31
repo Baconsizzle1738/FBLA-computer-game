@@ -50,57 +50,45 @@ public class StaticEnemy extends Enemy{
 	
 	//constrained only to the x axis
 	/**
-	 * Enemy that moves within a constrained x axis
+	 * Enemy that moves within a constrained line
 	 * 
 	 * @param x			Initial x position
 	 * @param y			Initial y position
 	 * @param typeId	ID of enemy
 	 * @param level		Level the enemy is in
-	 * @param x2		Second x position
-	 * @param volX		X velocity of StaticEnemy
+	 * @param end		Second position, x or y
+	 * @param vol		Velocity of StaticEnemy
 	 * @param dmg		Magnitude of damage dealt by enemy per hit
 	 * @param cd		Damage cooldown timer(in ticks)
+	 * @param dir		Axis of movement
 	 */
-	public StaticEnemy(int x, int y, ID typeId, int level, int x2, int volX, int dmg, int cd) {
+	public StaticEnemy(int x, int y, ID typeId, int level, int end, int vol, int dmg, int cd, String dir) {
 		
 		super(x, y, typeId, level, cd, dmg);
 		beginX = x;
 		beginY = y;
-		endX = x2;
-		endY = y;
-		this.volX = volX;
-		this.volY = 0;
+		
+		if (dir.equals("x")) {
+			endX = end;
+			endY = y;
+			this.volX = vol;
+			this.volY = 0;
+		}
+		else if (dir.equals("y")) {
+			endX = x;
+			endY = end;
+			this.volX = 0;
+			this.volY = vol;
+		}
+		
+		
+		
 		if (beginX > endX) {
 			volX*=-1;
 		}
 	}
 	
-	/**
-	 * Enemy that moves within a constrained y axis
-	 * 
-	 * @param x			Initial x position
-	 * @param y			Initial y position
-	 * @param typeId	ID of enemy
-	 * @param level		Level the enemy is in
-	 * @param y2		Second y position
-	 * @param volY		Y velocity of StaticEnemy
-	 * @param dmg		Magnitude of damage dealt by enemy per hit
-	 * @param cd		Damage cooldown timer(in ticks)
-	 */
-	//constrained only to the y axis, int temp is just to differentiate it doesn't actually do anything
-	public StaticEnemy(int x, int y, ID typeId, int level, int y2, int volY, int dmg, int cd, int temp) {
-		
-		super(x, y, typeId, level, cd, dmg);
-		beginX = x;
-		beginY = y;
-		endX = x;
-		endY = y2;
-		this.volX = 0;
-		this.volY = volY;
-		if (beginX > endX) {
-			volX*=-1;
-		}
-	}
+	
 	@Override
 	public void tick() {
 		if (!canDoDamage) {

@@ -8,6 +8,17 @@ public class Obstacle extends GameObject{
 	private int width, height;
 	private Color color;
 	
+	/**
+	 * An obstacle that obstructs player movement
+	 * 
+	 * @param x			x position of Obstacle
+	 * @param y			y position of Obstacle
+	 * @param typeId	ID of Obstacle
+	 * @param level		Level the Obstacle belongs to
+	 * @param width		Width of Obstacle
+	 * @param height	Height of Obstacle
+	 * @param col		Color of obstacle
+	 */
 	public Obstacle(int x, int y, ID typeId, int level, int width, int height, Color col) {
 		super(x, y, typeId, level);
 		
@@ -16,10 +27,18 @@ public class Obstacle extends GameObject{
 		color = col;
 	}
 	
+	/**
+	 * 
+	 * @return	Width of Obstacle
+	 */
 	public int getWidth() {
 		return width;
 	}
 	
+	/**
+	 * 
+	 * @return	Height of Obstacle
+	 */
 	public int getHeight() {
 		return height;
 	}

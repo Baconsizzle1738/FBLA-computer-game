@@ -14,6 +14,9 @@ public class Levels {
 	public static int level;
 	private ArrayList<Room> room = new ArrayList<>();
 	
+	//for the first level to initiate level progression
+	private boolean init;
+	
 	
 	/**
 	 * Takes handler into class and also creates a list of the levels, including the title screen.
@@ -27,8 +30,9 @@ public class Levels {
 		//test
 		//room.add(new RoomBegin(350, 350, handler, 0));
 		room.add(new RoomOne(305, 300, handler, 1));
-		room.add(new RoomTwo(200, 200, handler, 2));
-		
+		room.add(new RoomTwo(255, 500, handler, 2));
+		room.add(new RoomThree(400, 400, handler, 3));
+		init = false;
 	}
 	
 	/**
@@ -36,6 +40,10 @@ public class Levels {
 	 */
 	public void tick() {
 		if (Game.gameStarted) {
+			if (!init) {
+				room.get(level-1).startLevel();
+				init = true;
+			}
 			if (room.get(level-1).isComplete()) {
 				//this is for test
 				removeLevelObjects();
@@ -52,7 +60,7 @@ public class Levels {
 	public void removeLevelObjects() {
 		for (int i = 0; i<handler.objects.size(); i++) {
 			GameObject temp = handler.objects.get(i);
-			if (temp.getlevelID() == level-1) {
+			if (temp.getlevelID() == level) {
 				handler.removeObject(temp);
 				i--;
 			}

@@ -1,10 +1,11 @@
 package me.Baconsizzle1738.main;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 public class RoomTwo extends Room{
-	
+	private boolean isFlip = false;
 	Player p;
 	private int clickCool = 0;
 	/**
@@ -17,12 +18,26 @@ public class RoomTwo extends Room{
 	 */
 	public RoomTwo(int spawnX, int spawnY, GameHandler h, int lvl) {
 		super(spawnX, spawnY, h, lvl);
-		p = new Player(500, 500, ID.Player, this.lvl, this.handler);
-		handler.addObject(p);
+		p = new Player(spawnX, spawnY, ID.Player, this.lvl, this.handler);
+		
 	}
 
 	@Override
 	public boolean isComplete() {
+		Dinnerbone temp;
+		//chack if box is flipped
+		if (isFlip) {
+			//get the box object
+			for (int i = 0; i<handler.objects.size(); i++) {
+				if (handler.objects.get(i).gettypeID() == ID.Door) {
+					temp = (Dinnerbone) handler.objects.get(i);
+					//check if player is in box
+					if (temp.getBounds().intersects(p.getBounds())) {
+						return true;
+					}
+				}
+			}
+		}
 		return false;
 	}
 
@@ -63,31 +78,96 @@ public class RoomTwo extends Room{
 		for (int i = 0; i<handler.objects.size(); i++) {
 			if (handler.objects.get(i).gettypeID() == ID.Door) {
 				((Dinnerbone) handler.objects.get(i)).doAction(a);
+				if (((Dinnerbone) handler.objects.get(i)).getOrientation() == 180.0) {
+					isFlip = true;
+				}
+				else {
+					isFlip = false;
+					break;
+				}
 			}
 		}
 	}
 
 	@Override
 	public void render(Graphics g) {
+		//title
+		g.setColor(new Color(205, 102, 51));
+		g.setFont(new Font("arial", 50, 50));
+		g.drawString("Bones for Dinner", 580, 40);
+
+		g.setFont(new Font("arial", 10, 12));
+		if (!isFlip) {
+			//Enemy lines
+			g.setColor(new Color(230, 30, 30));
+			g.drawString("HOW DID THE PLAYER ESCAPE THE", 10, 240);
+			g.drawString("MAZE!?", 10, 255);
+			g.drawString("GET THE PLAYER YOU FOOLS", 10, 285);
+			
+			//Player "thoughts"
+			g.setColor(new Color(200,200,0));
+			
+			Dinnerbone temp = null;
+			for (int i = 0; i<handler.objects.size(); i++) {
+				if (handler.objects.get(i).gettypeID() == ID.Door) {
+					temp = (Dinnerbone) handler.objects.get(i);
+					break;
+				}
+			}
+			if (temp.getBounds().intersects(p.getBounds())) {
+				g.drawString("I can't go through here", Game.WIDTH/2+255, 240);
+			}
+			else {
+				g.drawString("I wonder what these buttons do", Game.WIDTH/2+255, 240);
+			}
+			
+		}
+		else if (isFlip) {
+			//enemy lines
+			g.setColor(new Color(230, 30, 30));
+			g.drawString("WAIT NO DON'T LET THE PLAYER IN", 10, 240);
+			g.drawString("THE BOX", 10, 255);
+			
+			//player lines
+			g.setColor(new Color(200,200,0));
+			g.drawString("Maybe I can go into the box now", Game.WIDTH/2+255, 240);
+			
+		}
+		
+		
 		
 	}
 
 	@Override
 	public void startLevel() {
-		//test
 		
-//		handler.addObject(new StaticEnemy(210, 400, ID.StaticEnemy, lvl, 500, 3, 1, 40, -1));
-//		handler.addObject(new Obstacle(234, 483, ID.Obstacle, lvl, 625, 18, new Color(50, 200, 0)));
+		Color wall = new Color(73, 116, 122);
+		handler.addObject(p);
+		
+		//the box
 		handler.addObject(new Dinnerbone(Game.WIDTH/2, 200, ID.Door, lvl));
+		//the buttons
 		handler.addObject(new DinnerboneButton(Game.WIDTH/2-82, 400, ID.Button1, lvl, "turnR"));
 		handler.addObject(new DinnerboneButton(Game.WIDTH/2-32, 400, ID.Button1, lvl, "turn"));
 		handler.addObject(new DinnerboneButton(Game.WIDTH/2+18, 400, ID.Button1, lvl, "reflect"));
 		handler.addObject(new DinnerboneButton(Game.WIDTH/2+68, 400, ID.Button1, lvl, "turn2"));
-		handler.addObject(new FollowEnemy(500, 300, ID.FollowEnemy, lvl, 100, 15, 0.63f, handler));
+		//the following guard
+		handler.addObject(new FollowEnemy(Game.WIDTH/2, 200, ID.FollowEnemy, lvl, 100, 15, 0.55f, handler));
+		//border/walls
+		handler.addObject(new Obstacle(Game.WIDTH/2-250, 50, ID.Obstacle, lvl, 5, 800, wall));
+		handler.addObject(new Obstacle(Game.WIDTH/2+245, 50, ID.Obstacle, lvl, 5, 800, wall));
+		handler.addObject(new Obstacle(Game.WIDTH/2-250, 50, ID.Obstacle, lvl, 500, 5, wall)); 
+		//the door from the maze
+		handler.addObject(new Obstacle(Game.WIDTH/2-250, 495, ID.Obstacle, lvl, 5, 50, new Color(0, 200, 200)));
+		//static enemies/guards
+		handler.addObject(new StaticEnemy(Game.WIDTH/2-230, 360, ID.Enemy, lvl, Game.WIDTH/2+200, 8, 7, 40, "x"));
+		handler.addObject(new StaticEnemy(Game.WIDTH/2+200, 230, ID.Enemy, lvl, Game.WIDTH/2-230, 8, 7, 40, "x"));
 		this.SetPlayerSpawn();
 		
 	}
-
+	
+	
+	
 	@Override
 	public void reset() {
 		
@@ -102,7 +182,7 @@ public class RoomTwo extends Room{
 				}
 			}
 			//put enemy back into position
-			handler.addObject(new FollowEnemy(500, 300, ID.FollowEnemy, lvl, 100, 25, 0.63f, handler));
+			handler.addObject(new FollowEnemy(Game.WIDTH/2, 200, ID.FollowEnemy, lvl, 100, 25, 0.55f, handler));
 			SetPlayerSpawn();
 			canReset = false;
 		}

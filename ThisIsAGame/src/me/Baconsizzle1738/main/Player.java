@@ -43,8 +43,15 @@ public class Player extends GameObject{
 				Obstacle temp = (Obstacle) handler.objects.get(i);
 				if (this.getBounds().intersects(temp.getBounds())) {
 					
-					x-=volX;
-					y-=volY;
+					//so the player does not get "stuck" on obstacle
+					if (this.getBounds().intersects(new Rectangle(temp.getX()+volX, temp.getY(), temp.getWidth(), temp.getHeight()))) {
+						y-=volY;
+					}
+					if (this.getBounds().intersects(new Rectangle(temp.getX(), temp.getY()+volY, temp.getWidth(), temp.getHeight()))) {
+						x-=volX;
+					}
+					
+					
 					
 					if ((x+32)-temp.getX() != 0 && x+32 < temp.getX()) {
 						x += temp.getX()-(x+32);
@@ -77,6 +84,10 @@ public class Player extends GameObject{
 		
 		x = Game.clamp(x, 0, Game.WIDTH-48);//x is 16 px off
 		y = Game.clamp(y, 0, Game.HEIGHT-71);//y is 39 px off
+		
+		
+//		System.out.println("x: "+x);
+//		System.out.println("y: "+y);
 	}
 
 	@Override

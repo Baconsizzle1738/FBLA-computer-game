@@ -32,8 +32,8 @@ public class RoomOne extends Room {
 		correct.add("right");
 		correct.add("left");
 		correct.add("right");
-		p = new Player(500, 500, ID.Player, this.lvl, this.handler);
-		handler.addObject(p);
+		p = new Player(400, 400, ID.Player, this.lvl, this.handler);
+		
 		
 	}
 	
@@ -48,14 +48,14 @@ public class RoomOne extends Room {
 					d = (KonamiDoor) handler.objects.get(i);
 				}
 			}
-			//chack if player is at the door
+			//check if player is at the door
 			if (p.getBounds().intersects(d.getBounds())) {
 				return true;
 			}
 		}
 		
 		//change to true for quick advance for testing out other levels
-		return true;
+		return false;
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class RoomOne extends Room {
 	public void render(Graphics g) {
 		//Room title
 		g.setColor(Color.CYAN);
-		g.setFont(new Font(Font.SERIF, 50, 50));
+		g.setFont(new Font("arial", 50, 50));
 		g.drawString("Konami's maze", 580, 40);
 		
 		g.setColor(new Color(200, 0, 0));
@@ -142,7 +142,7 @@ public class RoomOne extends Room {
 		for (int i = 0; i<collectedArrows.size(); i++) {
 			collectedArrows.get(i).render(g);
 		}
-		g.setFont(new Font(Font.SERIF, 10, 12));
+		g.setFont(new Font("arial", 10, 12));
 		if (!allArrows) {
 			g.setColor(new Color(200,200,0));
 			g.drawString("The labyrinth seems to have no exit...", 720, 240);
@@ -174,6 +174,7 @@ public class RoomOne extends Room {
 	public void startLevel() {
 		
 		Color mazeCol = new Color(200, 200, 200);
+		handler.addObject(p);
 		
 		this.SetPlayerSpawn();
 		//test case
@@ -232,11 +233,11 @@ public class RoomOne extends Room {
 		handler.addObject(new KonamiArrow(mazeIncrementX(9)+17, mazeIncrementY(7)+17, ID.Interactable, lvl, "right"));
 		
 		//add enemies
-		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(0)+10, ID.Enemy, lvl, mazeIncrementX(9)+10, 3, 10, 20));
-		handler.addObject(new StaticEnemy(mazeIncrementX(3)+10, mazeIncrementY(2)+10, ID.Enemy, lvl, mazeIncrementX(5)+10, 1, 6, 60));
-		handler.addObject(new StaticEnemy(mazeIncrementX(9)+10, mazeIncrementY(4)+10, ID.Enemy, lvl, mazeIncrementY(6)+10, 1, 6, 60, -1));
-		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(7)+10, ID.Enemy, lvl, mazeIncrementX(6)+10, 1, 6, 60));
-		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(8)+10, ID.Enemy, lvl, mazeIncrementX(4)+10, 2, 7, 40));
+		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(0)+10, ID.Enemy, lvl, mazeIncrementX(9)+10, 3, 10, 20, "x"));
+		handler.addObject(new StaticEnemy(mazeIncrementX(3)+10, mazeIncrementY(2)+10, ID.Enemy, lvl, mazeIncrementX(5)+10, 1, 6, 60, "x"));
+		handler.addObject(new StaticEnemy(mazeIncrementX(9)+10, mazeIncrementY(4)+10, ID.Enemy, lvl, mazeIncrementY(6)+10, 1, 6, 60, "y"));
+		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(7)+10, ID.Enemy, lvl, mazeIncrementX(6)+10, 1, 6, 60, "x"));
+		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(8)+10, ID.Enemy, lvl, mazeIncrementX(4)+10, 2, 7, 40, "x"));
 		
 		
 	}
