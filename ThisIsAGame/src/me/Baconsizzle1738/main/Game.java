@@ -35,8 +35,9 @@ public class Game extends Canvas implements Runnable{
 	
 	private Thread thread;
 	private boolean running = false;
-	public static boolean gameStarted = false;
 	
+	//This is basically what controls game State
+	public static boolean gameStarted = false, paused = false, isdead = false;
 	
 	public static int health = 100;
 	
@@ -65,12 +66,14 @@ public class Game extends Canvas implements Runnable{
 		levels = new Levels(/*hud,*/ handler);
 		
 		//heads up display
-		hud = new HUD(levels);
+		hud = new HUD(levels, handler);
 		
 		//handler.addObject(new Player(300, 300, ID.Player, -1));
 		
 		
 		new Window(WIDTH,HEIGHT,"Game",this);
+		
+		//this fixes annoying window issue where you have to click on it for it to work
 		this.requestFocusInWindow();
 		
 		//this for test
@@ -86,7 +89,7 @@ public class Game extends Canvas implements Runnable{
 		
 		
 		
-		//this fixes annoying window issue where you have to click on it for it to work
+		
 		
 	}
 	
@@ -157,7 +160,9 @@ public class Game extends Canvas implements Runnable{
 	 */
 	public void tick() {
 		//calls update tick method in every object
-		handler.tick();
+		if (!paused) {
+			handler.tick();
+		}
 		hud.tick();
 		levels.tick();
 	}
@@ -182,8 +187,8 @@ public class Game extends Canvas implements Runnable{
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		//render game objects, levels, and HUD here
-		handler.render(g);
 		hud.render(g);
+		handler.render(g);
 		levels.render(g);
 		
 		g.dispose();

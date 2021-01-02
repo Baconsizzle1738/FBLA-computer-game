@@ -19,7 +19,7 @@ public class Levels {
 	
 	
 	/**
-	 * Takes handler into class and also creates a list of the levels, including the title screen.
+	 * Takes handler into class and also creates a list of the levels.
 	 * @param handler
 	 */
 	public Levels(/* HUD hud, */ GameHandler handler) {
@@ -39,7 +39,7 @@ public class Levels {
 	 * Checks status of level completion on every update.
 	 */
 	public void tick() {
-		if (Game.gameStarted) {
+		if (Game.gameStarted && !Game.isdead) {
 			if (!init) {
 				room.get(level-1).startLevel();
 				init = true;
@@ -50,8 +50,11 @@ public class Levels {
 				level++;
 				room.get(level-1).startLevel();
 			}
+			room.get(level-1).tick();
 		}
-		room.get(level-1).tick();
+		if (Game.isdead) {
+			resetDefault();
+		}
 	}
 	
 	/**
@@ -71,12 +74,20 @@ public class Levels {
 		room.get(level-1).reset();
 	}
 	
+	private void resetDefault() {
+		
+		init = false;
+		removeLevelObjects();
+		level = 0;
+		
+	}
+	
 	/**
 	 * Renders the room/level.
 	 * @param g	Graphics board to render <code>Room</code> on.
 	 */
 	public void render(Graphics g) {
-		if (Game.gameStarted) {
+		if (Game.gameStarted && !Game.isdead) {
 			room.get(level-1).render(g);
 		}
 		

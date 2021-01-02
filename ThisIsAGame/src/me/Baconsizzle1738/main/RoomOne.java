@@ -157,6 +157,8 @@ public class RoomOne extends Room {
 			g.setColor(new Color(200,200,0));
 			g.drawString("Oh look a door.", 720, 240);
 		}
+		
+		//g.dispose();
 	}
 	
 	//so the maze width stays consistent

@@ -20,6 +20,17 @@ public class RoomThree extends Room{
 
 	@Override
 	public void reset() {
+		//level reset cooldown timer
+		if (!canReset) {
+			resetCool++;
+			//System.out.println(resetCool);
+			if (resetCool>50) {
+				canReset = true;
+				resetCool = 0;
+			}
+		}
+		SetPlayerSpawn();
+		
 		
 	}
 

@@ -30,6 +30,7 @@ public class Player extends GameObject{
 					//System.out.println("heq");
 					if (temp.canDoDamage) {
 						Game.health-=temp.damage;
+						handler.addObject(new PainFlash(-1, -1, null, -1, 0.02f, 0.2f, handler));
 						//System.out.println("hit");
 						temp.setDamageAbility(false);
 					}

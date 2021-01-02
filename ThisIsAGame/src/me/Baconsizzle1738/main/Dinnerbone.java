@@ -9,6 +9,15 @@ import java.util.HashMap;
 //import java.util.Map.Entry;
 //import java.util.Set;
 
+/**
+ * The <code>Dinnerbone GameObject</code> is a reference to the easter egg
+ * in Minecraft where the player can name an entity "dinnerbone" and have
+ * it flip upside down. In Room 2, the player has to rotate this "box" 180
+ * degrees in order to pass the level.
+ * 
+ * @author Baconsizzle1738
+ *
+ */
 public class Dinnerbone extends GameObject{
 	
 	private double orientation;
@@ -49,6 +58,7 @@ public class Dinnerbone extends GameObject{
 	public void doAction(String a) {
 		//check if action has been done before
 		if (!actionDone.get(a)) {
+			//do action
 			orientation+=actions.get(a);
 			if (!a.equals("reflect")) {
 				actionDone.replace(a, true);
@@ -56,9 +66,12 @@ public class Dinnerbone extends GameObject{
 			
 		}
 		else {
+			//undo action
 			orientation-=actions.get(a);
 			actionDone.replace(a, false);
 		}
+		
+		//force all angles to be coterminal with their respective angles between 360 and 0 deg
 		if (orientation>360) {
 			orientation-=360;
 		}
@@ -75,7 +88,7 @@ public class Dinnerbone extends GameObject{
 //		orientation = o;
 //	}
 	/**
-	 * Resets data of the box to default position (0.0 deg, no actions)
+	 * Resets data of the box to default position (0.0 deg, no actions performed)
 	 */
 	public void reset() {
 		//reset orientation
@@ -103,23 +116,24 @@ public class Dinnerbone extends GameObject{
 	
 	@Override
 	public void tick() {
-		//sets all angles to be coterminal to angles between 360 and 0.
 		
 	}
 
 	@Override
 	public void render(Graphics g) {
 		
+		//new graphics board so transformations do not apply to the entire screen
 		Graphics2D g2 = (Graphics2D) g.create();
-		g2.translate(x, y);
 		
+		//center the graphics board so the box rotates about its center point
+		g2.translate(x, y);
 		g2.rotate(Math.toRadians(orientation));
 		
+		//draw actual box
 		g2.setColor(new Color(0, 150, 20));
 		g2.fillRect(-25, -25, 50, 50);
 		g2.setColor(new Color(210, 210, 210));
 		g2.drawString("UP ^", -15, -5);
-		//g2.translate(100, 100);
 		g2.dispose();
 		
 	}

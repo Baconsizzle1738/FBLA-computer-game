@@ -20,10 +20,8 @@ public class GameHandler {
 	 */
 	//update all objects
 	public void tick() {
-		Iterator<GameObject> it = objects.iterator();
-		while (it.hasNext()) {
-			GameObject temp = it.next();
-			temp.tick();
+		for (int i = 0; i<objects.size(); i++) {
+			objects.get(i).tick();
 		}
 	}
 	

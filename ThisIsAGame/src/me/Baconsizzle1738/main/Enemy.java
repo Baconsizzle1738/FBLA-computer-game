@@ -1,6 +1,8 @@
 package me.Baconsizzle1738.main;
 /**
  * The enemy is a <code>GameObject</code> that hurts the player.
+ * <code>Obstacles</code> have no effect on the movement of the enemies.
+ * 
  * @author Baconsizzle1738
  *
  */
@@ -9,7 +11,7 @@ public abstract class Enemy extends GameObject{
 	protected int damage;
 	protected int cooldownTimer = 0;
 	protected boolean canDoDamage = false;
-	HUD hud;
+	//HUD hud;
 	
 	/**
 	 * The constructor instantiates all the bare minimum requirements for the enemy.

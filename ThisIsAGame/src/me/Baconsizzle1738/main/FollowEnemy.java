@@ -4,6 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+
+/**
+ * The <code>FollowEnemy</code> enemy is a type of <code>Enemy</code>
+ * that follows the player at a constant speed.
+ *  
+ * @author Baconsizzle1738
+ *
+ */
 public class FollowEnemy extends Enemy{
 	
 	private float trueVol, trueX, trueY, trueVolX, trueVolY;

@@ -5,7 +5,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 //import java.awt.event.KeyEvent;
 //import java.awt.event.KeyListener;
-
+/**
+ * The <code>DinnerboneButton</code> is the buttons that the player presses to rotate the <code>Dinnerbone</code> box in room 2.
+ * 
+ * @author Baconsizzle1738
+ *
+ */
 public class DinnerboneButton extends GameObject /*implements KeyListener*/{
     
 	//private Player p;

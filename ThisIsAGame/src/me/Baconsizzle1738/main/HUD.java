@@ -1,6 +1,7 @@
 package me.Baconsizzle1738.main;
 
 import java.awt.Color;
+import java.awt.Font;
 // import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -19,7 +20,7 @@ public class HUD {
 	 */
 	public static int health = Game.health;
 	
-	public static int lives = 3;
+	public static int lives = 1;
 	//public boolean gameStarted = false;
 	public Rectangle startButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
 	
@@ -27,17 +28,19 @@ public class HUD {
 	boolean isOnButton = false;
 	
 	//so button colors change when clicked
-	private Color buttonColor = Color.red;
+	private Color buttonColor = new Color(230, 0, 0);
 	private Color buttonBorderColor = Color.black;
 	
-	Levels levels;
+	private Levels levels;
+	private GameHandler handler;
 	
 	/**
 	 * Constructor takes in <code>lvl</code> class as miuch of what happens in <code>HUD</code> is affected by <code>lvl</code>.
 	 * @param lvl
 	 */
-	public HUD (Levels lvl) {
+	public HUD (Levels lvl, GameHandler h) {
 		levels = lvl;
+		handler = h;
 	}
 	
 	/**
@@ -57,7 +60,8 @@ public class HUD {
 		
 		
 		//stuff here only shows when game is started
-		if (Game.gameStarted) {
+		//health  bar, level and life indicator
+		if (Game.gameStarted && !Game.isdead) {
 			//health bar outline
 			g.setColor(Color.white);
 			g.drawRect(9, 9, 201, 11);
@@ -69,18 +73,26 @@ public class HUD {
 			g.fillRect(10 ,10, health*2, 10);
 			
 			
-			//level indicator4
+			//level indicator
 			g.setColor(new Color(200, 150, 0));
 			g.drawString("Level " + Levels.level, 230, 15);
 			
 			//life indicator
 			g.setColor(new Color(230,200,0));
 			g.drawString("Lives: " + lives, 230, 25);
-			//pause button
-			
-			
 		}
 		
+		//death screen render
+		if (Game.isdead) {
+			g.setColor(Color.black);
+			//completely darken the background
+			g.fillRect(0,  0,  Game.WIDTH, Game.HEIGHT);
+			
+			//Message
+			g.setColor(new Color(115, 115, 115));
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 70));
+			g.drawString("YOU DIED", 350, 350);
+		}
 		
 	}
 	
@@ -99,19 +111,23 @@ public class HUD {
 			if (lives>0) {
 				lives--;
 				Game.health = 100;
+				handler.addObject(new PainFlash(-1, -1, null, -1, 0.01f, 0.7f, handler));
+				if (lives == 0) {
+					Game.isdead = true;
+				}
 				levels.resetLevel();
 			}
 		}
 		
 		//changes button color when clicked
 		if (isOnButton == true) {
-			buttonColor = Color.white;
+			buttonColor = new Color(200, 200, 200);
 			buttonBorderColor = Color.red;
 		}
-		else {
-			buttonColor = Color.red;
-			buttonBorderColor = Color.black;
-		}
+//		else {
+//			buttonColor = Color.red;
+//			buttonBorderColor = Color.black;
+//		}
 		
 		
 	}
