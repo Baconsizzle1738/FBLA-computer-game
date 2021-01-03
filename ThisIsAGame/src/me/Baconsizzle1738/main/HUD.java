@@ -24,14 +24,25 @@ public class HUD {
 	//public boolean gameStarted = false;
 	
 	//start and death buttons are the same hitbox
-	public Rectangle startDeathButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
+	public Rectangle startDeathButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60),
+			controlsButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2+50, 256, 60),
+			controlBackButton = new Rectangle(150, 400, 100, 25);
 	
 	//check to see if mouse is over button
-	public boolean isOnStartButton = false, isOnDeathButton = false;
+	public boolean isOnStartButton = false, isOnDeathButton = false, isOnControlsButton = false,
+			isOnControlBackButton = false;
 	
 	//so button colors change when clicked (start button)
+	//start
 	private Color startButtonColor = new Color(230, 0, 0);
 	private Color startButtonBorderColor = Color.black;
+	//controls
+	private Color controlButtonColor = new Color(230, 0, 0);
+	private Color controlButtonBorderColor = Color.black;
+	
+	//back button for controls
+	private Color controlBackButtonColor = new Color(230, 0, 0);
+	private Color controlBackButtonBorderColor = Color.black;
 	
 	//Death reset button
 	private Color deathButtonColor = new Color(135, 135, 135);
@@ -41,7 +52,7 @@ public class HUD {
 	private GameHandler handler;
 	
 	/**
-	 * Constructor takes in <code>lvl</code> class as miuch of what happens in <code>HUD</code> is affected by <code>lvl</code>.
+	 * Constructor takes in <code>lvl</code> class as much of what happens in <code>HUD</code> is affected by <code>lvl</code>.
 	 * @param lvl
 	 */
 	public HUD (Levels lvl, GameHandler h) {
@@ -56,14 +67,59 @@ public class HUD {
 	public void render(Graphics g) {
 		//stuff here only shows when game is not started
 		
-		if (!Game.gameStarted) {
+		if (!Game.gameStarted && !Game.control) {
 			//start button
 			g.setColor(startButtonBorderColor);
 			g.drawRect(Game.WIDTH/2-129, Game.HEIGHT/2-31, 257, 61);
 			g.setColor(startButtonColor);
 			g.fillRect(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 25));
+			g.setColor(new Color(80, 80, 80));
+			g.drawString("ESCAPE", 455, 310);
+			
+			//instructions button
+			g.setColor(controlButtonBorderColor);
+			g.drawRect(Game.WIDTH/2-129, Game.HEIGHT/2+49, 257, 61);
+			g.setColor(controlButtonColor);
+			g.fillRect(Game.WIDTH/2-128, Game.HEIGHT/2+50, 256, 60);
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 25));
+			g.setColor(new Color(80, 80, 80));
+			g.drawString("CONTROLS", 443, 388);
+			
 		}
 		
+		//for the controls
+		if (Game.control) {
+			
+			g.setColor(new Color(200, 200, 200));
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 40));
+			g.drawString("CONTROLS", 150, 150);
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
+			g.drawString("W - MOVE UP", 150, 180);
+			g.drawString("S - MOVE DOWN", 150, 200);
+			g.drawString("A - MOVE LEFT", 150, 220);
+			g.drawString("D - MOVE RIGHT", 150, 240);
+			g.drawString("E - USE", 150, 260);
+			g.drawString("R - RESET ROOM", 150, 280);
+			g.drawString("P - PAUSE", 150, 300);
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 40));
+			g.setColor(new Color(185, 0, 0));
+			g.drawString("REFERENCES", 600, 350);
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
+			g.drawString("ROOM 1 - KONAMI CODE", 600,380);
+			g.drawString("ROOM 2 - MINECRAFT DINNERBONE", 492, 400);
+			g.drawString("ROOM 3 - MISSINGNO POKEMON", 529, 420);
+			
+			//back button
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 15));
+			g.setColor(controlBackButtonBorderColor);
+			g.drawRect(150, 400, 100, 25);
+			g.setColor(controlBackButtonColor);
+			g.fillRect(151, 401, 99, 24);
+			g.setColor(new Color(80, 80, 80));
+			g.drawString("BACK", 181, 417);
+			
+		}
 		
 		//stuff here only shows when game is started
 		//health  bar, level and life indicator
@@ -103,7 +159,7 @@ public class HUD {
 			//Message
 			g.setColor(new Color(115, 115, 115));
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 70));
-			g.drawString("YOU DIED", 350, 350);
+			g.drawString("YOU DIED", 335, 200);
 			
 			//reset button
 			g.setColor(deathButtonBorderColor);
@@ -145,6 +201,26 @@ public class HUD {
 		else {
 			startButtonColor = Color.red;
 			startButtonBorderColor = Color.black;
+		}
+		
+		//for the tutorial/controls
+		if (isOnControlsButton) {
+			controlButtonColor = new Color(200, 200, 200);
+			controlButtonBorderColor = Color.red;
+		}
+		else {
+			controlButtonColor = Color.red;
+			controlButtonBorderColor = Color.black;
+		}
+		
+		//for controls back button
+		if (isOnControlBackButton) {
+			controlBackButtonColor = new Color(200, 200, 200);
+			controlBackButtonBorderColor = Color.red;
+		}
+		else {
+			controlBackButtonColor = Color.red;
+			controlBackButtonBorderColor = Color.black;
 		}
 		
 		//same thing but for death button

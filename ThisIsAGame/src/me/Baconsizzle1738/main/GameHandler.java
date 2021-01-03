@@ -1,7 +1,7 @@
 package me.Baconsizzle1738.main;
 
 import java.awt.Graphics;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.LinkedList;
 
 /**

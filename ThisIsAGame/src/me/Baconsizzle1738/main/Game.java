@@ -37,7 +37,7 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	
 	//This is basically what controls game State
-	public static boolean gameStarted = false, paused = false, isdead = false;
+	public static boolean gameStarted = false, paused = false, isdead = false, control = false;
 	
 	public static int health = 100;
 	

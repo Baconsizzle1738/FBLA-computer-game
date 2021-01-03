@@ -33,8 +33,18 @@ public class GameMouseListener implements MouseListener{
 		int y = e.getY();
 		
 		//the start button
-		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted) {
+		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control) {
 			hud.isOnStartButton = true;
+		}
+		
+		//the controls button
+		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control) {
+			hud.isOnControlsButton = true;
+		}
+		
+		//controls back button
+		if (hud.controlBackButton.contains(x, y) && Game.control) {
+			hud.isOnControlBackButton = true;
 		}
 		
 		//death button
@@ -50,10 +60,22 @@ public class GameMouseListener implements MouseListener{
 		int y = e.getY();
 		
 		//the start button
-		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted) {
+		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control) {
 			hud.isOnStartButton = false;
 			Game.gameStarted = true;
 			//System.out.println("yeet");
+		}
+		
+		//controls button
+		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control) {
+			hud.isOnControlsButton = false;
+			Game.control = true;
+		}
+		
+		//controls back button
+		if (hud.controlBackButton.contains(x, y) && Game.control) {
+			hud.isOnControlBackButton = false;
+			Game.control = false;
 		}
 		
 		if (hud.startDeathButton.contains(x, y) && Game.isdead) {
