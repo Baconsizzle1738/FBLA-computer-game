@@ -33,6 +33,8 @@ public class RoomTwo extends Room{
 					temp = (Dinnerbone) handler.objects.get(i);
 					//check if player is in box
 					if (temp.getBounds().intersects(p.getBounds())) {
+						//reset flip for when the player plays again
+						isFlip = false;
 						return true;
 					}
 				}

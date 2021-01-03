@@ -20,16 +20,22 @@ public class HUD {
 	 */
 	public static int health = Game.health;
 	
-	public static int lives = 1;
+	public static int lives = 3;
 	//public boolean gameStarted = false;
-	public Rectangle startButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
+	
+	//start and death buttons are the same hitbox
+	public Rectangle startDeathButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
 	
 	//check to see if mouse is over button
-	boolean isOnButton = false;
+	public boolean isOnStartButton = false, isOnDeathButton = false;
 	
-	//so button colors change when clicked
-	private Color buttonColor = new Color(230, 0, 0);
-	private Color buttonBorderColor = Color.black;
+	//so button colors change when clicked (start button)
+	private Color startButtonColor = new Color(230, 0, 0);
+	private Color startButtonBorderColor = Color.black;
+	
+	//Death reset button
+	private Color deathButtonColor = new Color(135, 135, 135);
+	private Color deathButtonBorderColor = new Color(180, 180, 180);
 	
 	private Levels levels;
 	private GameHandler handler;
@@ -52,9 +58,9 @@ public class HUD {
 		
 		if (!Game.gameStarted) {
 			//start button
-			g.setColor(buttonBorderColor);
+			g.setColor(startButtonBorderColor);
 			g.drawRect(Game.WIDTH/2-129, Game.HEIGHT/2-31, 257, 61);
-			g.setColor(buttonColor);
+			g.setColor(startButtonColor);
 			g.fillRect(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
 		}
 		
@@ -75,7 +81,13 @@ public class HUD {
 			
 			//level indicator
 			g.setColor(new Color(200, 150, 0));
-			g.drawString("Level " + Levels.level, 230, 15);
+			if (Levels.level == 3) {
+				g.drawString("Level MISSINGNO", 230, 15);
+			}
+			else {
+				g.drawString("Level " + Levels.level, 230, 15);
+			}
+			
 			
 			//life indicator
 			g.setColor(new Color(230,200,0));
@@ -92,6 +104,12 @@ public class HUD {
 			g.setColor(new Color(115, 115, 115));
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 70));
 			g.drawString("YOU DIED", 350, 350);
+			
+			//reset button
+			g.setColor(deathButtonBorderColor);
+			g.drawRect(Game.WIDTH/2-129, Game.HEIGHT/2-31, 257, 61);
+			g.setColor(deathButtonColor);
+			g.fillRect(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
 		}
 		
 	}
@@ -111,23 +129,34 @@ public class HUD {
 			if (lives>0) {
 				lives--;
 				Game.health = 100;
-				handler.addObject(new PainFlash(-1, -1, null, -1, 0.01f, 0.7f, handler));
 				if (lives == 0) {
 					Game.isdead = true;
 				}
 				levels.resetLevel();
+				handler.addObject(new PainFlash(-1, -1, null, -1, 0.01f, 0.7f, handler));
 			}
 		}
 		
 		//changes button color when clicked
-		if (isOnButton == true) {
-			buttonColor = new Color(200, 200, 200);
-			buttonBorderColor = Color.red;
+		if (isOnStartButton) {
+			startButtonColor = new Color(200, 200, 200);
+			startButtonBorderColor = Color.red;
 		}
-//		else {
-//			buttonColor = Color.red;
-//			buttonBorderColor = Color.black;
-//		}
+		else {
+			startButtonColor = Color.red;
+			startButtonBorderColor = Color.black;
+		}
+		
+		//same thing but for death button
+		if (isOnDeathButton) {
+			deathButtonColor = new Color(180, 180, 180);
+			deathButtonBorderColor = new Color(135, 135, 135);
+			levels.resetDefault();
+		}
+		else {
+			deathButtonColor = new Color(135, 135, 135);
+			deathButtonBorderColor = new Color(180, 180, 180);
+		}
 		
 		
 	}

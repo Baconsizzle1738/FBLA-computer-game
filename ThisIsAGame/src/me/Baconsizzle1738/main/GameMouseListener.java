@@ -33,8 +33,14 @@ public class GameMouseListener implements MouseListener{
 		int y = e.getY();
 		
 		//the start button
-		if (hud.startButton.contains(x, y) && !Game.gameStarted) {
-			hud.isOnButton = true;
+		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted) {
+			hud.isOnStartButton = true;
+		}
+		
+		//death button
+		if (hud.startDeathButton.contains(x, y) && Game.isdead) {
+			hud.isOnDeathButton = true;
+			HUD.lives = 3;
 		}
 	}
 
@@ -44,9 +50,16 @@ public class GameMouseListener implements MouseListener{
 		int y = e.getY();
 		
 		//the start button
-		if (hud.startButton.contains(x, y) && !Game.gameStarted) {
-			hud.isOnButton = false;
+		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted) {
+			hud.isOnStartButton = false;
 			Game.gameStarted = true;
+			//System.out.println("yeet");
+		}
+		
+		if (hud.startDeathButton.contains(x, y) && Game.isdead) {
+			hud.isOnDeathButton = false;
+			Game.gameStarted = false;
+			Game.isdead = false;
 			//System.out.println("yeet");
 		}
 	}

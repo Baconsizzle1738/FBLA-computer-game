@@ -74,11 +74,11 @@ public class Levels {
 		room.get(level-1).reset();
 	}
 	
-	private void resetDefault() {
+	public void resetDefault() {
 		
 		init = false;
 		removeLevelObjects();
-		level = 0;
+		level = 1;
 		
 	}
 	

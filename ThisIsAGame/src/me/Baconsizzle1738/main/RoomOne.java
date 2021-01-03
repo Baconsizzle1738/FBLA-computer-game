@@ -55,7 +55,7 @@ public class RoomOne extends Room {
 		}
 		
 		//change to true for quick advance for testing out other levels
-		return false;
+		return true;
 	}
 
 	@Override
