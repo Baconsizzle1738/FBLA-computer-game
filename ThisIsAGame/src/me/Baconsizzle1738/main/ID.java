@@ -13,6 +13,7 @@ public enum ID {
 	Door(),
 	FollowEnemy(),
 	Button1(),
+	Grass(),
 	Enemy();
 	
 }

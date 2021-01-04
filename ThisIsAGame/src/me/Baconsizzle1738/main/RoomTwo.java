@@ -95,10 +95,10 @@ public class RoomTwo extends Room{
 	public void render(Graphics g) {
 		//title
 		g.setColor(new Color(205, 102, 51));
-		g.setFont(new Font("arial", 50, 50));
-		g.drawString("Bones for Dinner", 580, 40);
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 50));
+		g.drawString("Bones for Dinner", 500, 40);
 
-		g.setFont(new Font("arial", 10, 12));
+		g.setFont(new Font(Font.MONOSPACED, 0, 12));
 		if (!isFlip) {
 			//Enemy lines
 			g.setColor(new Color(230, 30, 30));

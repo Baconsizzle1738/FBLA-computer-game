@@ -55,9 +55,10 @@ public class RoomOne extends Room {
 		}
 		
 		//change to true for quick advance for testing out other levels
-		return true;
+		return false;
 	}
 
+	
 	@Override
 	public void tick() {
 		if (!allArrows) {
@@ -247,7 +248,7 @@ public class RoomOne extends Room {
 	@Override
 	public void reset() {
 		//reset cooldown needed to prevent spamming
-		if (canReset) {
+		if (canReset && !Game.win && !Game.isdead) {
 			//System.out.println("ree");
 			//removes the konami arrows
 			for (int i = 0; i<handler.objects.size(); i++) {

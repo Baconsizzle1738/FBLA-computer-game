@@ -2,6 +2,10 @@ package me.Baconsizzle1738.main;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.util.Scanner;
 
 /**
  * Listens to mouse inputs by the user for the game.
@@ -33,12 +37,12 @@ public class GameMouseListener implements MouseListener{
 		int y = e.getY();
 		
 		//the start button
-		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control) {
+		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
 			hud.isOnStartButton = true;
 		}
 		
 		//the controls button
-		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control) {
+		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
 			hud.isOnControlsButton = true;
 		}
 		
@@ -52,6 +56,22 @@ public class GameMouseListener implements MouseListener{
 			hud.isOnDeathButton = true;
 			HUD.lives = 3;
 		}
+		
+		//win button
+		if (hud.winButton.contains(x, y) && Game.win && hud.playerName.length() != 0) {
+			hud.isOnWinButton = true;
+		}
+		
+		//leaderboard button
+		if (hud.leadButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
+			hud.isOnLeadButton = true;
+		}
+		
+		//back button for leaderboard
+		if (hud.leadBackButton.contains(x,y) && Game.leaderboard) {
+			hud.isOnLeadBackButton = true;
+		}
+		
 	}
 
 	@Override
@@ -60,14 +80,14 @@ public class GameMouseListener implements MouseListener{
 		int y = e.getY();
 		
 		//the start button
-		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control) {
+		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
 			hud.isOnStartButton = false;
 			Game.gameStarted = true;
 			//System.out.println("yeet");
 		}
 		
 		//controls button
-		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control) {
+		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
 			hud.isOnControlsButton = false;
 			Game.control = true;
 		}
@@ -78,12 +98,60 @@ public class GameMouseListener implements MouseListener{
 			Game.control = false;
 		}
 		
+		//death button
 		if (hud.startDeathButton.contains(x, y) && Game.isdead) {
 			hud.isOnDeathButton = false;
 			Game.gameStarted = false;
 			Game.isdead = false;
 			//System.out.println("yeet");
 		}
+		
+		//win button, saves player score data upon release
+		if (hud.winButton.contains(x, y) && Game.win && hud.playerName.length() != 0) {
+			hud.isOnWinButton = false;
+			Game.gameStarted = false;
+			Game.win = false;
+			Game.takingInput = false;
+			
+			try {
+				FileWriter write = new FileWriter("data/scores.dat", true);
+				
+				write.write(hud.playerName + " " + hud.score + "\n");
+				write.close();
+			}
+			catch (Exception ex) {
+				System.out.println("Error in saving score");
+			}
+			
+			//update the set of score data, put it in the set so it now appears on the leaderboard
+			try {
+				File f = new File("data/scores.dat");
+				Scanner scan = new Scanner(f);
+				Game.scoreData.clear();
+				while (scan.hasNext()) {
+					Game.scoreData.add(new ScoreData(scan.nextLine()));
+				}
+				scan.close();
+			}
+			catch (FileNotFoundException ex) {
+				System.out.println("There was an error.");
+			}
+		}
+		
+		//leaderboard button
+		if (hud.leadButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
+			hud.isOnLeadButton = false;
+			Game.leaderboard = true;
+			System.out.println("LEADERBOARD REEE");
+		}
+		
+		//back button for leaderboard
+		if (hud.leadBackButton.contains(x,y) && Game.leaderboard && Game.cd == 5) {
+			hud.isOnLeadBackButton = false;
+			Game.leaderboard = false;
+		}
+				
+		
 	}
 
 	@Override

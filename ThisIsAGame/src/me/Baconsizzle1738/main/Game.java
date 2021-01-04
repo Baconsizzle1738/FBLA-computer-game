@@ -6,6 +6,11 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 //import java.util.Random;
 
 /**
@@ -37,10 +42,15 @@ public class Game extends Canvas implements Runnable{
 	private boolean running = false;
 	
 	//This is basically what controls game State
-	public static boolean gameStarted = false, paused = false, isdead = false, control = false;
+	public static boolean gameStarted = false, paused = false, isdead = false, control = false, win = false,
+			takingInput = false;
+	public static boolean leaderboard = false;
 	
 	public static int health = 100;
 	
+	public static Set<ScoreData> scoreData;
+	
+	public static int cd = 0;
 	//for testing vvv
 	//private Random r;
 	
@@ -51,7 +61,8 @@ public class Game extends Canvas implements Runnable{
 	HUD hud;
 	//the rooms
 	Levels levels;
-	//Room room;
+	
+	public static GameKeyListener keys;
 	
 	/**
 	 * Constructor of <code>Game</code> class instantiates the game handler class <code>handler</code>,
@@ -68,6 +79,7 @@ public class Game extends Canvas implements Runnable{
 		//heads up display
 		hud = new HUD(levels, handler);
 		
+		keys = new GameKeyListener(handler, levels, hud);
 		//handler.addObject(new Player(300, 300, ID.Player, -1));
 		
 		
@@ -83,12 +95,40 @@ public class Game extends Canvas implements Runnable{
 		//handler.addObject(new StaticEnemy(70, 70, ID.Enemy, ID.Level1 ,300 , 2, 0));
 		
 		//takes keyboard inputs
-		this.addKeyListener(new GameKeyListener(handler, levels));
+		this.addKeyListener(keys);
 		//takes mouse inputs
 		this.addMouseListener(new GameMouseListener(hud));
 		
+		scoreData = new TreeSet<ScoreData>();
 		
+		//create the file to store player score data on
+		try {
+			File leaderData = new File("data/scores.dat");
+			if (leaderData.createNewFile()) {
+				System.out.println("Leaderboard database created.");
+			}
+			else {
+				System.out.println("Leaderboard database already exists.");
+				
+			}
+		}
+		catch(Exception e) {
+			System.out.println("Error on creating database file.");
+			e.printStackTrace();
+		}
 		
+//		try {
+//			File f = new File("data/scores.dat");
+//			Scanner scan = new Scanner(f);
+//			
+//			while (scan.hasNext()) {
+//				Game.scoreData.add(new ScoreData(scan.nextLine()));
+//			}
+//			scan.close();
+//		}
+//		catch (FileNotFoundException ex) {
+//			System.out.println("There was an error.");
+//		}
 		
 		
 	}
@@ -164,7 +204,17 @@ public class Game extends Canvas implements Runnable{
 			handler.tick();
 		}
 		hud.tick();
-		levels.tick();
+		if (!win && !isdead) {
+			levels.tick();
+		}
+		
+		
+		if (cd<5 && leaderboard) {
+			cd++;
+		}
+		else if (!leaderboard){
+			cd = 0;
+		}
 	}
 	
 	//actually renders the stuff.

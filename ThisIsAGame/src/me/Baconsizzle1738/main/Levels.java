@@ -39,16 +39,27 @@ public class Levels {
 	 * Checks status of level completion on every update.
 	 */
 	public void tick() {
-		if (Game.gameStarted && !Game.isdead) {
+		if (Game.gameStarted && !Game.isdead && !Game.win) {
 			if (!init) {
 				room.get(level-1).startLevel();
 				init = true;
 			}
+			
 			if (room.get(level-1).isComplete()) {
 				//this is for test
 				removeLevelObjects();
 				level++;
-				room.get(level-1).startLevel();
+				System.out.println(level);
+				//System.out.println(room.get(level-1).isComplete());
+				//check if player has completed all levels
+				if (level<=room.size()) {
+					room.get(level-1).startLevel();
+				}
+				else {
+					Game.win = true;
+					Game.takingInput = true;
+					resetDefault();
+				}
 			}
 			room.get(level-1).tick();
 		}
@@ -79,7 +90,8 @@ public class Levels {
 		init = false;
 		removeLevelObjects();
 		level = 1;
-		
+		Game.health = 100;
+		Game.keys.reset();
 	}
 	
 	/**
@@ -87,7 +99,7 @@ public class Levels {
 	 * @param g	Graphics board to render <code>Room</code> on.
 	 */
 	public void render(Graphics g) {
-		if (Game.gameStarted && !Game.isdead) {
+		if (Game.gameStarted && !Game.isdead && !Game.win) {
 			room.get(level-1).render(g);
 		}
 		
