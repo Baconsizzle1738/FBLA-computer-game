@@ -178,7 +178,7 @@ public class RoomThree extends Room{
 		
 		if (onBlock) {
 			g.setColor(Color.white);
-			g.drawString("E - INTERACT", 10, 520);
+			g.drawString("E - INTERACT", 10, 530);
 		}
 	
 	}

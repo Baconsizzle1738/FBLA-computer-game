@@ -158,7 +158,7 @@ public class RoomTwo extends Room{
 		
 		if (onButton) {
 			g.setColor(Color.white);
-			g.drawString("E - INTERACT", 10, 520);
+			g.drawString("E - INTERACT", 10, 530);
 		}
 		
 	}

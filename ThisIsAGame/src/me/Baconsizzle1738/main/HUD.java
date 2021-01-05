@@ -201,6 +201,7 @@ public class HUD {
 			g.setColor(Color.white);
 			g.drawString("WASD - MOVE", 10, 500);
 			g.drawString("P - PAUSE", 10, 510);
+			g.drawString("R - RESET", 10, 520);
 			//the E - INTERACT only should show when the player is on an interactive object
 		}
 		
