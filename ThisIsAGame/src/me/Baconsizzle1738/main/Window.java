@@ -4,10 +4,23 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-
+/**
+ * The window for the Game
+ * @author Baconsizzle1738
+ *
+ */
 public class Window extends Canvas {
 
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Creates a <code>Window</code> for the game to run in.
+	 * 
+	 * @param width		width of window
+	 * @param height	height of window
+	 * @param title		title of window
+	 * @param game		the <code>Game</code> that runs in the window.
+	 */
 	public Window(int width, int height, String title, Game game) {
 		//the window frame
 		JFrame frame = new JFrame(title);

@@ -30,6 +30,9 @@ public class GameKeyListener implements KeyListener{
 		this.hud = hud;
 	}
 	
+	/**
+	 * Resets all movement keys to false
+	 */
 	public void reset() {
 		for (int i = 0; i<keys.length; i++) {
 			keys[i] = false;
@@ -135,6 +138,7 @@ public class GameKeyListener implements KeyListener{
 			}
 		}
 		
+		//for the name input
 		if (Game.takingInput) {
 			if (e.getKeyChar() != e.CHAR_UNDEFINED && hud.playerName.length()<=16 && e.getKeyCode() != KeyEvent.VK_SPACE) {
 				hud.playerName += e.getKeyChar();

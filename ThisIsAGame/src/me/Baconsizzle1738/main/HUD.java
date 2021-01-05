@@ -28,7 +28,7 @@ public class HUD {
 	public static int lives = 3;
 	//public boolean gameStarted = false;
 	
-	//start and death buttons are the same hitbox
+	//button hitboxes
 	public Rectangle startDeathButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60),
 			controlsButton = new Rectangle(Game.WIDTH/2-128, Game.HEIGHT/2+50, 256, 60),
 			controlBackButton = new Rectangle(150, 400, 100, 25),
@@ -40,7 +40,9 @@ public class HUD {
 	public boolean isOnStartButton = false, isOnDeathButton = false, isOnControlsButton = false,
 			isOnControlBackButton = false, isOnWinButton = false, isOnLeadButton = false, isOnLeadBackButton = false;
 	
-	//so button colors change when clicked (start button)
+	
+	
+	//so button colors change when clicked
 	//start
 	private Color startButtonColor = new Color(230, 0, 0);
 	private Color startButtonBorderColor = Color.black;
@@ -68,6 +70,8 @@ public class HUD {
 	private Color leadBackButtonColor = new Color(230, 0, 0);
 	private Color leadBackButtonBorderColor = Color.black;
 	
+	
+	
 	private Levels levels;
 	private GameHandler handler;
 	
@@ -92,7 +96,8 @@ public class HUD {
 	public void render(Graphics g) {
 		
 		
-		//stuff here only shows when game is not started
+		//HUD renders based on game state.
+		
 		//Game main menu screen
 		if (!Game.gameStarted && !Game.control && !Game.leaderboard) {
 			//start button
@@ -174,6 +179,7 @@ public class HUD {
 			
 			//level indicator
 			g.setColor(new Color(200, 150, 0));
+			//do not show level for room 3
 			if (Levels.level == 3) {
 				g.drawString("Room: MISSINGNO", 230, 15);
 			}
@@ -185,14 +191,17 @@ public class HUD {
 			g.setColor(new Color(230,200,0));
 			g.drawString("Lives: " + lives, 230, 25);
 			
+			//pause indicator
 			if (Game.paused) {
 				g.setColor(Color.red);
 				g.drawString("PAUSED", 20, 50);
 			}
 			
+			//controls display
 			g.setColor(Color.white);
 			g.drawString("WASD - MOVE", 10, 500);
-			
+			g.drawString("P - PAUSE", 10, 510);
+			//the E - INTERACT only should show when the player is on an interactive object
 		}
 		
 		//death screen render
@@ -205,13 +214,13 @@ public class HUD {
 			g.setColor(new Color(115, 115, 115));
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 70));
 			g.drawString("YOU DIED", 335, 200);
+			//dead players get no score
 			
 			//reset button
 			g.setColor(deathButtonBorderColor);
 			g.drawRect(Game.WIDTH/2-129, Game.HEIGHT/2-31, 257, 61);
 			g.setColor(deathButtonColor);
 			g.fillRect(Game.WIDTH/2-128, Game.HEIGHT/2-30, 256, 60);
-			
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
 			g.setColor(new Color(30, 30, 30));
 			g.drawString("AT LEAST YOU TRIED", 392, 305);
@@ -228,9 +237,11 @@ public class HUD {
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 70));
 			g.drawString("YOU ESCAPED", 280, 200);
 			
+			//player enters name here
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
 			g.drawString(playerName + " ESCAPED WITH A SCORE OF "+score, 250, 300);
 			
+			//limitations for naming
 			g.setFont(new Font(Font.MONOSPACED, 0, 15));
 			g.setColor(new Color(200, 200, 200));
 			g.drawString("NAME CAN BE AT MOST 16 CHARACTERS LONG", 200, 315);
@@ -251,10 +262,12 @@ public class HUD {
 		//Leaderboard render
 		if (Game.leaderboard) {
 			
+			//header
 			g.setColor(new Color(200, 0, 0));
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 50));
 			g.drawString("LEADERBOARD", 340, 100);
 			
+			//positions
 			g.setColor(new Color(175, 175, 175));
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
 			g.drawString("1.", 200, 150);
@@ -268,8 +281,8 @@ public class HUD {
 			g.drawString("9.", 200, 350);
 			g.drawString("10.", 200, 375);
 			
-			//System.out.println(Game.scoreData.toString());
-			//displays only yhe top 10 scores.
+			
+			//displays only the top 10 scores.
 			int cnt = 0;
 			for (ScoreData s : Game.scoreData) {
 				//System.out.println(cnt);
@@ -282,6 +295,7 @@ public class HUD {
 					break;
 				}
 			}
+			g.drawString("You must escape at least once to view leaderboards", 210, 555+25*Game.scoreData.size());
 			
 			
 			
@@ -305,6 +319,8 @@ public class HUD {
 		health = Game.health;
 		//constrains health to be inside healthbar.
 		health = Game.clamp(health, 0, 100);
+		
+		//update score while game is playing
 		if (Game.gameStarted && !Game.win && !Game.isdead && !Game.paused) {
 			ticks++;
 			score = (20000000/ticks)*lives+(health*12);
@@ -326,9 +342,11 @@ public class HUD {
 		}
 		
 		//changes button color when clicked, also resetting the score and player name
+		//start button
 		if (isOnStartButton) {
 			startButtonColor = new Color(200, 200, 200);
 			startButtonBorderColor = Color.red;
+			//reset score and name
 			score = 0;
 			playerName = "";
 		}

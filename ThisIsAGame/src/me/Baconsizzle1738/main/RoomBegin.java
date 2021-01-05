@@ -1,7 +1,12 @@
 package me.Baconsizzle1738.main;
 
 import java.awt.Graphics;
-
+/**
+ * 
+ * @author zheng
+ * @deprecated
+ *
+ */
 public class RoomBegin extends Room {
 
 	public RoomBegin(int spawnX, int spawnY, GameHandler h, int lvl) {

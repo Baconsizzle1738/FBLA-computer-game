@@ -4,8 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+/**
+ * This room is based off Minecraft Dinnerbone.
+ * The player has to press buttons to rotate
+ * the box 180 degrees and then go into the box to complete the room.
+ * @author zheng
+ *
+ */
 public class RoomTwo extends Room{
-	private boolean isFlip = false;
+	private boolean isFlip = false, onButton = false;
 	Player p;
 	private int clickCool = 0;
 	/**
@@ -50,15 +57,28 @@ public class RoomTwo extends Room{
 			clickCool++;
 		}
 		
-		if (p.using && clickCool >=20) {
+		for (int i = 0; i<handler.objects.size(); i++) {
+			if (handler.objects.get(i).gettypeID() == ID.Button1 && handler.objects.get(i).getBounds().intersects(p.getBounds())) {
+				onButton = true;
+				break;
+			}
+			else {
+				onButton = false;
+			}
+		}
+		
+		if (clickCool >=20) {
 			DinnerboneButton temp;
 			for (int i = 0; i<handler.objects.size(); i++) {
 				//check if player is pressing E and also on a button
 				if (handler.objects.get(i).gettypeID() == ID.Button1 && p.getBounds().intersects(handler.objects.get(i).getBounds())) {
 					temp = (DinnerboneButton) handler.objects.get(i);
-					doAction(temp.getAction());
-					clickCool = 0;
-					break;
+					if (p.using) {
+						doAction(temp.getAction());
+						clickCool = 0;
+						break;
+					}
+					
 				}
 			}
 		}
@@ -136,7 +156,10 @@ public class RoomTwo extends Room{
 			
 		}
 		
-		
+		if (onButton) {
+			g.setColor(Color.white);
+			g.drawString("E - INTERACT", 10, 520);
+		}
 		
 	}
 

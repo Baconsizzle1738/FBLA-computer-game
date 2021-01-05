@@ -8,6 +8,13 @@ import java.util.ArrayList;
 
 
 //based off the konami code
+
+/**
+ * The player must navigate a maze and collect <code>KonamiArrows</code>
+ * in the order of the Konami code in order to pass.
+ * @author Baconsizzle1738
+ *
+ */
 public class RoomOne extends Room {
 	//Random r;
 	private int collected = 0;
@@ -19,6 +26,14 @@ public class RoomOne extends Room {
 	private boolean correctComb = false;
 	Player p;
 	
+	/**
+	 * Takes only basic parameters for <code>Room</code>.
+	 * 
+	 * @param spawnX	x position of spawn point.
+	 * @param spawnY	y position of spawn point.
+	 * @param h			<code>GameHandler</code> to add objects.
+	 * @param lvl		The level of the room.
+	 */
 	public RoomOne(int spawnX, int spawnY, GameHandler h, int lvl) {
 		super(spawnX, spawnY, h, lvl);
 		//r = new Random();
@@ -61,6 +76,8 @@ public class RoomOne extends Room {
 	
 	@Override
 	public void tick() {
+		
+		//check for arrows being collected by player
 		if (!allArrows) {
 			CollectArrow();
 		}
@@ -127,9 +144,10 @@ public class RoomOne extends Room {
 	public void render(Graphics g) {
 		//Room title
 		g.setColor(Color.CYAN);
-		g.setFont(new Font("arial", 50, 50));
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 50));
 		g.drawString("Konami's maze", 580, 40);
 		
+		//space for collected arrows
 		g.setColor(new Color(200, 0, 0));
 		g.drawRect(730, 200, 20, 20);
 		g.drawRect(755, 200, 20, 20);
@@ -140,14 +158,18 @@ public class RoomOne extends Room {
 		g.drawRect(880, 200, 20, 20);
 		g.drawRect(905, 200, 20, 20);
 		
+		//render collected arrows inside the boxes
 		for (int i = 0; i<collectedArrows.size(); i++) {
 			collectedArrows.get(i).render(g);
 		}
-		g.setFont(new Font("arial", 10, 12));
+		
+		//Dialogue
+		g.setFont(new Font(Font.MONOSPACED, 10, 12));
 		if (!allArrows) {
 			g.setColor(new Color(200,200,0));
-			g.drawString("The labyrinth seems to have no exit...", 720, 240);
-			g.drawString("There seems to be random keys lying around though.", 720, 255);
+			g.drawString("The labyrinth seems to have no exit...", 710, 240);
+			g.drawString("There seems to be random keys lying", 710, 255);
+			g.drawString("around though.", 710, 270);
 		}
 		if (allArrows && !correctComb) {
 			g.setColor(new Color(200,200,0));
@@ -163,19 +185,36 @@ public class RoomOne extends Room {
 	}
 	
 	//so the maze width stays consistent
+	/**
+	 * x increments based off the maze width, made so that everything can be evenly spaced easily
+	 * @param n	increment number
+	 * @return	the x coordinate corresponding to the increment
+	 */
 	private int mazeIncrementX(int n) {
 		return 200+(49*n);
 	}
+	
+	/**
+	 * y increments based off the maze width, made so that everything can be evenly spaced easily
+	 * @param n	increment number
+	 * @return	the y coordinate corresponding to the increment
+	 */
 	private int mazeIncrementY(int n) {
 		return 50+(49*n);
 	}
+	
+	/**
+	 * The space between the increments so that lengths are spaced evenly for the maze
+	 * @param n	increment number
+	 * @return	length corresponding to the increment
+	 */
 	private int mazeUnitLength(int n) {
 		return 49*n+5;
 	}
 	
 	@Override
 	public void startLevel() {
-		
+		reset();
 		Color mazeCol = new Color(200, 200, 200);
 		handler.addObject(p);
 		

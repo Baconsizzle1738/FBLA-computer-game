@@ -23,6 +23,14 @@ public class RoomThree extends Room{
 	
 	private Point[][] grass;
 
+	/**
+	 * Room takes only the parameters for <code>Room</code>.
+	 * 
+	 * @param spawnX	x position of player spawn
+	 * @param spawnY	y position of player spawn
+	 * @param h			<code>GameHandler</code> for any objects on level
+	 * @param lvl		level of <code>Room</code>
+	 */
 	public RoomThree(int spawnX, int spawnY, GameHandler h, int lvl) {
 		super(spawnX, spawnY, h, lvl);
 		
@@ -36,10 +44,20 @@ public class RoomThree extends Room{
 		}
 	}
 	
+	/**
+	 * x increments for the grass so they are evenly spaced.
+	 * @param n	x increment for grass
+	 * @return	x coordinate corresponding to the increment
+	 */
 	private int grassX(int n) {
 		return 250+20*n;
 	}
 	
+	/**
+	 * y increments for the grass so they are evenly spaced.
+	 * @param n	y increment for grass
+	 * @return	y coordinate corresponding to the increment
+	 */
 	private int grassY(int n) {
 		return 100+20*n;
 	}
@@ -160,7 +178,7 @@ public class RoomThree extends Room{
 		
 		if (onBlock) {
 			g.setColor(Color.white);
-			g.drawString("E - INTERACT", 10, 510);
+			g.drawString("E - INTERACT", 10, 520);
 		}
 	
 	}

@@ -25,6 +25,11 @@ public class KonamiArrow extends GameObject{
 		this.direction = direction;
 	}
 	
+	/**
+	 * Returns the direction the <code>KonamiArrow</code> is pointing.
+	 * 
+	 * @return	String indicating direction
+	 */
 	public String getDirection() {
 		return direction;
 	}

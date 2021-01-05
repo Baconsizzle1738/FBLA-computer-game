@@ -2,6 +2,12 @@ package me.Baconsizzle1738.main;
 
 import java.awt.Graphics;
 
+/**
+ * The Room is what the player must go through and escape.
+ * 
+ * @author Baconsizzle1738
+ *
+ */
 public abstract class Room {  
 	private int initialX, initialY;
 	protected int lvl;
@@ -27,7 +33,7 @@ public abstract class Room {
 	}
 	
 	/**
-	 * Moves the player back to spawn location.
+	 * Moves the player to spawn location.
 	 */
 	public void SetPlayerSpawn() {
 		for (int i = 0; i<handler.objects.size(); i++) {

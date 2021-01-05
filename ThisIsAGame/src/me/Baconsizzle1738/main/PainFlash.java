@@ -15,7 +15,7 @@ public class PainFlash extends GameObject{
 	private float life, trans;
 	private GameHandler handler;
 	/**
-	 * Only the life, trans, and the handler matter for this.
+	 * Only the life, transparency, and the handler matter for this.
 	 * 
 	 * @param x			No need
 	 * @param y			No need

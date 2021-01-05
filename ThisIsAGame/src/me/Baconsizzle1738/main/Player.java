@@ -4,11 +4,26 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * This is what the player controls to navigate the rooms.
+ * @author Baconsizzle1738
+ *
+ */
 public class Player extends GameObject{
 	GameHandler handler;
 	HUD hud;
 	public boolean using;
 	
+	/**
+	 * Takes <code>GameObject</code>parameters and also the <code>GameHandler</code> for the
+	 * flashes and collision detection.
+	 * 
+	 * @param x			x position
+	 * @param y			y position
+	 * @param typeId	<code>ID</code> of the player.
+	 * @param level		level object belongs to.
+	 * @param h			the <code>GameHandler</code>
+	 */
 	public Player(int x, int y, ID typeId, int level, GameHandler h) {
 		super(x, y, typeId, level);
 		handler = h;
@@ -53,7 +68,7 @@ public class Player extends GameObject{
 					}
 					
 					
-					
+					//removes the weird gap that appears if the obstacle is not in a position divisible by the player velocity.
 					if ((x+32)-temp.getX() != 0 && x+32 < temp.getX()) {
 						x += temp.getX()-(x+32);
 					}
@@ -83,6 +98,7 @@ public class Player extends GameObject{
 			}
 		}
 		
+		//constrain player inside the window
 		x = Game.clamp(x, 0, Game.WIDTH-48);//x is 16 px off
 		y = Game.clamp(y, 0, Game.HEIGHT-71);//y is 39 px off
 		

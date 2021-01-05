@@ -19,7 +19,7 @@ public class Levels {
 	
 	
 	/**
-	 * Takes handler into class and also creates a list of the levels.
+	 * Takes handler as a parameter and creates a list of the levels.
 	 * @param handler
 	 */
 	public Levels(/* HUD hud, */ GameHandler handler) {
@@ -27,11 +27,13 @@ public class Levels {
 		this.handler = handler;
 		//handler.addObject(new Player(500, 500, ID.Player, -1, this.handler));
 		level = 1;
-		//test
 		//room.add(new RoomBegin(350, 350, handler, 0));
+		
+		//add levels to the list
 		room.add(new RoomOne(305, 300, handler, 1));
 		room.add(new RoomTwo(255, 500, handler, 2));
 		room.add(new RoomThree(400, 400, handler, 3));
+		//for the first level to initialize
 		init = false;
 	}
 	
@@ -40,18 +42,19 @@ public class Levels {
 	 */
 	public void tick() {
 		if (Game.gameStarted && !Game.isdead && !Game.win) {
+			//initiates the first room when the game starts
 			if (!init) {
 				room.get(level-1).startLevel();
 				init = true;
 			}
 			
+			//check for completion
 			if (room.get(level-1).isComplete()) {
-				//this is for test
 				removeLevelObjects();
 				level++;
 				System.out.println(level);
 				//System.out.println(room.get(level-1).isComplete());
-				//check if player has completed all levels
+				//check if player has completed all levels, win state is activated when true
 				if (level<=room.size()) {
 					room.get(level-1).startLevel();
 				}
@@ -63,6 +66,7 @@ public class Levels {
 			}
 			room.get(level-1).tick();
 		}
+		//check if dead
 		if (Game.isdead) {
 			resetDefault();
 		}
@@ -81,10 +85,16 @@ public class Levels {
 		}
 	}
 	
+	/**
+	 * resets the level
+	 */
 	public void resetLevel() {
 		room.get(level-1).reset();
 	}
 	
+	/**
+	 * Resets everything to default, lives are unaffected.
+	 */
 	public void resetDefault() {
 		
 		init = false;

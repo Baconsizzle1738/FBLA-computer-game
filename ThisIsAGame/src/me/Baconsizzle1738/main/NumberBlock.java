@@ -4,16 +4,35 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+/**
+ * These are the little blocks that the player must find in the thrd room and click on.
+ * 
+ * @author Baconsizzle1738
+ *
+ */
 public class NumberBlock extends GameObject{
 	
 	private int num;
 	
+	/**
+	 * Takes in all <code>GameObject</code> parameters and also the number that the block displays.
+	 * 
+	 * @param x			x position
+	 * @param y			y position
+	 * @param typeId	<code>ID</code> of block
+	 * @param level		level that the block belongs to
+	 * @param num		number that the block displays.
+	 */
 	public NumberBlock(int x, int y, ID typeId, int level, int num) {
 		super(x, y, typeId, level);
 		
 		this.num = num;
 	}
 	
+	/**
+	 * 
+	 * @return Displayed number
+	 */
 	public int getNum() {
 		return num;
 	}
