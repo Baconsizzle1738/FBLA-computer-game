@@ -100,6 +100,11 @@ public class HUD {
 		
 		//Game main menu screen
 		if (!Game.gameStarted && !Game.control && !Game.leaderboard) {
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 70));
+			g.setColor(new Color(190, 0, 0));
+			g.drawString("THE GAMER'S PLIGHT", 115, 150);
+			
+			
 			//start button
 			g.setColor(startButtonBorderColor);
 			g.drawRect(Game.WIDTH/2-129, Game.HEIGHT/2-31, 257, 61);
@@ -337,7 +342,10 @@ public class HUD {
 				if (lives == 0) {
 					Game.isdead = true;
 				}
-				levels.resetLevel();
+				else {
+					levels.resetLevel();
+				}
+				
 				handler.addObject(new PainFlash(-1, -1, null, -1, 0.01f, 0.7f, handler));
 			}
 		}

@@ -91,7 +91,14 @@ public class RoomOne extends Room {
 				resetCool = 0;
 			}
 		}
-		
+		if (Game.isdead) {
+			for (int i = 0; i<handler.objects.size(); i++) {
+				if (handler.objects.get(i).getlevelID() == lvl) {
+					handler.removeObject(handler.objects.get(i));
+					i--;
+				}
+			}
+		}
 	}
 	/**
 	 * Removes the KonamiArrow that the player touches and makes a new one, also adding it to collectedArrows

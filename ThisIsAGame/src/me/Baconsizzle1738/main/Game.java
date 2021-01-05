@@ -237,8 +237,9 @@ public class Game extends Canvas implements Runnable{
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		//render game objects, levels, and HUD here
-		hud.render(g);
+		
 		handler.render(g);
+		hud.render(g);
 		levels.render(g);
 		
 		g.dispose();
