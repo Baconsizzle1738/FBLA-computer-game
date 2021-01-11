@@ -210,6 +210,7 @@ public class RoomTwo extends Room{
 			handler.addObject(new FollowEnemy(Game.WIDTH/2, 200, ID.FollowEnemy, lvl, 100, 25, 0.55f, handler));
 			SetPlayerSpawn();
 			canReset = false;
+			isFlip = false;
 		}
 		
 	}
