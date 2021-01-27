@@ -4,7 +4,6 @@ import java.awt.Graphics;
 /**
  * 
  * @author zheng
- * @deprecated
  *
  */
 public class RoomBegin extends Room {

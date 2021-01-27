@@ -26,10 +26,11 @@ public class Levels {
 		//this.hud = hud;
 		this.handler = handler;
 		//handler.addObject(new Player(500, 500, ID.Player, -1, this.handler));
-		level = 1;
+		level = 0;
 		//room.add(new RoomBegin(350, 350, handler, 0));
 		
 		//add levels to the list
+		room.add(new RoomBegin(0, 0, handler, 0));
 		room.add(new RoomOne(305, 300, handler, 1));
 		room.add(new RoomTwo(255, 500, handler, 2));
 		room.add(new RoomThree(400, 400, handler, 3));
@@ -49,14 +50,14 @@ public class Levels {
 			}
 			
 			//check for completion
-			if (room.get(level-1).isComplete()) {
+			if (room.get(level).isComplete()) {
 				removeLevelObjects();
 				level++;
 				System.out.println(level);
 				//System.out.println(room.get(level-1).isComplete());
 				//check if player has completed all levels, win state is activated when true
 				if (level<=room.size()) {
-					room.get(level-1).startLevel();
+					room.get(level).startLevel();
 				}
 				else {
 					Game.win = true;
@@ -64,7 +65,7 @@ public class Levels {
 					resetDefault();
 				}
 			}
-			room.get(level-1).tick();
+			room.get(level).tick();
 		}
 		//check if dead
 		if (Game.isdead) {
