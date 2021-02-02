@@ -14,6 +14,7 @@ public enum ID {
 	FollowEnemy(),
 	Button1(),
 	Grass(),
+	Button(),
 	Enemy();
 	
 }

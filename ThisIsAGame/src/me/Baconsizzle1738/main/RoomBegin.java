@@ -1,9 +1,10 @@
 package me.Baconsizzle1738.main;
 
+import java.awt.Color;
 import java.awt.Graphics;
 /**
- * 
- * @author zheng
+ * This is the main title screen.
+ * @author Baconsizzle1738
  *
  */
 public class RoomBegin extends Room {
@@ -15,7 +16,7 @@ public class RoomBegin extends Room {
 
 	@Override
 	public void startLevel() {
-		
+		handler.addObject(new Button(300, 300, ID.Button, lvl, "ree", 50, 50, Color.red, Color.cyan, Color.yellow));
 	}
 
 	@Override

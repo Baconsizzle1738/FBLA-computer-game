@@ -6,22 +6,43 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * The Button is a <code>GameObject</code> that is stationary and can be clicked on to perform an action.
+ * @author Hao
+ *
+ */
 public class Button extends GameObject implements MouseListener{
 	
-	private String message, action;
+	private String message/*, action*/;
 	private int width, height;
-	private boolean isPressed;
-	private Color color, pressColor;
+	private boolean isPressed, isReleased;
+	private Color color, pressColor, messageColor;
 	
-	public Button(int x, int y, ID typeId, int level, String message, int wid, int hei, Color color, Color pressColor/*, String act*/) {
+	/**
+	 * Buttons will need a message on it and also a defined width and height parameter.
+	 * 
+	 * @param x				x pos of button.
+	 * @param y				y pos of button.
+	 * @param typeId		<code>ID</code> of button.
+	 * @param level			Level that the button belongs to.
+	 * @param message		What the button should say.
+	 * @param wid			Width of button.
+	 * @param hei			Height of button.
+	 * @param color			Default color of button.
+	 * @param pressColor	Color of button when pressed/clicked on.
+	 * @param messageColor	Color of the message on the button.
+	 */
+	public Button(int x, int y, ID typeId, int level, String message, int wid, int hei, Color color, Color pressColor, Color messageColor/*, String act*/) {
 		super(x, y, typeId, level);
 		this.message = message;
 		//action = act;
 		width = wid;
 		height = hei;
 		isPressed = false;
+		isReleased = false;
 		this.color = color;
 		this.pressColor = pressColor;
+		this.messageColor = messageColor;
 	}
 
 
@@ -40,6 +61,7 @@ public class Button extends GameObject implements MouseListener{
 			g.setColor(pressColor);
 		}
 		g.fillRect(x,  y,  width, height);
+		g.setColor(messageColor);
 		g.drawString(message, x, y);
 		
 	}
@@ -50,13 +72,19 @@ public class Button extends GameObject implements MouseListener{
 		return new Rectangle(x, y, width, height);
 	}
 	
-	public boolean isPressed() {
-		return isPressed;
+	public boolean isReleased() {
+		return isReleased;
 	}
 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
 		if (this.getBounds().contains(x, y)) {
@@ -66,14 +94,11 @@ public class Button extends GameObject implements MouseListener{
 
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		
-	}
-
-
-	@Override
 	public void mouseReleased(MouseEvent e) {
-		
+		if (isPressed) {
+			isPressed = false;
+			isReleased = true;
+		}
 	}
 
 

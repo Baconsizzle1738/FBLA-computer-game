@@ -45,7 +45,7 @@ public class Levels {
 		if (Game.gameStarted && !Game.isdead && !Game.win) {
 			//initiates the first room when the game starts
 			if (!init) {
-				room.get(level-1).startLevel();
+				room.get(level).startLevel();
 				init = true;
 			}
 			
@@ -111,7 +111,7 @@ public class Levels {
 	 */
 	public void render(Graphics g) {
 		if (Game.gameStarted && !Game.isdead && !Game.win) {
-			room.get(level-1).render(g);
+			room.get(level).render(g);
 		}
 		
 	}
