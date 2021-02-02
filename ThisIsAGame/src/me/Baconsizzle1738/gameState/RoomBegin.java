@@ -1,10 +1,12 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.gameState;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
 import me.Baconsizzle1738.Objects.Button;
 import me.Baconsizzle1738.Objects.GameHandler;
+import me.Baconsizzle1738.main.Game;
+import me.Baconsizzle1738.main.ID;
 /**
  * This is the main title screen.
  * @author Baconsizzle1738

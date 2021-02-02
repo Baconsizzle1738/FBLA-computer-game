@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 
 import me.Baconsizzle1738.Objects.GameHandler;
 import me.Baconsizzle1738.Objects.Player;
+import me.Baconsizzle1738.gameState.Levels;
 
 /**
  * Listens to the keyboard for any inputs that may affect the game.

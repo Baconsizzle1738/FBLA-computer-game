@@ -1,4 +1,4 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.gameState;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +13,8 @@ import me.Baconsizzle1738.Objects.KonamiDoor;
 import me.Baconsizzle1738.Objects.Obstacle;
 import me.Baconsizzle1738.Objects.Player;
 import me.Baconsizzle1738.Objects.StaticEnemy;
+import me.Baconsizzle1738.main.Game;
+import me.Baconsizzle1738.main.ID;
 
 
 //based off the konami code

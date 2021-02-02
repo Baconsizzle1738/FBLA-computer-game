@@ -1,10 +1,11 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.gameState;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
 
 import me.Baconsizzle1738.Objects.GameHandler;
 import me.Baconsizzle1738.Objects.GameObject;
+import me.Baconsizzle1738.main.Game;
 
 /**
  * Controls leveling system.
