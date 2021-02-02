@@ -1,8 +1,10 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import me.Baconsizzle1738.main.ID;
 
 /**
  * The door that the player goes through to complete room 1.

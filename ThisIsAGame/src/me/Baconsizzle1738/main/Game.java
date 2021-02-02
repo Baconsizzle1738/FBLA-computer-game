@@ -13,6 +13,8 @@ import java.util.Set;
 import java.util.TreeSet;
 //import java.util.Random;
 
+import me.Baconsizzle1738.Objects.GameHandler;
+
 /**
  * This game is a puzzle/riddle game where the player is trapped in a lot of
  * rooms and the only way to escape is to solve the puzzle/riddle in the room,

@@ -1,8 +1,12 @@
-   package me.Baconsizzle1738.main;
+   package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import me.Baconsizzle1738.main.Game;
+import me.Baconsizzle1738.main.HUD;
+import me.Baconsizzle1738.main.ID;
 
 /**
  * This is what the player controls to navigate the rooms.

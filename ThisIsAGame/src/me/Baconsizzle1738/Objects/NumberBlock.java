@@ -1,8 +1,10 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import me.Baconsizzle1738.main.ID;
 
 /**
  * These are the little blocks that the player must find in the thrd room and click on.

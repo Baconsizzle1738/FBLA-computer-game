@@ -1,8 +1,10 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import me.Baconsizzle1738.main.ID;
 /**
  * This is a level specific object that the player can interact with, and can exist in 4 states: up, down, left, or right.
  * For level/room 1.

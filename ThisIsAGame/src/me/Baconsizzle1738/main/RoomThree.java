@@ -5,6 +5,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import me.Baconsizzle1738.Objects.FollowEnemy;
+import me.Baconsizzle1738.Objects.GameHandler;
+import me.Baconsizzle1738.Objects.GrassBlock;
+import me.Baconsizzle1738.Objects.NumberBlock;
+import me.Baconsizzle1738.Objects.Obstacle;
+import me.Baconsizzle1738.Objects.Player;
+import me.Baconsizzle1738.Objects.StaticEnemy;
+
 /**
  * This is the third room.
  * The player must find the correct number and collect it in order

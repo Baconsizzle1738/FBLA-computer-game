@@ -1,10 +1,12 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import me.Baconsizzle1738.main.ID;
 
 /**
  * The Button is a <code>GameObject</code> that is stationary and can be clicked on to perform an action.

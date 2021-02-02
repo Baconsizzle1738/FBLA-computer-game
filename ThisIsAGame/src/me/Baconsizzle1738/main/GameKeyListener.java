@@ -4,6 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 //import java.util.EventListener;
 
+import me.Baconsizzle1738.Objects.GameHandler;
+import me.Baconsizzle1738.Objects.Player;
+
 /**
  * Listens to the keyboard for any inputs that may affect the game.
  * 

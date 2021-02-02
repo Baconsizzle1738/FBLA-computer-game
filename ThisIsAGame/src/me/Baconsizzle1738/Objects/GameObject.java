@@ -1,7 +1,9 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import me.Baconsizzle1738.main.ID;
 
 /**
  * Class of basic variables and methods for all objects in the game.

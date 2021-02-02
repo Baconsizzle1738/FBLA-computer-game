@@ -1,8 +1,11 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import me.Baconsizzle1738.main.Game;
+import me.Baconsizzle1738.main.ID;
 /**
  * StaticEnemy is an Enemy type that moves within a restrained location
  * @author Baconsizzle1738

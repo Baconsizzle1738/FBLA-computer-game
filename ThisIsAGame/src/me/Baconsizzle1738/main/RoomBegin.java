@@ -2,6 +2,9 @@ package me.Baconsizzle1738.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import me.Baconsizzle1738.Objects.Button;
+import me.Baconsizzle1738.Objects.GameHandler;
 /**
  * This is the main title screen.
  * @author Baconsizzle1738

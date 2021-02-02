@@ -3,6 +3,9 @@ package me.Baconsizzle1738.main;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import me.Baconsizzle1738.Objects.GameHandler;
+import me.Baconsizzle1738.Objects.GameObject;
+
 /**
  * Controls leveling system.
  * @author Baconsizzle1738
@@ -56,7 +59,7 @@ public class Levels {
 				System.out.println(level);
 				//System.out.println(room.get(level-1).isComplete());
 				//check if player has completed all levels, win state is activated when true
-				if (level<=room.size()) {
+				if (level<room.size()) {
 					room.get(level).startLevel();
 				}
 				else {

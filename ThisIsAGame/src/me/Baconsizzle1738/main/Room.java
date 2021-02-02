@@ -2,6 +2,9 @@ package me.Baconsizzle1738.main;
 
 import java.awt.Graphics;
 
+import me.Baconsizzle1738.Objects.GameHandler;
+import me.Baconsizzle1738.Objects.GameObject;
+
 /**
  * The Room is what the player must go through and escape.
  * 

@@ -6,6 +6,14 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 //import java.util.Random;
 
+import me.Baconsizzle1738.Objects.GameHandler;
+import me.Baconsizzle1738.Objects.GameObject;
+import me.Baconsizzle1738.Objects.KonamiArrow;
+import me.Baconsizzle1738.Objects.KonamiDoor;
+import me.Baconsizzle1738.Objects.Obstacle;
+import me.Baconsizzle1738.Objects.Player;
+import me.Baconsizzle1738.Objects.StaticEnemy;
+
 
 //based off the konami code
 

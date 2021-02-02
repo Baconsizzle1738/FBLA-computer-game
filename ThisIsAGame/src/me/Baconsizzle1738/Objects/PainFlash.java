@@ -1,8 +1,11 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+
+import me.Baconsizzle1738.main.Game;
+import me.Baconsizzle1738.main.ID;
 
 /**
  * This is the flash of white that is displayed on the screen when the player is hurt or dead.

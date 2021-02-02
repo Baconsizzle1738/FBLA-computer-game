@@ -4,6 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import me.Baconsizzle1738.Objects.Dinnerbone;
+import me.Baconsizzle1738.Objects.DinnerboneButton;
+import me.Baconsizzle1738.Objects.FollowEnemy;
+import me.Baconsizzle1738.Objects.GameHandler;
+import me.Baconsizzle1738.Objects.Obstacle;
+import me.Baconsizzle1738.Objects.Player;
+import me.Baconsizzle1738.Objects.StaticEnemy;
+
 /**
  * This room is based off Minecraft Dinnerbone.
  * The player has to press buttons to rotate

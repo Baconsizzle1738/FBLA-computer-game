@@ -1,4 +1,7 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
+
+import me.Baconsizzle1738.main.ID;
+
 /**
  * The enemy is a <code>GameObject</code> that hurts the player.
  * <code>Obstacles</code> have no effect on the movement of the enemies.

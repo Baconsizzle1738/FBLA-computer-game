@@ -1,4 +1,4 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
 
 import java.awt.Graphics;
 //import java.util.Iterator;
@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class GameHandler {
 	
 	//list of all objects stored here
-	LinkedList<GameObject> objects = new LinkedList<>();
+	public LinkedList<GameObject> objects = new LinkedList<>();
 	
 	/**
 	 * Updates logic for all objects.

@@ -1,4 +1,4 @@
-package me.Baconsizzle1738.main;
+package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,6 +8,8 @@ import java.util.HashMap;
 //import java.util.Iterator;
 //import java.util.Map.Entry;
 //import java.util.Set;
+
+import me.Baconsizzle1738.main.ID;
 
 /**
  * The <code>Dinnerbone GameObject</code> is a reference to the easter egg
