@@ -77,10 +77,13 @@ public class Game extends Canvas implements Runnable{
 		handler = new GameHandler();
 		
 		//handles leveling system
-		levels = new Levels(/*hud,*/ handler);
+		levels = new Levels(hud, handler);
 		
 		//heads up display
 		hud = new HUD(levels, handler);
+		
+		//so hud is not null
+		levels.setHUD(hud);
 		
 		keys = new GameKeyListener(handler, levels, hud);
 		//handler.addObject(new Player(300, 300, ID.Player, -1));

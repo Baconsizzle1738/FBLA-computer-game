@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import me.Baconsizzle1738.Objects.GameHandler;
 import me.Baconsizzle1738.Objects.GameObject;
 import me.Baconsizzle1738.main.Game;
+import me.Baconsizzle1738.main.HUD;
 
 /**
  * Controls leveling system.
@@ -15,8 +16,9 @@ import me.Baconsizzle1738.main.Game;
  */
 public class Levels {
 	GameHandler handler;
-	//HUD hud;
+	HUD hud;
 	public static int level;
+	private int numLevels;
 	private ArrayList<Room> room = new ArrayList<>();
 	
 	//for the first level to initiate level progression
@@ -27,11 +29,13 @@ public class Levels {
 	 * Takes handler as a parameter and creates a list of the levels.
 	 * @param handler
 	 */
-	public Levels(/* HUD hud, */ GameHandler handler) {
+	public Levels(HUD hud, GameHandler handler) {
 		//this.hud = hud;
 		this.handler = handler;
 		//handler.addObject(new Player(500, 500, ID.Player, -1, this.handler));
 		level = 0;
+		numLevels = 3;
+		
 		//room.add(new RoomBegin(350, 350, handler, 0));
 		
 		//add levels to the list
@@ -49,10 +53,10 @@ public class Levels {
 	public void tick() {
 		if (Game.gameStarted && !Game.isdead && !Game.win) {
 			//initiates the first room when the game starts
-			if (!init) {
-				room.get(level).startLevel();
-				init = true;
-			}
+//			if (!init) {
+//				room.get(level).startLevel();
+//				init = true;
+//			}
 			
 			//check for completion
 			if (room.get(level).isComplete()) {
@@ -95,7 +99,7 @@ public class Levels {
 	 * resets the level
 	 */
 	public void resetLevel() {
-		room.get(level-1).reset();
+		room.get(level).reset();
 	}
 	
 	/**
@@ -105,19 +109,19 @@ public class Levels {
 		
 		init = false;
 		removeLevelObjects();
-		level = 1;
+		level = 0;
 		Game.health = 100;
 		Game.keys.reset();
 	}
 	
+	public void setHUD(HUD hud) {
+		this.hud = hud;
+	}
 	/**
 	 * Renders the room/level.
 	 * @param g	Graphics board to render <code>Room</code> on.
 	 */
 	public void render(Graphics g) {
-		if (Game.gameStarted && !Game.isdead && !Game.win) {
-			room.get(level).render(g);
-		}
-		
+		room.get(level).render(g);
 	}
 }
