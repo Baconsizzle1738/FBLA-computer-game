@@ -45,6 +45,7 @@ public class Button extends GameObject implements MouseListener{
 		this.color = color;
 		this.pressColor = pressColor;
 		this.messageColor = messageColor;
+		System.out.println(color);
 	}
 
 

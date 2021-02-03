@@ -51,31 +51,31 @@ public class Levels {
 	 * Checks status of level completion on every update.
 	 */
 	public void tick() {
-		if (Game.gameStarted && !Game.isdead && !Game.win) {
-			//initiates the first room when the game starts
-//			if (!init) {
-//				room.get(level).startLevel();
-//				init = true;
-//			}
-			
-			//check for completion
-			if (room.get(level).isComplete()) {
-				removeLevelObjects();
-				level++;
-				System.out.println(level);
-				//System.out.println(room.get(level-1).isComplete());
-				//check if player has completed all levels, win state is activated when true
-				if (level<room.size()) {
-					room.get(level).startLevel();
-				}
-				else {
-					Game.win = true;
-					Game.takingInput = true;
-					resetDefault();
-				}
+		//if (Game.gameStarted && !Game.isdead && !Game.win) {
+		//initiates the first room when the game starts
+//		if (!init) {
+//			room.get(level).startLevel();
+//			init = true;
+//		}
+		
+		//check for completion
+		if (room.get(level).isComplete()) {
+			removeLevelObjects();
+			level++;
+			System.out.println(level);
+			//System.out.println(room.get(level-1).isComplete());
+			//check if player has completed all levels, win state is activated when true
+			if (level<=numLevels) {
+				room.get(level).startLevel();
 			}
-			room.get(level).tick();
+			else {
+				Game.win = true;
+				Game.takingInput = true;
+				resetDefault();
+			}
 		}
+		room.get(level).tick();
+		//}
 		//check if dead
 		if (Game.isdead) {
 			resetDefault();
