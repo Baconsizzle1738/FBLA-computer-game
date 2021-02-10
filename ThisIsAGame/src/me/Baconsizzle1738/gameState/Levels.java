@@ -45,6 +45,9 @@ public class Levels {
 		room.add(new RoomThree(400, 400, handler, 3));
 		//for the first level to initialize
 		init = false;
+		
+		//start with the main menu screen.
+		room.get(0).startLevel();
 	}
 	
 	/**

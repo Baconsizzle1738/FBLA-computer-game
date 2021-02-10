@@ -22,6 +22,7 @@ public class RoomBegin extends Room {
 	@Override
 	public void startLevel() {
 		handler.addObject(new Button(300, 300, ID.Button, lvl, "ree", 50, 50, Color.red, Color.cyan, Color.yellow));
+		
 	}
 
 	@Override

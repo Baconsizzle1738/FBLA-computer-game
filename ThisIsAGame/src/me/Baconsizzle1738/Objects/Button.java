@@ -63,7 +63,7 @@ public class Button extends GameObject implements MouseListener{
 		else {
 			g.setColor(pressColor);
 		}
-		g.fillRect(x,  y,  width, height);
+		g.fillRect(x, y, width, height);
 		g.setColor(messageColor);
 		g.drawString(message, x, y);
 		
@@ -73,6 +73,10 @@ public class Button extends GameObject implements MouseListener{
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, width, height);
+	}
+	
+	private Rectangle getRelativeBounds() {
+		return new Rectangle (0, 0, width, height);
 	}
 	
 	public boolean isReleased() {
@@ -90,9 +94,10 @@ public class Button extends GameObject implements MouseListener{
 	public void mousePressed(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		if (this.getBounds().contains(x, y)) {
+		if (this.getRelativeBounds().contains(x, y)) {
 			isPressed = true;
 		}
+		System.out.println("reee");
 	}
 
 
