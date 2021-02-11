@@ -189,11 +189,11 @@ public class HUD {
 			//level indicator
 			g.setColor(new Color(200, 150, 0));
 			//do not show level for room 3
-			if (Levels.level == 3) {
+			if (levels.level == 3) {
 				g.drawString("Room: MISSINGNO", 230, 15);
 			}
 			else {
-				g.drawString("Room: " + Levels.level, 230, 15);
+				g.drawString("Room: " + levels.level, 230, 15);
 			}
 			
 			//life indicator

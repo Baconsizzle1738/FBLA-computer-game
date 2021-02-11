@@ -10,7 +10,7 @@ import me.Baconsizzle1738.main.ID;
 
 /**
  * The Button is a <code>GameObject</code> that is stationary and can be clicked on to perform an action.
- * @author Hao
+ * @author Baconsizzle1738
  *
  */
 public class Button extends GameObject implements MouseListener{
@@ -86,7 +86,7 @@ public class Button extends GameObject implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+		//no
 	}
 
 
@@ -107,6 +107,7 @@ public class Button extends GameObject implements MouseListener{
 			isPressed = false;
 			isReleased = true;
 		}
+		System.out.println("HEQHEQ");
 	}
 
 

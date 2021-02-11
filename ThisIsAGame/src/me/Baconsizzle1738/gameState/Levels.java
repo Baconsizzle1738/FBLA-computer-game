@@ -17,7 +17,7 @@ import me.Baconsizzle1738.main.HUD;
 public class Levels {
 	GameHandler handler;
 	HUD hud;
-	public static int level;
+	public int level;
 	private int numLevels;
 	private ArrayList<Room> room = new ArrayList<>();
 	

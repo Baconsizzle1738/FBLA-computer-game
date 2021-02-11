@@ -36,41 +36,42 @@ public class GameMouseListener implements MouseListener{
 		int x = e.getX();
 		int y = e.getY();
 		
-		//the start button
-		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
-			hud.isOnStartButton = true;
-		}
 		
-		//the controls button
-		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
-			hud.isOnControlsButton = true;
-		}
-		
-		//controls back button
-		if (hud.controlBackButton.contains(x, y) && Game.control) {
-			hud.isOnControlBackButton = true;
-		}
-		
-		//death button
-		if (hud.startDeathButton.contains(x, y) && Game.isdead) {
-			hud.isOnDeathButton = true;
-			HUD.lives = 3;
-		}
-		
-		//win button
-		if (hud.winButton.contains(x, y) && Game.win && hud.playerName.length() != 0) {
-			hud.isOnWinButton = true;
-		}
-		
-		//leaderboard button
-		if (hud.leadButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
-			hud.isOnLeadButton = true;
-		}
-		
-		//back button for leaderboard
-		if (hud.leadBackButton.contains(x,y) && Game.leaderboard) {
-			hud.isOnLeadBackButton = true;
-		}
+//		//the start button
+//		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
+//			hud.isOnStartButton = true;
+//		}
+//		
+//		//the controls button
+//		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
+//			hud.isOnControlsButton = true;
+//		}
+//		
+//		//controls back button
+//		if (hud.controlBackButton.contains(x, y) && Game.control) {
+//			hud.isOnControlBackButton = true;
+//		}
+//		
+//		//death button
+//		if (hud.startDeathButton.contains(x, y) && Game.isdead) {
+//			hud.isOnDeathButton = true;
+//			HUD.lives = 3;
+//		}
+//		
+//		//win button
+//		if (hud.winButton.contains(x, y) && Game.win && hud.playerName.length() != 0) {
+//			hud.isOnWinButton = true;
+//		}
+//		
+//		//leaderboard button
+//		if (hud.leadButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
+//			hud.isOnLeadButton = true;
+//		}
+//		
+//		//back button for leaderboard
+//		if (hud.leadBackButton.contains(x,y) && Game.leaderboard) {
+//			hud.isOnLeadBackButton = true;
+//		}
 		
 	}
 
@@ -79,77 +80,79 @@ public class GameMouseListener implements MouseListener{
 		int x = e.getX();
 		int y = e.getY();
 		
-		//the start button
-		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
-			hud.isOnStartButton = false;
-			Game.gameStarted = true;
-			//System.out.println("yeet");
-		}
 		
-		//controls button
-		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
-			hud.isOnControlsButton = false;
-			Game.control = true;
-		}
 		
-		//controls back button
-		if (hud.controlBackButton.contains(x, y) && Game.control) {
-			hud.isOnControlBackButton = false;
-			Game.control = false;
-		}
-		
-		//death button
-		if (hud.startDeathButton.contains(x, y) && Game.isdead) {
-			hud.isOnDeathButton = false;
-			Game.gameStarted = false;
-			Game.isdead = false;
-			//System.out.println("yeet");
-		}
-		
-		//win button, saves player score data upon release
-		if (hud.winButton.contains(x, y) && Game.win && hud.playerName.length() != 0) {
-			hud.isOnWinButton = false;
-			Game.gameStarted = false;
-			Game.win = false;
-			Game.takingInput = false;
-			
-			try {
-				FileWriter write = new FileWriter("data/scores.dat", true);
-				
-				write.write(hud.playerName + " " + hud.score + "\n");
-				write.close();
-			}
-			catch (Exception ex) {
-				System.out.println("Error in saving score");
-			}
-			
-			//update the set of score data, put it in the set so it now appears on the leaderboard
-			try {
-				File f = new File("data/scores.dat");
-				Scanner scan = new Scanner(f);
-				Game.scoreData.clear();
-				while (scan.hasNext()) {
-					Game.scoreData.add(new ScoreData(scan.nextLine()));
-				}
-				scan.close();
-			}
-			catch (FileNotFoundException ex) {
-				System.out.println("There was an error.");
-			}
-		}
-		
-		//leaderboard button
-		if (hud.leadButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
-			hud.isOnLeadButton = false;
-			Game.leaderboard = true;
-			System.out.println("LEADERBOARD REEE");
-		}
-		
-		//back button for leaderboard
-		if (hud.leadBackButton.contains(x,y) && Game.leaderboard && Game.cd == 5) {
-			hud.isOnLeadBackButton = false;
-			Game.leaderboard = false;
-		}
+//		//the start button
+//		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
+//			hud.isOnStartButton = false;
+//			Game.gameStarted = true;
+//			//System.out.println("yeet");
+//		}
+//		
+//		//controls button
+//		if (hud.controlsButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
+//			hud.isOnControlsButton = false;
+//			Game.control = true;
+//		}
+//		
+//		//controls back button
+//		if (hud.controlBackButton.contains(x, y) && Game.control) {
+//			hud.isOnControlBackButton = false;
+//			Game.control = false;
+//		}
+//		
+//		//death button
+//		if (hud.startDeathButton.contains(x, y) && Game.isdead) {
+//			hud.isOnDeathButton = false;
+//			Game.gameStarted = false;
+//			Game.isdead = false;
+//			//System.out.println("yeet");
+//		}
+//		
+//		//win button, saves player score data upon release
+//		if (hud.winButton.contains(x, y) && Game.win && hud.playerName.length() != 0) {
+//			hud.isOnWinButton = false;
+//			Game.gameStarted = false;
+//			Game.win = false;
+//			Game.takingInput = false;
+//			
+//			try {
+//				FileWriter write = new FileWriter("data/scores.dat", true);
+//				
+//				write.write(hud.playerName + " " + hud.score + "\n");
+//				write.close();
+//			}
+//			catch (Exception ex) {
+//				System.out.println("Error in saving score");
+//			}
+//			
+//			//update the set of score data, put it in the set so it now appears on the leaderboard
+//			try {
+//				File f = new File("data/scores.dat");
+//				Scanner scan = new Scanner(f);
+//				Game.scoreData.clear();
+//				while (scan.hasNext()) {
+//					Game.scoreData.add(new ScoreData(scan.nextLine()));
+//				}
+//				scan.close();
+//			}
+//			catch (FileNotFoundException ex) {
+//				System.out.println("There was an error.");
+//			}
+//		}
+//		
+//		//leaderboard button
+//		if (hud.leadButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
+//			hud.isOnLeadButton = false;
+//			Game.leaderboard = true;
+//			System.out.println("LEADERBOARD REEE");
+//		}
+//		
+//		//back button for leaderboard
+//		if (hud.leadBackButton.contains(x,y) && Game.leaderboard && Game.cd == 5) {
+//			hud.isOnLeadBackButton = false;
+//			Game.leaderboard = false;
+//		}
 				
 		
 	}
