@@ -103,7 +103,7 @@ public class Game extends Canvas implements Runnable{
 		//takes keyboard inputs
 		this.addKeyListener(keys);
 		//takes mouse inputs
-		this.addMouseListener(new GameMouseListener(hud));
+		this.addMouseListener(new GameMouseListener(hud, handler));
 		
 		scoreData = new TreeSet<ScoreData>();
 		

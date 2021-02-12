@@ -13,24 +13,26 @@ import me.Baconsizzle1738.main.ID;
  *
  */
 public class RoomBegin extends Room {
-
+	
+	private Button startButton = new Button(300, 300, ID.Button, lvl, "ree", 50, 50, Color.red, Color.cyan, Color.yellow);
+	
 	public RoomBegin(int spawnX, int spawnY, GameHandler h, int lvl) {
 		super(spawnX, spawnY, h, lvl);
+		
+		
 		
 	}
 
 	@Override
 	public void startLevel() {
-		handler.addObject(new Button(300, 300, ID.Button, lvl, "ree", 50, 50, Color.red, Color.cyan, Color.yellow));
+		
+		handler.addObject(startButton);
 		
 	}
 
 	@Override
 	public boolean isComplete() {
-		if (Game.gameStarted) {
-			return true;
-		}
-		return false;
+		return startButton.isReleased();
 	}
 
 	@Override

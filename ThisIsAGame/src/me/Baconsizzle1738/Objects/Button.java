@@ -51,7 +51,7 @@ public class Button extends GameObject implements MouseListener{
 
 	@Override
 	public void tick() {
-		
+		//isReleased = false;
 	}
 
 
@@ -82,7 +82,14 @@ public class Button extends GameObject implements MouseListener{
 	public boolean isReleased() {
 		return isReleased;
 	}
-
+	
+	public void setRelease(boolean b) {
+		isReleased = b;
+	}
+	
+	public void setPress (boolean b) {
+		isPressed = b;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

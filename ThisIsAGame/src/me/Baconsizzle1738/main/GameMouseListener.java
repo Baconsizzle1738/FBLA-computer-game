@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Scanner;
 
+import me.Baconsizzle1738.Objects.Button;
+import me.Baconsizzle1738.Objects.GameHandler;
+
 /**
  * Listens to mouse inputs by the user for the game.
  * @author Baconsizzle1738
@@ -17,12 +20,15 @@ public class GameMouseListener implements MouseListener{
 	
 	private HUD hud;
 	
+	
+	private GameHandler handler;
 	/**
 	 * Listens to mouse actions in <code>HUD</code>.
 	 * @param h	The <code>HUD</code> where there is mouse functionality needed.
 	 */
-	public GameMouseListener(HUD h) {
+	public GameMouseListener(HUD h, GameHandler handler) {
 		hud = h;
+		this.handler = handler;
 	}
 	
 	@Override
@@ -36,6 +42,15 @@ public class GameMouseListener implements MouseListener{
 		int x = e.getX();
 		int y = e.getY();
 		
+		for (int i = 0; i<handler.objects.size(); i++) {
+			Button test = new Button(i, i, null, i, null, i, i, null, null, null);
+			if (handler.objects.get(i).getClass() == test.getClass()) {
+				Button temp = (Button) handler.objects.get(i);
+				if (temp.getBounds().contains(x, y)) {
+					temp.setPress(true);
+				}
+			}
+		}
 		
 //		//the start button
 //		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
@@ -80,7 +95,16 @@ public class GameMouseListener implements MouseListener{
 		int x = e.getX();
 		int y = e.getY();
 		
-		
+		for (int i = 0; i<handler.objects.size(); i++) {
+			Button test = new Button(i, i, null, i, null, i, i, null, null, null);
+			if (handler.objects.get(i).getClass() == test.getClass()) {
+				Button temp = (Button) handler.objects.get(i);
+				if (temp.getBounds().contains(x, y)) {
+					temp.setPress(false);
+					temp.setRelease(true);
+				}
+			}
+		}
 		
 //		//the start button
 //		if (hud.startDeathButton.contains(x, y) && !Game.gameStarted && !Game.control && !Game.leaderboard) {
