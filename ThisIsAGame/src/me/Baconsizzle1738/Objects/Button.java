@@ -13,10 +13,10 @@ import me.Baconsizzle1738.main.ID;
  * @author Baconsizzle1738
  *
  */
-public class Button extends GameObject implements MouseListener{
+public class Button extends GameObject /*implements MouseListener*/{
 	
 	private String message/*, action*/;
-	private int width, height;
+	private int width, height, tickC = 0;
 	private boolean isPressed, isReleased;
 	private Color color, pressColor, messageColor;
 	
@@ -45,13 +45,21 @@ public class Button extends GameObject implements MouseListener{
 		this.color = color;
 		this.pressColor = pressColor;
 		this.messageColor = messageColor;
-		System.out.println(color);
+		//System.out.println(color);
 	}
 
 
 	@Override
 	public void tick() {
-		//isReleased = false;
+		if (isReleased) {
+			
+			if (tickC >= 1) {
+				isReleased = false;
+				tickC = 0;
+			}
+			tickC++;
+		}
+		//System.out.println(isReleased);
 	}
 
 
@@ -75,15 +83,15 @@ public class Button extends GameObject implements MouseListener{
 		return new Rectangle(x, y, width, height);
 	}
 	
-	private Rectangle getRelativeBounds() {
-		return new Rectangle (0, 0, width, height);
-	}
+//	private Rectangle getRelativeBounds() {
+//		return new Rectangle (0, 0, width, height);
+//	}
 	
 	public boolean isReleased() {
 		return isReleased;
 	}
 	
-	public void setRelease(boolean b) {
+	public void setRelease (boolean b) {
 		isReleased = b;
 	}
 	
@@ -91,42 +99,42 @@ public class Button extends GameObject implements MouseListener{
 		isPressed = b;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		//no
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		int x = e.getX();
-		int y = e.getY();
-		if (this.getRelativeBounds().contains(x, y)) {
-			isPressed = true;
-		}
-		System.out.println("reee");
-	}
-
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		if (isPressed) {
-			isPressed = false;
-			isReleased = true;
-		}
-		System.out.println("HEQHEQ");
-	}
-
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		//no
-	}
-
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		//no
-	}
+//	@Override
+//	public void mouseClicked(MouseEvent e) {
+//		//no
+//	}
+//
+//
+//	@Override
+//	public void mousePressed(MouseEvent e) {
+//		int x = e.getX();
+//		int y = e.getY();
+//		if (this.getRelativeBounds().contains(x, y)) {
+//			isPressed = true;
+//		}
+//		System.out.println("reee");
+//	}
+//
+//
+//	@Override
+//	public void mouseReleased(MouseEvent e) {
+//		if (isPressed) {
+//			isPressed = false;
+//			isReleased = true;
+//		}
+//		System.out.println("HEQHEQ");
+//	}
+//
+//
+//	@Override
+//	public void mouseEntered(MouseEvent e) {
+//		//no
+//	}
+//
+//
+//	@Override
+//	public void mouseExited(MouseEvent e) {
+//		//no
+//	}
 	
 }

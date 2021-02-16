@@ -16,6 +16,10 @@ public class RoomControls extends Room{
 		
 		
 	}
+	
+	public Button getButton() {
+		return backButton;
+	}
 
 	@Override
 	public void startLevel() {
