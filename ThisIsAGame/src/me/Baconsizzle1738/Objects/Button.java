@@ -1,10 +1,12 @@
 package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+//import java.awt.event.MouseEvent;
+//import java.awt.event.MouseListener;
+import java.awt.font.FontRenderContext;
 
 import me.Baconsizzle1738.main.ID;
 
@@ -16,9 +18,10 @@ import me.Baconsizzle1738.main.ID;
 public class Button extends GameObject /*implements MouseListener*/{
 	
 	private String message/*, action*/;
-	private int width, height, tickC = 0;
+	private int width, height/*, tickC = 0*/;
 	private boolean isPressed, isReleased;
 	private Color color, pressColor, messageColor;
+	private Font font;
 	
 	/**
 	 * Buttons will need a message on it and also a defined width and height parameter.
@@ -34,7 +37,7 @@ public class Button extends GameObject /*implements MouseListener*/{
 	 * @param pressColor	Color of button when pressed/clicked on.
 	 * @param messageColor	Color of the message on the button.
 	 */
-	public Button(int x, int y, ID typeId, int level, String message, int wid, int hei, Color color, Color pressColor, Color messageColor/*, String act*/) {
+	public Button(int x, int y, ID typeId, int level, String message, int wid, int hei, Color color, Color pressColor, Color messageColor/*, String act*/, Font f) {
 		super(x, y, typeId, level);
 		this.message = message;
 		//action = act;
@@ -45,26 +48,32 @@ public class Button extends GameObject /*implements MouseListener*/{
 		this.color = color;
 		this.pressColor = pressColor;
 		this.messageColor = messageColor;
+		font = f;
 		//System.out.println(color);
 	}
 
 
 	@Override
 	public void tick() {
-		if (isReleased) {
-			
-			if (tickC >= 1) {
-				isReleased = false;
-				tickC = 0;
-			}
-			tickC++;
-		}
+//		if (isReleased) {
+//			
+//			if (tickC >= 1) {
+//				isReleased = false;
+//				tickC = 0;
+//			}
+//			tickC++;
+//		}
 		//System.out.println(isReleased);
 	}
 
 
 	@Override
 	public void render(Graphics g) {
+		//center xy pos of text
+		
+		int fontX = x + (width - g.getFontMetrics(font).stringWidth(message))/2;
+		int fontY = (y + height) - (height - (g.getFontMetrics(font).getMaxDescent()))/2;
+		
 		if (!isPressed) {
 			g.setColor(color);
 		}
@@ -73,7 +82,9 @@ public class Button extends GameObject /*implements MouseListener*/{
 		}
 		g.fillRect(x, y, width, height);
 		g.setColor(messageColor);
-		g.drawString(message, x, y);
+		g.setFont(font);
+		
+		g.drawString(message, fontX, fontY);
 		
 	}
 

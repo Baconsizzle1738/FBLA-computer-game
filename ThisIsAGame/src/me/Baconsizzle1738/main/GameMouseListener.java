@@ -42,8 +42,10 @@ public class GameMouseListener implements MouseListener{
 		int x = e.getX();
 		int y = e.getY();
 		
+		
+		//for button presses
 		for (int i = 0; i<handler.objects.size(); i++) {
-			Button test = new Button(i, i, null, i, null, i, i, null, null, null);
+			Button test = new Button(i, i, null, i, null, i, i, null, null, null, null);
 			if (handler.objects.get(i).getClass() == test.getClass()) {
 				Button temp = (Button) handler.objects.get(i);
 				if (temp.getBounds().contains(x, y)) {
@@ -95,8 +97,9 @@ public class GameMouseListener implements MouseListener{
 		int x = e.getX();
 		int y = e.getY();
 		
+		//for button presses
 		for (int i = 0; i<handler.objects.size(); i++) {
-			Button test = new Button(i, i, null, i, null, i, i, null, null, null);
+			Button test = new Button(i, i, null, i, null, i, i, null, null, null, null);
 			if (handler.objects.get(i).getClass() == test.getClass()) {
 				Button temp = (Button) handler.objects.get(i);
 				if (temp.getBounds().contains(x, y)) {

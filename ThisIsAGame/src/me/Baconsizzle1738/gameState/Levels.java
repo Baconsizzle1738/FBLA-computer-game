@@ -19,15 +19,17 @@ public class Levels {
 	HUD hud;
 	public int level;
 	private int numLevels, controlLevel, leadLevel;
-	private ArrayList<Room> room, transition;
+	private ArrayList<Room> room;
+	private ArrayList<Transition> transition;
 	
 	//for the first level to initiate level progression
 	private boolean init;
 	
 	
 	/**
-	 * Takes handler as a parameter and creates a list of the levels.
+	 * Takes handler and hud as a parameter and creates a list of the levels.
 	 * @param handler
+	 * @param hud
 	 */
 	public Levels(HUD hud, GameHandler handler) {
 		//this.hud = hud;
@@ -35,8 +37,9 @@ public class Levels {
 		//handler.addObject(new Player(500, 500, ID.Player, -1, this.handler));
 		level = 0;
 		numLevels = 3;
-		controlLevel = 4;
-		leadLevel = 5;
+		
+		controlLevel = numLevels+1;
+		leadLevel = numLevels+2;
 		
 		//room.add(new RoomBegin(350, 350, handler, 0));
 		room = new ArrayList<>();
@@ -49,7 +52,14 @@ public class Levels {
 		
 		//the main menu rooms
 		room.add(new RoomControls(0, 0, handler, controlLevel));
+		room.add(new Leaderboard(0, 0, handler, leadLevel));
 		
+		
+		//transitions
+		transition.add(new TransitionLevel(new String[]{"first", "second", "last"}, 0));
+		transition.add(new TransitionLevel(new String[]{"o", "t", "th"}, 1));
+		transition.add(new TransitionLevel(new String[]{"ree", "reeee", "reeeee", "reeeeeeeeeee"}, 2));
+		transition.add(new TransitionLevel(new String[]{"first", "second", "last"}, 3));
 		
 		//for the first level to initialize
 		init = false;
@@ -62,6 +72,7 @@ public class Levels {
 	 * Checks status of level completion on every update.
 	 */
 	public void tick() {
+		//System.out.println(level);
 		//if (Game.gameStarted && !Game.isdead && !Game.win) {
 		//initiates the first room when the game starts
 //		if (!init) {
@@ -69,21 +80,26 @@ public class Levels {
 //			init = true;
 //		}
 		
+		//System.out.println(((RoomBegin)room.get(0)).getButton("control").isReleased());
+		
+		//Why in HECK are the buttons not working proper >:O
+		
 		
 		if (level == 0) {
+			//System.out.println("level Check 0");
 			//go to controls page
 			if (((RoomBegin) room.get(0)).goControls()) {
-				((RoomBegin) room.get(0)).getButton("controls").setRelease(false);
+				//((RoomBegin) room.get(0)).getButton("controls").setRelease(false);
 				removeLevelObjects();
 				level = controlLevel;
 				room.get(level).startLevel();
 				//System.out.println(level);
-				//System.out.println("ree");
+				//System.out.println("goControlsLevel");
 			}
 			
 			//go to leaderboards page
 			if (((RoomBegin) room.get(0)).goLead()) {
-				((RoomBegin) room.get(0)).getButton("lead").setRelease(false);
+				//((RoomBegin) room.get(0)).getButton("lead").setRelease(false);
 				removeLevelObjects();
 				level = leadLevel;
 				room.get(level).startLevel();
@@ -94,30 +110,55 @@ public class Levels {
 		if (room.get(level).isComplete()) {
 			removeLevelObjects();
 			
-			//if the room is at a menu screen then return to main menu, otherwise advance level.
+			//if the room is at a menu screen then return to main menu, otherwise start transition.
 			if (level == controlLevel || level == leadLevel) {
-				System.out.println(level);
+				//System.out.println(level);
 				((RoomControls)room.get(controlLevel)).getButton().setRelease(false);
 				level = 0;
+				room.get(level).startLevel();
 			}
 			
 			else {
-				level++;
+				transition.get(level).startTransition();
 			}
 			
 			//System.out.println(level);
 			//System.out.println(room.get(level-1).isComplete());
+			
 			//check if player has completed all levels, win state is activated when true
-			if (level<=numLevels) {
+//			if (level<=numLevels) {
+//				room.get(level).startLevel();
+//			}
+//			else {
+//				Game.win = true;
+//				Game.takingInput = true;
+//				resetDefault();
+//			}
+		}
+		
+		//when the transition is done advance level
+		if (!isOnMenuLevel()) {
+			if (transition.get(level).endTransition()) {
+				level++;
 				room.get(level).startLevel();
 			}
-			else {
-				Game.win = true;
-				Game.takingInput = true;
-				resetDefault();
+		}
+		
+		
+		//tick only when transition is not complete
+		if (!isOnMenuLevel()) {
+			if (!transition.get(level).endTransition()) {
+				transition.get(level).tick();
 			}
 		}
-		room.get(level).tick();
+		
+		
+		
+		//tick only when the room is not complete
+		if (!room.get(level).isComplete()) {
+			room.get(level).tick();
+		}
+		
 		//System.out.println(((RoomBegin) room.get(0)).goControls());
 		//System.out.println(level);
 		//}
@@ -160,8 +201,8 @@ public class Levels {
 	}
 	
 	/**
-	 * 
-	 * @param hud
+	 * The hud to get health and life data for use in <code>Levels</code>.
+	 * @param hud	The <code>HUD</code>.
 	 */
 	public void setHUD(HUD hud) {
 		this.hud = hud;
@@ -171,6 +212,26 @@ public class Levels {
 	 * @param g	Graphics board to render <code>Room</code> on.
 	 */
 	public void render(Graphics g) {
-		room.get(level).render(g);
+		//render only when room is not complete
+		if (!room.get(level).isComplete()) {
+			room.get(level).render(g);
+		}
+		
+		//render only when incomplete
+		if (!isOnMenuLevel()) {
+			if (!transition.get(level).endTransition()) {
+				transition.get(level).render(g);
+			}
+		}
+		
+		
+	}
+	
+	
+	private boolean isOnMenuLevel() {
+		if (level == controlLevel || level == leadLevel) {
+			return true;
+		}
+		return false;
 	}
 }

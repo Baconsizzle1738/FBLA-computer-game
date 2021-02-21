@@ -71,10 +71,16 @@ public class RoomOne extends Room {
 			for (int i = 0; i<handler.objects.size(); i++) {
 				if (handler.objects.get(i).gettypeID() == ID.Door) {
 					d = (KonamiDoor) handler.objects.get(i);
+					break;
 				}
 			}
 			//check if player is at the door
-			if (p.getBounds().intersects(d.getBounds())) {
+			try {
+				if (p.getBounds().intersects(d.getBounds())) {
+					return true;
+				}
+			}
+			catch (Exception e) {
 				return true;
 			}
 		}
