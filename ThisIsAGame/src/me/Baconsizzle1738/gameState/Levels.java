@@ -57,7 +57,7 @@ public class Levels {
 		
 		//transitions
 		transition.add(new TransitionLevel(new String[]{"first", "second", "last"}, 0));
-		transition.add(new TransitionLevel(new String[]{"o", "t", "th"}, 1));
+		transition.add(new TransitionLevel(new String[]{"on", "tw", "th"}, 1));
 		transition.add(new TransitionLevel(new String[]{"ree", "reeee", "reeeee", "reeeeeeeeeee"}, 2));
 		transition.add(new TransitionLevel(new String[]{"first", "second", "last"}, 3));
 		
@@ -119,6 +119,7 @@ public class Levels {
 			}
 			
 			else {
+				//TODO make it so that the transition actually 
 				transition.get(level).startTransition();
 			}
 			
