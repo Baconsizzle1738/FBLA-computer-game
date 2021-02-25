@@ -119,7 +119,8 @@ public class Levels {
 			}
 			
 			else {
-				//TODO make it so that the transition actually 
+				//((RoomBegin) room.get(0)).getButton("controls").setRelease(false);
+				//TODO make it so that the transition actually goes through
 				transition.get(level).startTransition();
 			}
 			

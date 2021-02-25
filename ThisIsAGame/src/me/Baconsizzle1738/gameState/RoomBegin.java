@@ -17,9 +17,12 @@ public class RoomBegin extends Room {
 	
 	private Button startButton, controlsButton, leadButton;
 	private Font buttonFont;
+	private boolean hecc;
 	
 	public RoomBegin(int spawnX, int spawnY, GameHandler h, int lvl) {
 		super(spawnX, spawnY, h, lvl);
+		
+		hecc = false;
 		
 		buttonFont = new Font(Font.MONOSPACED, Font.BOLD, 20);
 		
@@ -30,9 +33,9 @@ public class RoomBegin extends Room {
 
 	@Override
 	public void startLevel() {
-		/*startButton = new Button(300, 300, ID.Button, lvl, "ESCAPE", 50, 50, Color.red, Color.gray, Color.yellow);*/
-		/*controlsButton = new Button(300, 400, ID.Button, lvl, "CONTROLS", 50, 50, Color.red, Color.gray, Color.yellow);*/
-		/*leadButton = new Button(300, 500, ID.Button, lvl, "LEADERBOARDS", 50, 50, Color.red, Color.gray, Color.yellow);*/
+		//startButton = new Button(300, 300, ID.Button, lvl, "ESCAPE", 50, 50, Color.red, Color.gray, Color.yellow);
+		//controlsButton = new Button(300, 400, ID.Button, lvl, "CONTROLS", 50, 50, Color.red, Color.gray, Color.yellow);
+		//leadButton = new Button(300, 500, ID.Button, lvl, "LEADERBOARDS", 50, 50, Color.red, Color.gray, Color.yellow);
 		
 //		startButton.setRelease(false);
 //		controlsButton.setRelease(false);
@@ -81,7 +84,6 @@ public class RoomBegin extends Room {
 	public boolean goControls() {
 		if (controlsButton.isReleased()) {
 			controlsButton.setRelease(false);
-			System.out.println("ree");
 			return true;
 		}
 		return false;
