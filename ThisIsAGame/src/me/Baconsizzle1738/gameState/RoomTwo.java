@@ -49,7 +49,14 @@ public class RoomTwo extends Room{
 				if (handler.objects.get(i).gettypeID() == ID.Door) {
 					temp = (Dinnerbone) handler.objects.get(i);
 					//check if player is in box
-					if (temp.getBounds().intersects(p.getBounds())) {
+					try {
+						if (temp.getBounds().intersects(p.getBounds())) {
+							//reset flip for when the player plays again
+							isFlip = false;
+							return true;
+						}
+					}
+					catch (Exception e) {
 						//reset flip for when the player plays again
 						isFlip = false;
 						return true;
@@ -146,12 +153,19 @@ public class RoomTwo extends Room{
 					break;
 				}
 			}
-			if (temp.getBounds().intersects(p.getBounds())) {
-				g.drawString("I can't go through here", Game.WIDTH/2+255, 240);
+			try {
+				if (temp.getBounds().intersects(p.getBounds())) {
+					g.drawString("I can't go through here", Game.WIDTH/2+255, 240);
+				}
+				else {
+					g.drawString("I wonder what these buttons do", Game.WIDTH/2+255, 240);
+				}
+				System.out.println("yeet");
 			}
-			else {
-				g.drawString("I wonder what these buttons do", Game.WIDTH/2+255, 240);
+			catch (Exception e) {
+				//nothing
 			}
+			
 			
 		}
 		else if (isFlip) {

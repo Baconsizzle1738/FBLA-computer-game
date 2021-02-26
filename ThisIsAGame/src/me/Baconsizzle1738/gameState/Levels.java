@@ -18,7 +18,7 @@ public class Levels {
 	GameHandler handler;
 	HUD hud;
 	public int level;
-	private int numLevels, controlLevel, leadLevel;
+	private int numLevels, controlLevel, leadLevel, winLevel;
 	private ArrayList<Room> room;
 	private ArrayList<Transition> transition;
 	
@@ -38,8 +38,9 @@ public class Levels {
 		level = 0;
 		numLevels = 3;
 		
-		controlLevel = numLevels+1;
-		leadLevel = numLevels+2;
+		winLevel = numLevels+1;
+		controlLevel = numLevels+2;
+		leadLevel = numLevels+3;
 		
 		//room.add(new RoomBegin(350, 350, handler, 0));
 		room = new ArrayList<>();
@@ -51,6 +52,7 @@ public class Levels {
 		room.add(new RoomThree(400, 400, handler, 3));
 		
 		//the main menu rooms
+		room.add(new WinLevel(0, 0, handler, winLevel));
 		room.add(new RoomControls(0, 0, handler, controlLevel));
 		room.add(new Leaderboard(0, 0, handler, leadLevel));
 		
@@ -108,7 +110,7 @@ public class Levels {
 		
 		//check for completion
 		if (room.get(level).isComplete()) {
-			removeLevelObjects();
+			
 			
 			//if the room is at a menu screen then return to main menu, otherwise start transition.
 			if (level == controlLevel || level == leadLevel) {
@@ -118,11 +120,12 @@ public class Levels {
 				room.get(level).startLevel();
 			}
 			
-			else {
+			else if (!transition.get(level).isStarted()){
 				//((RoomBegin) room.get(0)).getButton("controls").setRelease(false);
-				//TODO make it so that the transition actually goes through
+				
 				transition.get(level).startTransition();
 			}
+			removeLevelObjects();
 			
 			//System.out.println(level);
 			//System.out.println(room.get(level-1).isComplete());
@@ -215,16 +218,28 @@ public class Levels {
 	 */
 	public void render(Graphics g) {
 		//render only when room is not complete
-		if (!room.get(level).isComplete()) {
-			room.get(level).render(g);
+		//try catch for levels with no transition
+		try {
+			if (!room.get(level).isComplete() && !transition.get(level).isStarted()) {
+				room.get(level).render(g);
+			}
+		}
+		catch (Exception e) {
+			if (!room.get(level).isComplete()) {
+				room.get(level).render(g);
+			}
 		}
 		
+		
 		//render only when incomplete
+		
 		if (!isOnMenuLevel()) {
 			if (!transition.get(level).endTransition()) {
 				transition.get(level).render(g);
 			}
 		}
+		
+		
 		
 		
 	}

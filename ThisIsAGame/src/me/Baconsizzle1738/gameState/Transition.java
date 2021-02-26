@@ -11,6 +11,7 @@ public abstract class Transition {
 	}
 	
 	protected boolean isComplete = false;
+	protected boolean isStart = false;
 	
 	/**
 	 * Starts the transition sequence.
@@ -37,6 +38,10 @@ public abstract class Transition {
 	 */
 	public boolean endTransition() {
 		return isComplete;
+	}
+	
+	public boolean isStarted() {
+		return isStart;
 	}
 	
 }

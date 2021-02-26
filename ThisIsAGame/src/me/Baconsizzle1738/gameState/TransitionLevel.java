@@ -8,7 +8,7 @@ public class TransitionLevel extends Transition{
 	
 	int index, wait;
 	
-	boolean focus, fade, started;
+	boolean focus, fade;
 	
 	float gradient, alpha;
 	
@@ -21,7 +21,6 @@ public class TransitionLevel extends Transition{
 		index = 0;
 		focus = false;
 		fade = false;
-		started = false;
 		gradient = 0.02f;
 		alpha = 0f;
 		
@@ -36,12 +35,12 @@ public class TransitionLevel extends Transition{
 		index = 0;
 		focus = false;
 		fade = false;
-		started = false;
+		isStart = false;
 		alpha = 0f;
 	}
 	
 	public void startTransition() {
-		started = true;
+		isStart = true;
 		focus = true;
 	}
 
@@ -49,7 +48,7 @@ public class TransitionLevel extends Transition{
 	@Override
 	public void tick() {
 		//System.out.println(alpha);
-		if (started) {
+		if (isStart) {
 			//this fades the text into focus and keeps it visible for
 			//a certain time determined by the length of the text shown
 			if (focus) {
@@ -80,7 +79,7 @@ public class TransitionLevel extends Transition{
 					focus = true;
 					if (index>=text.length) {
 						isComplete = true;
-						started = false;
+						isStart = false;
 					}
 				}
 			}

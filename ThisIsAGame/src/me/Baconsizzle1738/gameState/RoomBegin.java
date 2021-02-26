@@ -100,6 +100,10 @@ public class RoomBegin extends Room {
 
 	@Override
 	public void tick() {
+		
+		if (startButton.isReleased()) {
+			hecc = true;
+		}
 		//System.out.println(controlsButton.isReleased());
 	}
 
