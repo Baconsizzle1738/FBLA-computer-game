@@ -52,7 +52,7 @@ public class Levels {
 		room.add(new RoomThree(400, 400, handler, 3));
 		
 		//the main menu rooms
-		room.add(new WinLevel(0, 0, handler, winLevel));
+		room.add(new WinLevel(0, 0, handler, winLevel, hud));
 		room.add(new RoomControls(0, 0, handler, controlLevel));
 		room.add(new Leaderboard(0, 0, handler, leadLevel));
 		

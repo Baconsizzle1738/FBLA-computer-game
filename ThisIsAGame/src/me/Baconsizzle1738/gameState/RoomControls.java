@@ -48,7 +48,24 @@ public class RoomControls extends Room{
 
 	@Override
 	public void render(Graphics g) {
-		
+		g.setColor(new Color(200, 200, 200));
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 40));
+		g.drawString("CONTROLS", 150, 150);
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
+		g.drawString("W - MOVE UP", 150, 180);
+		g.drawString("S - MOVE DOWN", 150, 200);
+		g.drawString("A - MOVE LEFT", 150, 220);
+		g.drawString("D - MOVE RIGHT", 150, 240);
+		g.drawString("E - USE/INTERACT", 150, 260);
+		g.drawString("R - RESET ROOM", 150, 280);
+		g.drawString("P - PAUSE", 150, 300);
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 40));
+		g.setColor(new Color(185, 0, 0));
+		g.drawString("REFERENCES", 600, 350);
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
+		g.drawString("ROOM 1 - KONAMI CODE", 600,380);
+		g.drawString("ROOM 2 - MINECRAFT DINNERBONE", 492, 400);
+		g.drawString("ROOM 3 - MISSINGNO POKEMON", 529, 420);
 	}
 
 }
