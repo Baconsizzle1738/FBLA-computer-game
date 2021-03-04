@@ -133,9 +133,17 @@ public class RoomThree extends Room{
 	@Override
 	public boolean isComplete() {
 		
-		if (complete) {
-			complete = false;
-			return true;
+		for (int i = 0; i<handler.objects.size(); i++) {
+			//checks through all blocks
+			if (handler.objects.get(i).gettypeID() == ID.Interactable && handler.objects.get(i).getBounds().intersects(p.getBounds())) {
+				NumberBlock temp = (NumberBlock) handler.objects.get(i);
+				//if player is on the block
+				onBlock = true;
+				//if player interacts with the correct block the room is complete
+				if (p.using && temp.getNum() == 3) {
+					return true;
+				}
+			}
 		}
 		return false;
 		
@@ -155,18 +163,7 @@ public class RoomThree extends Room{
 		}
 		
 		
-		for (int i = 0; i<handler.objects.size(); i++) {
-			//checks through all blocks
-			if (handler.objects.get(i).gettypeID() == ID.Interactable && handler.objects.get(i).getBounds().intersects(p.getBounds())) {
-				NumberBlock temp = (NumberBlock) handler.objects.get(i);
-				//if player is on the block
-				onBlock = true;
-				//if player interacts with the correct block the room is complete
-				if (p.using && temp.getNum() == 3) {
-					complete = true;
-				}
-			}
-		}
+		
 	}
 
 	@Override

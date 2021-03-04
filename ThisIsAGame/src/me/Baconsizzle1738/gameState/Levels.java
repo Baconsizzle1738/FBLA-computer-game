@@ -85,7 +85,7 @@ public class Levels {
 		//System.out.println(((RoomBegin)room.get(0)).getButton("control").isReleased());
 		
 		//Why in HECK are the buttons not working proper >:O
-		
+		//System.out.println(level);
 		
 		if (level == 0) {
 			//System.out.println("level Check 0");
@@ -110,13 +110,26 @@ public class Levels {
 		
 		//check for completion
 		if (room.get(level).isComplete()) {
+			if (level == 0) {
+				Game.gameStarted = true;
+			}
 			
+			if (level == numLevels) {
+				level++;
+				Game.gameStarted = false;
+				Game.takingInput = true;
+			}
 			
 			//if the room is at a menu screen then return to main menu, otherwise start transition.
-			if (level == controlLevel || level == leadLevel) {
+			if (level == controlLevel || level == leadLevel || level == winLevel) {
 				//System.out.println(level);
 				((RoomControls)room.get(controlLevel)).getButton().setRelease(false);
 				level = 0;
+				room.get(level).startLevel();
+			}
+			
+			else if (level == numLevels) {
+				level++;
 				room.get(level).startLevel();
 			}
 			
@@ -125,6 +138,7 @@ public class Levels {
 				
 				transition.get(level).startTransition();
 			}
+			System.out.println("ree");
 			removeLevelObjects();
 			
 			//System.out.println(level);
