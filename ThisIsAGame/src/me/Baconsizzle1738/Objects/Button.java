@@ -102,6 +102,10 @@ public class Button extends GameObject /*implements MouseListener*/{
 		return isReleased;
 	}
 	
+	public boolean isPressed() {
+		return isPressed;
+	}
+	
 	public void setRelease (boolean b) {
 		isReleased = b;
 	}

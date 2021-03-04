@@ -117,6 +117,4 @@ public class RoomBegin extends Room {
 		
 	}
 
-
-
 }

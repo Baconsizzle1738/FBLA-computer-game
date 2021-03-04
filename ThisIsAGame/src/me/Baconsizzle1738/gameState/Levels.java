@@ -74,6 +74,7 @@ public class Levels {
 	 * Checks status of level completion on every update.
 	 */
 	public void tick() {
+		
 		//System.out.println(level);
 		//if (Game.gameStarted && !Game.isdead && !Game.win) {
 		//initiates the first room when the game starts
@@ -107,6 +108,22 @@ public class Levels {
 				room.get(level).startLevel();
 			}
 		}
+		
+		
+		//tick only when transition is not complete
+		if (!isOnMenuLevel()) {
+			if (!transition.get(level).endTransition()) {
+				transition.get(level).tick();
+			}
+		}
+				
+		
+		
+		//tick only when the room is not complete
+		if (!room.get(level).isComplete()) {
+			room.get(level).tick();
+		}
+		
 		
 		//check for completion
 		if (room.get(level).isComplete()) {
