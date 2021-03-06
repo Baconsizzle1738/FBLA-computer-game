@@ -15,7 +15,7 @@ import me.Baconsizzle1738.main.ID;
  * @author Baconsizzle1738
  *
  */
-public class Button extends GameObject /*implements MouseListener*/{
+public class Button extends GameObject/* implements MouseListener*/{
 	
 	private String message/*, action*/;
 	private int width, height/*, tickC = 0*/;
@@ -107,10 +107,12 @@ public class Button extends GameObject /*implements MouseListener*/{
 	}
 	
 	public void setRelease (boolean b) {
+		//System.out.println("Button.SetRelease" + b);
 		isReleased = b;
 	}
 	
 	public void setPress (boolean b) {
+		//System.out.println("Button.setPress" + b);
 		isPressed = b;
 	}
 

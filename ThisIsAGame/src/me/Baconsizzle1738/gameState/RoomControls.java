@@ -39,7 +39,9 @@ public class RoomControls extends Room{
 	@Override
 	public boolean isComplete() {
 		if (backButton.isReleased()) {
+			System.out.println("backButton.setRelease" + false);
 			backButton.setRelease(false);
+			System.out.println("RoomControls.isComplete");
 			return true;
 		}
 		return false;

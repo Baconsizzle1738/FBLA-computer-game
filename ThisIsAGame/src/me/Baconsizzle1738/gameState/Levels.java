@@ -95,6 +95,7 @@ public class Levels {
 				//((RoomBegin) room.get(0)).getButton("controls").setRelease(false);
 				removeLevelObjects();
 				level = controlLevel;
+				System.out.println("Levels.level = "+level);
 				room.get(level).startLevel();
 				//System.out.println(level);
 				//System.out.println("goControlsLevel");
@@ -124,9 +125,10 @@ public class Levels {
 			room.get(level).tick();
 		}
 		
-		
+		System.out.println(((RoomBegin)room.get(0)).getButton("controls").isReleased());
 		//check for completion
 		if (room.get(level).isComplete()) {
+			System.out.println("LevelIsComplete");
 			if (level == 0) {
 				Game.gameStarted = true;
 			}
@@ -142,6 +144,7 @@ public class Levels {
 				//System.out.println(level);
 				((RoomControls)room.get(controlLevel)).getButton().setRelease(false);
 				level = 0;
+				System.out.println("Levels.level = "+level);
 				room.get(level).startLevel();
 			}
 			
@@ -275,7 +278,10 @@ public class Levels {
 		
 	}
 	
-	
+	/**
+	 * Checks if the level is on a menu, except for the main menu.
+	 * @return	true if level is a menu level.
+	 */
 	private boolean isOnMenuLevel() {
 		if (level == controlLevel || level == leadLevel) {
 			return true;

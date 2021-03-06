@@ -71,7 +71,9 @@ public class RoomBegin extends Room {
 	@Override
 	public boolean isComplete() {
 		if (startButton.isReleased()) {
+			System.out.println("startButton.setRelease" + false);
 			startButton.setRelease(false);
+			System.out.println("RoomBegin.isComplete");
 			return true;
 		}
 		return false;
@@ -83,7 +85,9 @@ public class RoomBegin extends Room {
 	 */
 	public boolean goControls() {
 		if (controlsButton.isReleased()) {
+			System.out.println("controlsButton.setRelease" + false);
 			controlsButton.setRelease(false);
+			System.out.println("RoomBegin.goControls");
 			return true;
 		}
 		return false;

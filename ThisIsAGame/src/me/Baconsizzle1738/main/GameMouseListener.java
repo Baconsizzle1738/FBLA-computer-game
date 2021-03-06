@@ -105,7 +105,7 @@ public class GameMouseListener implements MouseListener{
 				if (temp.getBounds().contains(x, y)) {
 					temp.setPress(false);
 					temp.setRelease(true);
-					System.out.println("pressed");
+					System.out.println("MouseReleased");
 				}
 			}
 		}
