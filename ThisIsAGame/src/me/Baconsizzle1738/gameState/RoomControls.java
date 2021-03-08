@@ -12,10 +12,14 @@ public class RoomControls extends Room{
 	
 	private Button backButton;
 	
+	int cnt;
+	
 	public RoomControls(int spawnX, int spawnY, GameHandler h, int lvl) {
 		super(spawnX, spawnY, h, lvl);
 		
 		Font f = new Font(Font.MONOSPACED, Font.BOLD, 10);
+		
+		cnt = 0;
 		
 		backButton = new Button(200, 200, ID.Button, lvl, "BACK", 30, 10, Color.red, new Color(160, 0, 0), new Color(200, 200, 200), f);
 	}
@@ -49,7 +53,7 @@ public class RoomControls extends Room{
 
 	@Override
 	public void tick() {
-		
+		cnt++;
 	}
 
 	@Override

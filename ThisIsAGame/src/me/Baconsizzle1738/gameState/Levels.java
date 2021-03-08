@@ -74,6 +74,51 @@ public class Levels {
 	 * Checks status of level completion on every update.
 	 */
 	public void tick() {
+		//System.out.println(level);
+		
+		//Completion bug exists.
+		
+		//check for completion
+		if (room.get(level).isComplete()) {
+			System.out.println("LevelIsComplete");
+			removeLevelObjects();
+			
+			//if the room is at a menu screen then return to main menu, otherwise start transition.
+			if (level == controlLevel || level == leadLevel || level == winLevel) {
+				//System.out.println(level);
+				((RoomControls)room.get(controlLevel)).getButton().setRelease(false);
+				level = 0;
+				System.out.println("Levels.level = "+level);
+				room.get(level).startLevel();
+			}
+			
+			else if (level == numLevels) {
+				level++;
+				Game.gameStarted = false;
+				Game.takingInput = true;
+				room.get(level).startLevel();
+			}
+			
+			else if (!transition.get(level).isStarted()){
+				//((RoomBegin) room.get(0)).getButton("controls").setRelease(false);
+				
+				transition.get(level).startTransition();
+			}
+			
+			
+			//System.out.println(level);
+			//System.out.println(room.get(level-1).isComplete());
+			
+			//check if player has completed all levels, win state is activated when true
+//			if (level<=numLevels) {
+//				room.get(level).startLevel();
+//			}
+//			else {
+//				Game.win = true;
+//				Game.takingInput = true;
+//				resetDefault();
+//			}
+		}
 		
 		//System.out.println(level);
 		//if (Game.gameStarted && !Game.isdead && !Game.win) {
@@ -125,59 +170,17 @@ public class Levels {
 			room.get(level).tick();
 		}
 		
-		System.out.println(((RoomBegin)room.get(0)).getButton("controls").isReleased());
-		//check for completion
-		if (room.get(level).isComplete()) {
-			System.out.println("LevelIsComplete");
-			if (level == 0) {
-				Game.gameStarted = true;
-			}
-			
-			if (level == numLevels) {
-				level++;
-				Game.gameStarted = false;
-				Game.takingInput = true;
-			}
-			
-			//if the room is at a menu screen then return to main menu, otherwise start transition.
-			if (level == controlLevel || level == leadLevel || level == winLevel) {
-				//System.out.println(level);
-				((RoomControls)room.get(controlLevel)).getButton().setRelease(false);
-				level = 0;
-				System.out.println("Levels.level = "+level);
-				room.get(level).startLevel();
-			}
-			
-			else if (level == numLevels) {
-				level++;
-				room.get(level).startLevel();
-			}
-			
-			else if (!transition.get(level).isStarted()){
-				//((RoomBegin) room.get(0)).getButton("controls").setRelease(false);
-				
-				transition.get(level).startTransition();
-			}
-			System.out.println("ree");
-			removeLevelObjects();
-			
-			//System.out.println(level);
-			//System.out.println(room.get(level-1).isComplete());
-			
-			//check if player has completed all levels, win state is activated when true
-//			if (level<=numLevels) {
-//				room.get(level).startLevel();
-//			}
-//			else {
-//				Game.win = true;
-//				Game.takingInput = true;
-//				resetDefault();
-//			}
-		}
+		//System.out.println(((RoomBegin)room.get(0)).getButton("controls").isReleased());
+		
+		
+		
 		
 		//when the transition is done advance level
 		if (!isOnMenuLevel()) {
 			if (transition.get(level).endTransition()) {
+				if (level == 0) {
+					Game.gameStarted = true;
+				}
 				level++;
 				room.get(level).startLevel();
 			}

@@ -205,14 +205,14 @@ public class Game extends Canvas implements Runnable{
 	 * The <code>tick</code> method updates all of the game logic when called.
 	 */
 	public void tick() {
+		levels.tick();
 		//calls update tick method in every object
 		if (!paused) {
 			handler.tick();
 		}
 		hud.tick();
-		if (!win && !isdead) {
-			levels.tick();
-		}
+		
+		
 		
 		
 		if (cd<5 && leaderboard) {

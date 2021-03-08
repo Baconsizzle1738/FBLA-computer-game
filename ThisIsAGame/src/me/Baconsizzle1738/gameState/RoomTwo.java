@@ -50,9 +50,11 @@ public class RoomTwo extends Room{
 					temp = (Dinnerbone) handler.objects.get(i);
 					//check if player is in box
 					try {
+						
 						if (temp.getBounds().intersects(p.getBounds())) {
 							//reset flip for when the player plays again
 							isFlip = false;
+							System.out.println("hecc");
 							return true;
 						}
 					}
@@ -160,7 +162,7 @@ public class RoomTwo extends Room{
 				else {
 					g.drawString("I wonder what these buttons do", Game.WIDTH/2+255, 240);
 				}
-				System.out.println("yeet");
+				//System.out.println("yeet");
 			}
 			catch (Exception e) {
 				//nothing
