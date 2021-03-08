@@ -32,7 +32,7 @@ public class Levels {
 	 * @param hud
 	 */
 	public Levels(HUD hud, GameHandler handler) {
-		//this.hud = hud;
+		this.hud = hud;
 		this.handler = handler;
 		//handler.addObject(new Player(500, 500, ID.Player, -1, this.handler));
 		level = 0;
@@ -61,7 +61,7 @@ public class Levels {
 		transition.add(new TransitionLevel(new String[]{"first", "second", "last"}, 0));
 		transition.add(new TransitionLevel(new String[]{"on", "tw", "th"}, 1));
 		transition.add(new TransitionLevel(new String[]{"ree", "reeee", "reeeee", "reeeeeeeeeee"}, 2));
-		transition.add(new TransitionLevel(new String[]{"first", "second", "last"}, 3));
+		transition.add(new TransitionLevel(new String[]{"first", "second", "heccccc", "ur baaaaaaad"}, 3));
 		
 		//for the first level to initialize
 		init = false;
@@ -84,9 +84,9 @@ public class Levels {
 			removeLevelObjects();
 			
 			//if the room is at a menu screen then return to main menu, otherwise start transition.
-			if (level == controlLevel || level == leadLevel || level == winLevel) {
+			if (level == leadLevel || level == controlLevel || level == winLevel) {
 				//System.out.println(level);
-				((RoomControls)room.get(controlLevel)).getButton().setRelease(false);
+				//((RoomControls)room.get(controlLevel)).getButton().setRelease(false);
 				level = 0;
 				System.out.println("Levels.level = "+level);
 				room.get(level).startLevel();
@@ -133,6 +133,8 @@ public class Levels {
 		//Why in HECK are the buttons not working proper >:O
 		//System.out.println(level);
 		
+		
+		//for the main menu to navigete to the controls/leaderboard page.
 		if (level == 0) {
 			//System.out.println("level Check 0");
 			//go to controls page
@@ -157,7 +159,7 @@ public class Levels {
 		
 		
 		//tick only when transition is not complete
-		if (!isOnMenuLevel()) {
+		if (!isOnMenuLevel() && level < 4) {
 			if (!transition.get(level).endTransition()) {
 				transition.get(level).tick();
 			}
@@ -176,7 +178,7 @@ public class Levels {
 		
 		
 		//when the transition is done advance level
-		if (!isOnMenuLevel()) {
+		if (!isOnMenuLevel() && level < 4) {
 			if (transition.get(level).endTransition()) {
 				if (level == 0) {
 					Game.gameStarted = true;
@@ -186,20 +188,6 @@ public class Levels {
 			}
 		}
 		
-		
-		//tick only when transition is not complete
-		if (!isOnMenuLevel()) {
-			if (!transition.get(level).endTransition()) {
-				transition.get(level).tick();
-			}
-		}
-		
-		
-		
-		//tick only when the room is not complete
-		if (!room.get(level).isComplete()) {
-			room.get(level).tick();
-		}
 		
 		//System.out.println(((RoomBegin) room.get(0)).goControls());
 		//System.out.println(level);

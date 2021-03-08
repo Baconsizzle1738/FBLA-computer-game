@@ -49,20 +49,12 @@ public class RoomTwo extends Room{
 				if (handler.objects.get(i).gettypeID() == ID.Door) {
 					temp = (Dinnerbone) handler.objects.get(i);
 					//check if player is in box
-					try {
-						
-						if (temp.getBounds().intersects(p.getBounds())) {
-							//reset flip for when the player plays again
-							isFlip = false;
-							System.out.println("hecc");
-							return true;
-						}
-					}
-					catch (Exception e) {
-						//reset flip for when the player plays again
-						isFlip = false;
+					if (temp.getBounds().intersects(p.getBounds())) {
+						System.out.println("hecc");
 						return true;
 					}
+					
+					
 				}
 			}
 		}
@@ -191,7 +183,7 @@ public class RoomTwo extends Room{
 
 	@Override
 	public void startLevel() {
-		
+		isFlip = false;
 		Color wall = new Color(73, 116, 122);
 		handler.addObject(p);
 		

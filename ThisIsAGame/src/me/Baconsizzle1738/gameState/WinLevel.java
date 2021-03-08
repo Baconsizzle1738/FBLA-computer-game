@@ -46,7 +46,7 @@ public class WinLevel extends Room{
 		if (menuButton.isReleased() && hud.playerName.length()>1) {
 			try {
 				FileWriter f = new FileWriter("data/scores.dat");
-				f.write(hud.playerName + " " + hud.score);
+				f.write(hud.playerName + " " + hud.score + "\n");
 			}
 			catch (Exception e) {
 				System.out.println("Error in saving score");

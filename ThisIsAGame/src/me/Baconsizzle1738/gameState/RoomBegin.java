@@ -26,9 +26,9 @@ public class RoomBegin extends Room {
 		
 		buttonFont = new Font(Font.MONOSPACED, Font.BOLD, 20);
 		
-		startButton = new Button(300, 300, ID.Button, lvl, "ESCAPE", 230, 50, Color.red, Color.gray, Color.yellow, buttonFont);
-		controlsButton = new Button(300, 400, ID.Button, lvl, "CONTROLS", 230, 50, Color.red, Color.gray, Color.yellow, buttonFont);
-		leadButton = new Button(300, 500, ID.Button, lvl, "LEADERBOARDS", 230, 50, Color.red, Color.gray, Color.yellow, buttonFont);
+		startButton = new Button(370, 300, ID.Button, lvl, "ESCAPE", 230, 50, Color.red, Color.gray, Color.yellow, buttonFont);
+		controlsButton = new Button(370, 400, ID.Button, lvl, "CONTROLS", 230, 50, Color.red, Color.gray, Color.yellow, buttonFont);
+		leadButton = new Button(370, 500, ID.Button, lvl, "LEADERBOARDS", 230, 50, Color.red, Color.gray, Color.yellow, buttonFont);
 	}
 
 	@Override

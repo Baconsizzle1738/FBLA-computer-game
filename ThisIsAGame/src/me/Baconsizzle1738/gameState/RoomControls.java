@@ -21,7 +21,8 @@ public class RoomControls extends Room{
 		
 		cnt = 0;
 		
-		backButton = new Button(200, 200, ID.Button, lvl, "BACK", 30, 10, Color.red, new Color(160, 0, 0), new Color(200, 200, 200), f);
+		backButton = new Button(450, 500, ID.Button, lvl, "BACK", 100, 30, Color.red, new Color(160, 0, 0), new Color(200, 200, 200), f);
+		
 	}
 	
 	public Button getButton() {
