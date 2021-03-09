@@ -18,7 +18,7 @@ import me.Baconsizzle1738.main.ID;
  * This room is based off Minecraft Dinnerbone.
  * The player has to press buttons to rotate
  * the box 180 degrees and then go into the box to complete the room.
- * @author zheng
+ * @author Baconsizzle1738
  *
  */
 public class RoomTwo extends Room{
@@ -195,7 +195,7 @@ public class RoomTwo extends Room{
 		handler.addObject(new DinnerboneButton(Game.WIDTH/2+18, 400, ID.Button1, lvl, "reflect"));
 		handler.addObject(new DinnerboneButton(Game.WIDTH/2+68, 400, ID.Button1, lvl, "turn2"));
 		//the following guard
-		handler.addObject(new FollowEnemy(Game.WIDTH/2, 200, ID.FollowEnemy, lvl, 100, 15, 0.55f, handler));
+		handler.addObject(new FollowEnemy(Game.WIDTH/2, 200, ID.FollowEnemy, lvl, 85, 17, 0.58f, handler));
 		//border/walls
 		handler.addObject(new Obstacle(Game.WIDTH/2-250, 50, ID.Obstacle, lvl, 5, 800, wall));
 		handler.addObject(new Obstacle(Game.WIDTH/2+245, 50, ID.Obstacle, lvl, 5, 800, wall));
@@ -203,8 +203,8 @@ public class RoomTwo extends Room{
 		//the door from the maze
 		handler.addObject(new Obstacle(Game.WIDTH/2-250, 495, ID.Obstacle, lvl, 5, 50, new Color(0, 200, 200)));
 		//static enemies/guards
-		handler.addObject(new StaticEnemy(Game.WIDTH/2-230, 360, ID.Enemy, lvl, Game.WIDTH/2+200, 8, 7, 40, "x"));
-		handler.addObject(new StaticEnemy(Game.WIDTH/2+200, 230, ID.Enemy, lvl, Game.WIDTH/2-230, 8, 7, 40, "x"));
+		handler.addObject(new StaticEnemy(Game.WIDTH/2-230, 360, ID.Enemy, lvl, Game.WIDTH/2+200, 10, 8, 15, "x"));
+		handler.addObject(new StaticEnemy(Game.WIDTH/2+200, 230, ID.Enemy, lvl, Game.WIDTH/2-230, 10, 8, 15, "x"));
 		this.SetPlayerSpawn();
 		
 	}
@@ -225,12 +225,29 @@ public class RoomTwo extends Room{
 				}
 			}
 			//put enemy back into position
-			handler.addObject(new FollowEnemy(Game.WIDTH/2, 200, ID.FollowEnemy, lvl, 100, 25, 0.55f, handler));
+			handler.addObject(new FollowEnemy(Game.WIDTH/2, 200, ID.FollowEnemy, lvl, 85, 17, 0.58f, handler));
 			SetPlayerSpawn();
 			canReset = false;
 			isFlip = false;
 		}
 		
+	}
+
+	@Override
+	public void hardReset() {
+		isFlip = false;
+		onButton = false;
+		
+		//remove any intrusive objects
+		for (int i = 0; i<handler.objects.size(); i++) {
+			if (handler.objects.get(i).gettypeID() == ID.FollowEnemy) {
+				handler.removeObject(handler.objects.get(i));
+			}
+			//resets data and orientation for the box
+			else if (handler.objects.get(i).gettypeID() == ID.Door) {
+				((Dinnerbone) handler.objects.get(i)).reset();
+			}
+		}
 	}
 
 

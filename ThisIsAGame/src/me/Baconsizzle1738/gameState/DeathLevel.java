@@ -6,46 +6,96 @@ import java.awt.Graphics;
 
 import me.Baconsizzle1738.Objects.Button;
 import me.Baconsizzle1738.Objects.GameHandler;
+import me.Baconsizzle1738.main.Game;
 import me.Baconsizzle1738.main.ID;
 
+/**
+ * This is the room that the player is sent to when they have no ore lives.
+ * @author Baconsizzle1738
+ *
+ */
 public class DeathLevel extends Room{
 
 	private Button menuButton;
 	
+	private boolean done, start, fade;
 	
+	private float alpha, inc;
+	
+	/**
+	 * The spawn parameters do not matter here.
+	 * @param spawnX	Does not do anything.
+	 * @param spawnY	Does not do anything.
+	 * @param h			The <code>GameHandler</code> for any objects.
+	 * @param lvl		The level of the room.
+	 */
 	public DeathLevel(int spawnX, int spawnY, GameHandler h, int lvl) {
 		super(spawnX, spawnY, h, lvl);
 		
-		menuButton = new Button(400, 100, ID.Button, lvl, "YOU TRIED", 100, 20, Color.RED, new Color(180, 0, 0), Color.GRAY, new Font(Font.MONOSPACED, Font.BOLD, 12));
+		done = false;
+		start = false;
+		fade = false;
+		alpha = 0;
+		inc = 0.005f;
+		menuButton = new Button(400, 100, ID.Button, lvl, "YOU TRIED", 100, 20, new Color(160, 160, 160), new Color(120, 120, 120), Color.GRAY, new Font(Font.MONOSPACED, Font.BOLD, 12));
+	}
+	
+	/**
+	 * Check to see if the <code>DeathLevel</code> has started.
+	 * @return	<code>true</code> if the level is started.
+	 */
+	public boolean isStarted() {
+		return start;
 	}
 
 	@Override
 	public void startLevel() {
-		handler.addObject(menuButton);
+		start = true;
 	}
 
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public boolean isComplete() {
-		// TODO Auto-generated method stub
-		return false;
+		return done;
 	}
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(alpha);
+		if (start) {
+			alpha += inc;
+			if (alpha >= 1f) {
+				alpha = 1f;
+				fade = true;
+				start = false;
+			}
+		}
+		if (fade) {
+			alpha -= inc;
+			if (alpha <= 0) {
+				alpha = 0;
+				done = true;
+			}
+		}
 	}
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 46));
+		g.setColor(new Color(0.8f, 0.8f, 0.8f, alpha));
+		g.drawString("YOU DIED", Game.WIDTH/2 - g.getFontMetrics().stringWidth("YOU DIED")/2, 250);
+	}
+
+	@Override
+	public void hardReset() {
+		done = false;
+		start = false;
+		fade = false;
+		alpha = 0;
 	}
 
 }

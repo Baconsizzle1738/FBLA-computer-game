@@ -25,6 +25,10 @@ public class RoomControls extends Room{
 		
 	}
 	
+	/**
+	 * Gets the button in the room.
+	 * @return	The back button
+	 */
 	public Button getButton() {
 		return backButton;
 	}
@@ -77,6 +81,11 @@ public class RoomControls extends Room{
 		g.drawString("ROOM 1 - KONAMI CODE", 600,380);
 		g.drawString("ROOM 2 - MINECRAFT DINNERBONE", 492, 400);
 		g.drawString("ROOM 3 - MISSINGNO POKEMON", 529, 420);
+	}
+
+	@Override
+	public void hardReset() {
+		//nothing to see here.
 	}
 
 }

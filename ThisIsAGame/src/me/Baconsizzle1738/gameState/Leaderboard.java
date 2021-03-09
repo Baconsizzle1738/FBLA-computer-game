@@ -92,4 +92,9 @@ public class Leaderboard extends Room{
 		}
 	}
 
+	@Override
+	public void hardReset() {
+		//nothing here
+	}
+
 }

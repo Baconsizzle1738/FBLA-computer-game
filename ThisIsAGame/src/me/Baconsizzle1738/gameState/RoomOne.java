@@ -242,7 +242,7 @@ public class RoomOne extends Room {
 	@Override
 	public void startLevel() {
 		reset();
-		Color mazeCol = new Color(200, 200, 200);
+		Color mazeCol = new Color(170, 170, 170);
 		handler.addObject(p);
 		
 		this.SetPlayerSpawn();
@@ -302,11 +302,11 @@ public class RoomOne extends Room {
 		handler.addObject(new KonamiArrow(mazeIncrementX(9)+17, mazeIncrementY(7)+17, ID.Interactable, lvl, "right"));
 		
 		//add enemies
-		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(0)+10, ID.Enemy, lvl, mazeIncrementX(9)+10, 3, 10, 20, "x"));
-		handler.addObject(new StaticEnemy(mazeIncrementX(3)+10, mazeIncrementY(2)+10, ID.Enemy, lvl, mazeIncrementX(5)+10, 1, 6, 60, "x"));
-		handler.addObject(new StaticEnemy(mazeIncrementX(9)+10, mazeIncrementY(4)+10, ID.Enemy, lvl, mazeIncrementY(6)+10, 1, 6, 60, "y"));
-		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(7)+10, ID.Enemy, lvl, mazeIncrementX(6)+10, 1, 6, 60, "x"));
-		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(8)+10, ID.Enemy, lvl, mazeIncrementX(4)+10, 2, 7, 40, "x"));
+		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(0)+10, ID.Enemy, lvl, mazeIncrementX(9)+10, 3, 12, 20, "x"));
+		handler.addObject(new StaticEnemy(mazeIncrementX(3)+10, mazeIncrementY(2)+10, ID.Enemy, lvl, mazeIncrementX(5)+10, 1, 8, 30, "x"));
+		handler.addObject(new StaticEnemy(mazeIncrementX(9)+10, mazeIncrementY(4)+10, ID.Enemy, lvl, mazeIncrementY(6)+10, 1, 8, 30, "y"));
+		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(7)+10, ID.Enemy, lvl, mazeIncrementX(6)+10, 1, 8, 30, "x"));
+		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(8)+10, ID.Enemy, lvl, mazeIncrementX(4)+10, 2, 11, 40, "x"));
 		
 		
 	}
@@ -344,6 +344,26 @@ public class RoomOne extends Room {
 		}
 		
 		
+	}
+
+	@Override
+	public void hardReset() {
+		
+		//removes any possible remaining arrows or other ID.Interactable objects
+		for (int i = 0; i<handler.objects.size(); i++) {
+			GameObject temp = handler.objects.get(i);
+			if (temp.gettypeID() == ID.Interactable && temp.getlevelID()== this.lvl) {
+				handler.removeObject(temp);
+				i--;
+			}
+		}
+		collectedArrows.clear();
+		
+		canReset = false;
+		allArrows = false;
+		correctComb = false;
+		done = false;
+		collected = 0;
 	}
 
 }

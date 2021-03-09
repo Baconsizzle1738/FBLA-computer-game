@@ -78,11 +78,11 @@ public class RoomThree extends Room{
 		handler.addObject(p);
 		p.using = false;
 		//following enemies
-		handler.addObject(new FollowEnemy(280, 150, ID.FollowEnemy, lvl, 85, 10, 0.62f, handler));
-		handler.addObject(new FollowEnemy(550, 410, ID.FollowEnemy, lvl, 109, 20, 1.2f, handler));
+		handler.addObject(new FollowEnemy(280, 150, ID.FollowEnemy, lvl, 70, 10, 0.62f, handler));
+		handler.addObject(new FollowEnemy(550, 410, ID.FollowEnemy, lvl, 95, 20, 1.1f, handler));
 		//static enemies
-		handler.addObject(new StaticEnemy(grassX(12), grassY(0), ID.Enemy, lvl, Game.HEIGHT-50, 3, 8, 25, "y"));
-		handler.addObject(new StaticEnemy(grassX(0), grassY(10), ID.Enemy, lvl, grassX(23), 3, 8, 25, "x"));
+		handler.addObject(new StaticEnemy(grassX(12), grassY(0), ID.Enemy, lvl, Game.HEIGHT-50, 3, 9, 25, "y"));
+		handler.addObject(new StaticEnemy(grassX(0), grassY(10), ID.Enemy, lvl, grassX(23), 3, 9, 25, "x"));
 		
 		//add the numbers for player to find
 		handler.addObject(new NumberBlock(grassX(10), grassY(3), ID.Interactable, lvl, 1));
@@ -116,8 +116,8 @@ public class RoomThree extends Room{
 					i--;
 				}
 			}
-			handler.addObject(new FollowEnemy(280, 150, ID.FollowEnemy, lvl, 85, 10, 0.62f, handler));
-			handler.addObject(new FollowEnemy(550, 410, ID.FollowEnemy, lvl, 109, 20, 0.69f, handler));
+			handler.addObject(new FollowEnemy(280, 150, ID.FollowEnemy, lvl, 70, 10, 0.62f, handler));
+			handler.addObject(new FollowEnemy(550, 410, ID.FollowEnemy, lvl, 95, 20, 1.1f, handler));
 			for (int i = 0; i<grass.length; i++) {
 				for (int j = 0; j<grass[i].length; j++) {
 					handler.addObject(new GrassBlock(grass[i][j].x, grass[i][j].y, ID.Grass, lvl, p));
@@ -188,6 +188,20 @@ public class RoomThree extends Room{
 			g.drawString("E - INTERACT", 10, 530);
 		}
 	
+	}
+
+	@Override
+	public void hardReset() {
+		
+		//take out any possible objects that may appear that are Follow Enemies or grass.
+		for (int i = 0; i<handler.objects.size(); i++) {
+			if (handler.objects.get(i).gettypeID() == ID.FollowEnemy || handler.objects.get(i).gettypeID() == ID.Grass) {
+				handler.removeObject(handler.objects.get(i));
+				i--;
+			}
+		}
+		
+		onBlock = false;
 	}
 
 }

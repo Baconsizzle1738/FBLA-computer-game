@@ -103,6 +103,7 @@ public class Levels {
 			else if (level == deathLevel) {
 				level = 0;
 				resetDefault();
+				room.get(level).startLevel();
 			}
 			
 			else if (level == winLevel) {
@@ -167,6 +168,15 @@ public class Levels {
 				level = leadLevel;
 				room.get(level).startLevel();
 			}
+		}
+		
+		//if the player is dead then move to the death level regardless if level is complete.
+		if (HUD.lives == 0) {
+			System.out.println("hecc");
+			removeLevelObjects();
+			HUD.lives = 3;
+			level = deathLevel;
+			room.get(level).startLevel();
 		}
 		
 		
@@ -236,7 +246,7 @@ public class Levels {
 	public void resetDefault() {
 		
 		for (int i = 0; i<room.size(); i++) {
-			room.get(i).reset();
+			room.get(i).hardReset();
 		}
 		for (int i = 0; i<transition.size(); i++) {
 			transition.get(i).reset();
@@ -273,6 +283,7 @@ public class Levels {
 		catch (Exception e) {
 			if (!room.get(level).isComplete()) {
 				room.get(level).render(g);
+				
 			}
 		}
 		

@@ -70,6 +70,11 @@ public abstract class Room {
 	public abstract void reset();
 	
 	/**
+	 * resets all values to their default values.
+	 */
+	public abstract void hardReset();
+	
+	/**
 	 * checks if level is complete
 	 * @return		Returns true if complete, false otherwise.
 	 */

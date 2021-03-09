@@ -28,7 +28,7 @@ public class WinLevel extends Room{
 		alpha2 = 0;
 		inc2 = 0.02f;
 		
-		menuButton = new Button(400, 100, ID.Button, lvl, "FREE AT LAST", 100, 20, Color.RED, new Color(180, 0, 0), Color.GRAY, new Font(Font.MONOSPACED, Font.BOLD, 12));
+		menuButton = new Button(400, 100, ID.Button, lvl, "FREE AT LAST", 100, 20, new Color(0, 200, 0), new Color(0, 180, 0), Color.GRAY, new Font(Font.MONOSPACED, Font.BOLD, 12));
 		
 		this.hud = hud;
 	}
@@ -80,6 +80,7 @@ public class WinLevel extends Room{
 		}
 		if (menuButton.isReleased() && hud.playerName.length()>1) {
 			end = true;
+			handler.removeObject(menuButton);
 		}
 		if (end) {
 			alpha2 += inc2;
@@ -95,15 +96,25 @@ public class WinLevel extends Room{
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(new Color(0f, 0.8f, 0f, alpha));
+		g.setColor(new Color(alpha2, 0.7f, alpha2, alpha));
 		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		
 		g.setColor(new Color(180, 180, 180));
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 46));
+		g.drawString("YOU ESCAPED", 350,  200);
 		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 36));
-		g.drawString("YOU ESCAPED", 200,  200);
-		g.drawString(hud.playerName + " ESCAPED WITH A SCORE OF "+ hud.score, 250, 300);
+		g.drawString(hud.playerName, Game.WIDTH/2 - g.getFontMetrics().stringWidth(hud.playerName)/2-17, 300);
+		g.drawString("ESCAPED WITH A SCORE OF "+ hud.score, Game.WIDTH/2 - g.getFontMetrics().stringWidth("ESCAPED WITH A SCORE OF "+ hud.score)/2-17, 350);
 		
 		
+	}
+
+	@Override
+	public void hardReset() {
+		alpha = 0;
+		start = false;
+		end = false;
+		alpha2 = 0;
 	}
 
 }

@@ -6,7 +6,7 @@ import java.awt.Graphics;
 
 import me.Baconsizzle1738.Objects.Button;
 import me.Baconsizzle1738.Objects.GameHandler;
-import me.Baconsizzle1738.main.Game;
+//import me.Baconsizzle1738.main.Game;
 import me.Baconsizzle1738.main.ID;
 /**
  * This is the main title screen.
@@ -119,6 +119,13 @@ public class RoomBegin extends Room {
 	@Override
 	public void reset() {
 		
+	}
+
+	@Override
+	public void hardReset() {
+		startButton.setRelease(false);
+		controlsButton.setRelease(false);
+		leadButton.setRelease(false);
 	}
 
 }
