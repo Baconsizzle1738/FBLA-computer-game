@@ -1,6 +1,7 @@
 package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -135,6 +136,7 @@ public class Dinnerbone extends GameObject{
 		g2.setColor(new Color(0, 150, 20));
 		g2.fillRect(-25, -25, 50, 50);
 		g2.setColor(new Color(210, 210, 210));
+		g2.setFont(new Font(Font.MONOSPACED, 0, 12));
 		g2.drawString("UP ^", -15, -5);
 		g2.dispose();
 		

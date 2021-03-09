@@ -1,6 +1,7 @@
 package me.Baconsizzle1738.Objects;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -46,6 +47,7 @@ public class NumberBlock extends GameObject{
 
 	@Override
 	public void render(Graphics g) {
+		g.setFont(new Font(Font.MONOSPACED, 0, 11));
 		g.setColor(new Color(223, 120, 203));
 		g.fillRect(x, y, 13, 13);
 		g.setColor(new Color(25, 65, 145));

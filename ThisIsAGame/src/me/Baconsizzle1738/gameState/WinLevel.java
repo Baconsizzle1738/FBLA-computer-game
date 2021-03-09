@@ -11,8 +11,8 @@ import me.Baconsizzle1738.main.*;
 
 public class WinLevel extends Room{
 	
-	float alpha, inc;
-	boolean start; 
+	float alpha, inc, alpha2, inc2;
+	boolean start, end; 
 	
 	HUD hud;
 	
@@ -22,8 +22,11 @@ public class WinLevel extends Room{
 		super(spawnX, spawnY, h, lvl);
 		
 		alpha = 0;
-		inc = 0.2f;
+		inc = 0.02f;
 		start = false;
+		end = false;
+		alpha2 = 0;
+		inc2 = 0.02f;
 		
 		menuButton = new Button(400, 100, ID.Button, lvl, "FREE AT LAST", 100, 20, Color.RED, new Color(180, 0, 0), Color.GRAY, new Font(Font.MONOSPACED, Font.BOLD, 12));
 		
@@ -33,40 +36,57 @@ public class WinLevel extends Room{
 	@Override
 	public void startLevel() {
 		start = true;
+		handler.addObject(menuButton);
 	}
 
 	@Override
 	public void reset() {
-		alpha = 0;
-		start = false;
+		//nothing here
 	}
 
 	@Override
 	public boolean isComplete() {
-		if (menuButton.isReleased() && hud.playerName.length()>1) {
-			try {
-				FileWriter f = new FileWriter("data/scores.dat");
-				f.write(hud.playerName + " " + hud.score + "\n");
-			}
-			catch (Exception e) {
-				System.out.println("Error in saving score");
-				e.printStackTrace();
-			}
-			return true;
-		}
+		
 		
 		
 		
 		return false;
 	}
+	
+	/**
+	 * Saves the score of the player to a file
+	 */
+	public void saveScore() {
+		try {
+			FileWriter f = new FileWriter("data/scores.dat", true);
+			f.append(hud.playerName + " " + hud.score + "\n");
+			f.close();
+		}
+		catch (Exception e) {
+			System.out.println("Error in saving score");
+			e.printStackTrace();
+		}
+		
+	}
 
 	@Override
 	public void tick() {
 		if (start) {
-			alpha++;
+			alpha+=inc;
 			if (alpha >= 1f) {
 				alpha = 1;
 				start = false;
+			}
+		}
+		if (menuButton.isReleased() && hud.playerName.length()>1) {
+			end = true;
+		}
+		if (end) {
+			alpha2 += inc2;
+			if (alpha2>=1f) {
+				alpha = 1f;
+				this.saveScore();
+				System.exit(0);
 			}
 		}
 		

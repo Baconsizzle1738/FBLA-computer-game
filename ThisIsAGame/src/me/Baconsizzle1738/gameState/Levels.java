@@ -18,7 +18,7 @@ public class Levels {
 	GameHandler handler;
 	HUD hud;
 	public int level;
-	private int numLevels, controlLevel, leadLevel, winLevel;
+	private int numLevels, controlLevel, leadLevel, winLevel, deathLevel;
 	private ArrayList<Room> room;
 	private ArrayList<Transition> transition;
 	
@@ -41,7 +41,7 @@ public class Levels {
 		winLevel = numLevels+1;
 		controlLevel = numLevels+2;
 		leadLevel = numLevels+3;
-		
+		deathLevel = numLevels+4;
 		//room.add(new RoomBegin(350, 350, handler, 0));
 		room = new ArrayList<>();
 		transition = new ArrayList<>();
@@ -52,9 +52,10 @@ public class Levels {
 		room.add(new RoomThree(400, 400, handler, 3));
 		
 		//the main menu rooms
-		room.add(new WinLevel(0, 0, handler, winLevel, hud));
+		//win level in setHUD
 		room.add(new RoomControls(0, 0, handler, controlLevel));
 		room.add(new Leaderboard(0, 0, handler, leadLevel));
+		room.add(new DeathLevel(0, 0, handler, deathLevel));
 		
 		
 		//transitions
@@ -84,7 +85,7 @@ public class Levels {
 			removeLevelObjects();
 			
 			//if the room is at a menu screen then return to main menu, otherwise start transition.
-			if (level == leadLevel || level == controlLevel || level == winLevel) {
+			if (level == leadLevel || level == controlLevel) {
 				//System.out.println(level);
 				//((RoomControls)room.get(controlLevel)).getButton().setRelease(false);
 				level = 0;
@@ -97,6 +98,17 @@ public class Levels {
 				Game.gameStarted = false;
 				Game.takingInput = true;
 				room.get(level).startLevel();
+			}
+			
+			else if (level == deathLevel) {
+				level = 0;
+				resetDefault();
+			}
+			
+			else if (level == winLevel) {
+				((WinLevel)room.get(level)).saveScore();
+				level = 0;
+				resetDefault();
 			}
 			
 			else if (!transition.get(level).isStarted()){
@@ -223,6 +235,13 @@ public class Levels {
 	 */
 	public void resetDefault() {
 		
+		for (int i = 0; i<room.size(); i++) {
+			room.get(i).reset();
+		}
+		for (int i = 0; i<transition.size(); i++) {
+			transition.get(i).reset();
+		}
+		
 		init = false;
 		removeLevelObjects();
 		level = 0;
@@ -236,6 +255,8 @@ public class Levels {
 	 */
 	public void setHUD(HUD hud) {
 		this.hud = hud;
+		//add the win level to index 4
+		room.add(winLevel, new WinLevel(0, 0, handler, winLevel, hud));
 	}
 	/**
 	 * Renders the room/level.
@@ -258,7 +279,7 @@ public class Levels {
 		
 		//render only when incomplete
 		
-		if (!isOnMenuLevel()) {
+		if (!isOnMenuLevel() && level < 4) {
 			if (!transition.get(level).endTransition()) {
 				transition.get(level).render(g);
 			}

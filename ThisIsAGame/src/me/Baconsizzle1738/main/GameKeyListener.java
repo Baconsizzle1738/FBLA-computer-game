@@ -144,12 +144,13 @@ public class GameKeyListener implements KeyListener{
 		
 		//for the name input
 		if (Game.takingInput) {
-			if (e.getKeyChar() != e.CHAR_UNDEFINED && hud.playerName.length()<=16 && e.getKeyCode() != KeyEvent.VK_SPACE) {
+			//no undefined chars, spaces, or backspaces
+			if (e.getKeyChar() != e.CHAR_UNDEFINED && hud.playerName.length()<=16 && e.getKeyCode() != KeyEvent.VK_SPACE && e.getKeyCode() != KeyEvent.VK_BACK_SPACE) {
 				hud.playerName += e.getKeyChar();
 			}
 			if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 				try {
-					hud.playerName = hud.playerName.substring(0, hud.playerName.length()-2);
+					hud.playerName = hud.playerName.substring(0, hud.playerName.length()-1);
 				}
 				catch(Exception ex) {
 					

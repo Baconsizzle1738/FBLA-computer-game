@@ -34,6 +34,8 @@ public class RoomOne extends Room {
 	private boolean allArrows = false;
 	//check if combination is correct;
 	private boolean correctComb = false;
+	private boolean done;
+	
 	Player p;
 	
 	/**
@@ -58,7 +60,7 @@ public class RoomOne extends Room {
 		correct.add("left");
 		correct.add("right");
 		p = new Player(400, 400, ID.Player, this.lvl, this.handler);
-		
+		done = false;
 		
 	}
 	
@@ -77,16 +79,18 @@ public class RoomOne extends Room {
 			//check if player is at the door
 			try {
 				if (p.getBounds().intersects(d.getBounds())) {
-					return true;
+					done = true;
 				}
 			}
-			catch (Exception e) {
-				return true;
+			catch(Exception e) {
+				
 			}
+			
+			
 		}
 		
 		//change to true for quick advance for testing out other levels
-		return false;
+		return done;
 	}
 
 	
@@ -335,6 +339,7 @@ public class RoomOne extends Room {
 			canReset = false;
 			allArrows = false;
 			correctComb = false;
+			done = false;
 			collected = 0;
 		}
 		
