@@ -74,7 +74,7 @@ public class DeathLevel extends Room{
 				started = false;
 			}
 		}
-		else if (fade) {
+		if (fade) {
 			alpha -= inc;
 			if (alpha <= 0) {
 				alpha = 0;
