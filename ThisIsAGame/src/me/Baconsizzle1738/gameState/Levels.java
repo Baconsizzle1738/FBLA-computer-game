@@ -106,11 +106,11 @@ public class Levels {
 				room.get(level).startLevel();
 			}
 			
-			else if (level == winLevel) {
-				((WinLevel)room.get(level)).saveScore();
-				level = 0;
-				resetDefault();
-			}
+//			else if (level == winLevel) {
+//				((WinLevel)room.get(level)).saveScore();
+//				level = 0;
+//				resetDefault();
+//			}
 			
 			else if (!transition.get(level).isStarted()){
 				//((RoomBegin) room.get(0)).getButton("controls").setRelease(false);
@@ -179,7 +179,6 @@ public class Levels {
 			room.get(level).startLevel();
 		}
 		
-		
 		//tick only when transition is not complete
 		if (!isOnMenuLevel() && level < 4) {
 			if (!transition.get(level).endTransition()) {
@@ -193,7 +192,7 @@ public class Levels {
 		if (!room.get(level).isComplete()) {
 			room.get(level).tick();
 		}
-		
+		//System.out.println(room.get(level).isComplete());
 		//System.out.println(((RoomBegin)room.get(0)).getButton("controls").isReleased());
 		
 		
@@ -215,9 +214,7 @@ public class Levels {
 		//System.out.println(level);
 		//}
 		//check if dead
-		if (Game.isdead) {
-			resetDefault();
-		}
+		
 	}
 	
 	/**
@@ -254,7 +251,6 @@ public class Levels {
 		
 		init = false;
 		removeLevelObjects();
-		level = 0;
 		Game.health = 100;
 		Game.keys.reset();
 	}

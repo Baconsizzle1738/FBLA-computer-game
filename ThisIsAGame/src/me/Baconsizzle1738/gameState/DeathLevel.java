@@ -18,7 +18,7 @@ public class DeathLevel extends Room{
 
 	private Button menuButton;
 	
-	private boolean done, start, fade;
+	private boolean done, started, fade;
 	
 	private float alpha, inc;
 	
@@ -33,10 +33,10 @@ public class DeathLevel extends Room{
 		super(spawnX, spawnY, h, lvl);
 		
 		done = false;
-		start = false;
+		started = false;
 		fade = false;
-		alpha = 0;
-		inc = 0.005f;
+		alpha = 0f;
+		inc = 0.05f;
 		menuButton = new Button(400, 100, ID.Button, lvl, "YOU TRIED", 100, 20, new Color(160, 160, 160), new Color(120, 120, 120), Color.GRAY, new Font(Font.MONOSPACED, Font.BOLD, 12));
 	}
 	
@@ -45,12 +45,12 @@ public class DeathLevel extends Room{
 	 * @return	<code>true</code> if the level is started.
 	 */
 	public boolean isStarted() {
-		return start;
+		return started;
 	}
 
 	@Override
 	public void startLevel() {
-		start = true;
+		started = true;
 	}
 
 	@Override
@@ -65,16 +65,16 @@ public class DeathLevel extends Room{
 
 	@Override
 	public void tick() {
-		System.out.println(alpha);
-		if (start) {
+		if (started) {
 			alpha += inc;
+			System.out.println(alpha);
 			if (alpha >= 1f) {
 				alpha = 1f;
 				fade = true;
-				start = false;
+				started = false;
 			}
 		}
-		if (fade) {
+		else if (fade) {
 			alpha -= inc;
 			if (alpha <= 0) {
 				alpha = 0;
@@ -93,7 +93,7 @@ public class DeathLevel extends Room{
 	@Override
 	public void hardReset() {
 		done = false;
-		start = false;
+		started = false;
 		fade = false;
 		alpha = 0;
 	}
