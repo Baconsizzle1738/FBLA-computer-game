@@ -83,7 +83,7 @@ public class Levels {
 		if (room.get(level).isComplete()) {
 			System.out.println("LevelIsComplete");
 			removeLevelObjects();
-			
+			System.out.println("removed in level complete");
 			//if the room is at a menu screen then return to main menu, otherwise start transition.
 			if (level == leadLevel || level == controlLevel) {
 				//System.out.println(level);
@@ -101,9 +101,10 @@ public class Levels {
 			}
 			
 			else if (level == deathLevel) {
-				level = 0;
 				resetDefault();
+				level = 0;
 				room.get(level).startLevel();
+				System.out.println(level);
 			}
 			
 //			else if (level == winLevel) {
@@ -120,7 +121,7 @@ public class Levels {
 			
 			
 			//System.out.println(level);
-			//System.out.println(room.get(level-1).isComplete());
+			
 			
 			//check if player has completed all levels, win state is activated when true
 //			if (level<=numLevels) {
@@ -131,7 +132,9 @@ public class Levels {
 //				Game.takingInput = true;
 //				resetDefault();
 //			}
+			//System.out.println("AFTER ALL LEVEL COMPLETE" +level);
 		}
+		//System.out.println(room.get(0).isComplete());
 		
 		//System.out.println(level);
 		//if (Game.gameStarted && !Game.isdead && !Game.win) {
@@ -148,11 +151,12 @@ public class Levels {
 		
 		
 		//for the main menu to navigete to the controls/leaderboard page.
-		if (level == 0) {
+		else if (level == 0) {
 			//System.out.println("level Check 0");
 			//go to controls page
 			if (((RoomBegin) room.get(0)).goControls()) {
 				//((RoomBegin) room.get(0)).getButton("controls").setRelease(false);
+				System.out.println("removed in go controls");
 				removeLevelObjects();
 				level = controlLevel;
 				System.out.println("Levels.level = "+level);
@@ -168,6 +172,7 @@ public class Levels {
 				level = leadLevel;
 				room.get(level).startLevel();
 			}
+			//System.out.println("AFTER LEVEL 0 CONS " + level);
 		}
 		
 		//if the player is dead then move to the death level regardless if level is complete.
@@ -194,7 +199,7 @@ public class Levels {
 		}
 		//System.out.println(room.get(level).isComplete());
 		//System.out.println(((RoomBegin)room.get(0)).getButton("controls").isReleased());
-		
+		//System.out.println("BEFORE TRANS CONS " + level);
 		
 		
 		
@@ -210,8 +215,9 @@ public class Levels {
 		}
 		
 		
+		
 		//System.out.println(((RoomBegin) room.get(0)).goControls());
-		//System.out.println(level);
+		//System.out.println("TICK " + level);
 		//}
 		//check if dead
 		
@@ -249,7 +255,7 @@ public class Levels {
 			transition.get(i).reset();
 		}
 		
-		init = false;
+		//init = false;
 		removeLevelObjects();
 		Game.health = 100;
 		Game.keys.reset();

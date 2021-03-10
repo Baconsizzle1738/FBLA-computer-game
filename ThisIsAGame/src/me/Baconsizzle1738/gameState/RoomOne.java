@@ -359,7 +359,6 @@ public class RoomOne extends Room {
 		}
 		collectedArrows.clear();
 		
-		canReset = false;
 		allArrows = false;
 		correctComb = false;
 		done = false;

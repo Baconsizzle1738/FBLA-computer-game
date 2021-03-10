@@ -37,6 +37,7 @@ public class TransitionLevel extends Transition{
 		fade = false;
 		isStart = false;
 		alpha = 0f;
+		isComplete = false;
 	}
 	
 	public void startTransition() {

@@ -41,13 +41,15 @@ public class RoomBegin extends Room {
 //		controlsButton.setRelease(false);
 //		leadButton.setRelease(false);
 		
+		startButton.setRelease(false);
+		controlsButton.setRelease(false);
+		leadButton.setRelease(false);
+		
+		
 		handler.addObject(startButton);
 		handler.addObject(controlsButton);
 		handler.addObject(leadButton);
 		
-		startButton.setRelease(false);
-		controlsButton.setRelease(false);
-		leadButton.setRelease(false);
 		
 	}
 	

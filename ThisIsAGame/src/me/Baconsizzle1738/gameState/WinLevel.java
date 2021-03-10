@@ -28,7 +28,7 @@ public class WinLevel extends Room{
 		alpha2 = 0;
 		inc2 = 0.02f;
 		
-		menuButton = new Button(400, 100, ID.Button, lvl, "FREE AT LAST", 100, 20, new Color(0, 200, 0), new Color(0, 180, 0), Color.GRAY, new Font(Font.MONOSPACED, Font.BOLD, 12));
+		menuButton = new Button(450, 450, ID.Button, lvl, "FREE AT LAST", 100, 20, new Color(0, 200, 0), new Color(0, 180, 0), Color.GRAY, new Font(Font.MONOSPACED, Font.BOLD, 12));
 		
 		this.hud = hud;
 	}
@@ -104,7 +104,7 @@ public class WinLevel extends Room{
 		g.drawString("YOU ESCAPED", 350,  200);
 		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 36));
 		g.drawString(hud.playerName, Game.WIDTH/2 - g.getFontMetrics().stringWidth(hud.playerName)/2-17, 300);
-		g.drawString("ESCAPED WITH A SCORE OF "+ hud.score, Game.WIDTH/2 - g.getFontMetrics().stringWidth("ESCAPED WITH A SCORE OF "+ hud.score)/2-17, 350);
+		g.drawString("ESCAPED WITH A SCORE OF "+ hud.score, Game.WIDTH/2 - g.getFontMetrics().stringWidth("ESCAPED WITH A SCORE OF "+ hud.score)/2, 350);
 		
 		
 	}

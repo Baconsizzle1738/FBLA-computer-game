@@ -36,7 +36,7 @@ public class DeathLevel extends Room{
 		started = false;
 		fade = false;
 		alpha = 0f;
-		inc = 0.05f;
+		inc = 0.005f;
 		menuButton = new Button(400, 100, ID.Button, lvl, "YOU TRIED", 100, 20, new Color(160, 160, 160), new Color(120, 120, 120), Color.GRAY, new Font(Font.MONOSPACED, Font.BOLD, 12));
 	}
 	
@@ -65,20 +65,21 @@ public class DeathLevel extends Room{
 
 	@Override
 	public void tick() {
+		System.out.println(alpha);
 		if (started) {
-			alpha += inc;
-			System.out.println(alpha);
-			if (alpha >= 1f) {
-				alpha = 1f;
-				fade = true;
-				started = false;
+			if (!fade) {
+				alpha += inc;
+				if (alpha >= 1f) {
+					alpha = 1f;
+					fade = true;
+				}
 			}
-		}
-		if (fade) {
-			alpha -= inc;
-			if (alpha <= 0) {
-				alpha = 0;
-				done = true;
+			else if (fade) {
+				alpha -= inc;
+				if (alpha <= 0) {
+					alpha = 0;
+					done = true;
+				}
 			}
 		}
 	}
