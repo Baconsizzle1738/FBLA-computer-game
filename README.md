@@ -11,3 +11,7 @@ The basic concept of this game is that it is like a sort of escape room that the
 #Documentation:
 
 Documentation is within the source code and done in the Javadoc format. Any method that has a Javadoc in its parent method will not have a Javadoc as it is already documented.
+
+#Running:
+
+To run the game, download the folder named "Get Gamed" and run  the .jar file inside. This was coded in Java 14 and tested on Windows 10 & Windows 8.

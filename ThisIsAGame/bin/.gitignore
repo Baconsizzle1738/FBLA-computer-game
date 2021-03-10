@@ -1,3 +1,10 @@
 /scores.dat
 /.gitignore
+/ButtonInteract_sfx.wav
+/Click_sfx.wav
+/Death_sfx.wav
+/Lose_sfx.wav
+/PassLevel_sfx.wav
+/Win_sfx.wav
+/hurt_sfx.wav
 /me/

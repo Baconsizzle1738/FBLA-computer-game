@@ -4,6 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import me.Baconsizzle1738.main.Game;
+
+/**
+ * This transition shows words that make up a sort of storyline.
+ * @author Baconsizzle1738
+ *
+ */
 public class TransitionLevel extends Transition{
 	
 	int index, wait;
@@ -21,7 +28,7 @@ public class TransitionLevel extends Transition{
 		index = 0;
 		focus = false;
 		fade = false;
-		gradient = 0.02f;
+		gradient = 0.03f;
 		alpha = 0f;
 		
 		for (int i = 0; i<text.length; i++) {
@@ -40,6 +47,9 @@ public class TransitionLevel extends Transition{
 		isComplete = false;
 	}
 	
+	/**
+	 * Starts the <code>Transition</code>.
+	 */
 	public void startTransition() {
 		isStart = true;
 		focus = true;
@@ -57,7 +67,7 @@ public class TransitionLevel extends Transition{
 				alpha += gradient;
 				//keeps the text visible for a limited time
 				if (alpha > 1f) {
-					int time = text[index].length()*10;
+					int time = text[index].length()*5;
 					alpha = 1f;
 					wait++;
 					//System.out.println(wait);
@@ -90,11 +100,11 @@ public class TransitionLevel extends Transition{
 
 	@Override
 	public void render(Graphics g) {
-		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 32));
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 30));
 		g.setColor(new Color(0.85f, 0.85f, 0.85f, alpha));
 		
 		//x and y are placeholders for now
-		g.drawString(text[index], 100, 200);
+		g.drawString(text[index], Game.WIDTH/2 - g.getFontMetrics().stringWidth(text[index])/2, 250);
 	}
 	
 }

@@ -2,10 +2,19 @@ package me.Baconsizzle1738.gameState;
 
 import java.awt.Graphics;
 
+/**
+ * This is like the "cutscene" in the game.
+ * @author Baconsizzle1738
+ *
+ */
 public abstract class Transition {
 	
 	private int level;
 	
+	/**
+	 * Just a construcotr for <code>Transition</code>, nothing much here.
+	 * @param lvl
+	 */
 	public Transition (int lvl) {
 		level = lvl;
 	}

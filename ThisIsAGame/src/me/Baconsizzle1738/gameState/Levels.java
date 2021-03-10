@@ -59,9 +59,9 @@ public class Levels {
 		
 		
 		//transitions
-		transition.add(new TransitionLevel(new String[]{"first", "second", "last"}, 0));
-		transition.add(new TransitionLevel(new String[]{"on", "tw", "th"}, 1));
-		transition.add(new TransitionLevel(new String[]{"ree", "reeee", "reeeee", "reeeeeeeeeee"}, 2));
+		transition.add(new TransitionLevel(new String[]{"You wake up in a dark room", "You don't know how you got here,", "how the graphics got so bad,", "or how to leave.", "But when you look down", "you see a small glint of what appears to be a key..."}, 0));
+		transition.add(new TransitionLevel(new String[]{"You stumble out of the maze", "into a dank, mostly empty room.", "You don't see much around,", "but a weird contraption catches your eye", "You do not know what it does", "but it is your way out", "And besides", "you're a hunted fugitive now"}, 1));
+		transition.add(new TransitionLevel(new String[]{"You hop into the box", "not knowing what to expect", "and land in a patch of tall grass-like things", "You can barely see in front of you,", "but the room seems lighter", "Freedom is somewhere near", "You can sense it", "But then you hear multiple guards approaching..."}, 2));
 		transition.add(new TransitionLevel(new String[]{"first", "second", "heccccc", "ur baaaaaaad"}, 3));
 		
 		//for the first level to initialize

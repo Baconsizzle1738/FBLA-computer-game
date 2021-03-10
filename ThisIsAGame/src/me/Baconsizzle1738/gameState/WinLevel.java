@@ -8,7 +8,11 @@ import java.io.FileWriter;
 
 import me.Baconsizzle1738.Objects.*;
 import me.Baconsizzle1738.main.*;
-
+/**
+ *This room is where the player is sent if they escape successfully. It will exit the game upon completion. 
+ * @author Baconsizzle1738
+ *
+ */
 public class WinLevel extends Room{
 	
 	float alpha, inc, alpha2, inc2;
@@ -18,6 +22,14 @@ public class WinLevel extends Room{
 	
 	Button menuButton;
 	
+	/**
+	 * This is the room that appears when the player escapes successfully.
+	 * @param spawnX	No need
+	 * @param spawnY	No need
+	 * @param h			No need
+	 * @param lvl		level assigned to win room
+	 * @param hud		the <code>HUD</code> for getting the score and the player name
+	 */
 	public WinLevel(int spawnX, int spawnY, GameHandler h, int lvl, HUD hud) {
 		super(spawnX, spawnY, h, lvl);
 		
