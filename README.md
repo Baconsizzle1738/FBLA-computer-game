@@ -14,5 +14,5 @@ Documentation is within the source code and done in the Javadoc format. Any meth
 
 #Running:
 
-To run the game, download the folder named "Get Gamed" and run  the .jar file inside. This was coded in Java 14 and tested on Windows 10 & Windows 8. Make sure that your PC can run java 14.
+To run the game, download the folder named "Get Gamed" and run  the .jar file inside. This was coded in Java 14 and tested on Windows 10. Make sure that your PC can run java 14 and that it has a Java 14 JRE.
 If you cannot download the  directly from the repository, you can make a folder named "Get Gamed" on your local machine and place the runnable jar in it(the individual .jar file from the repo), and then make a folder named "data" in your "Get Gamed" folder.
