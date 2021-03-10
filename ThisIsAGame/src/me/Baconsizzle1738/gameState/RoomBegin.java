@@ -72,13 +72,13 @@ public class RoomBegin extends Room {
 
 	@Override
 	public boolean isComplete() {
-		if (startButton.isReleased()) {
-			System.out.println("startButton.setRelease" + false);
-			startButton.setRelease(false);
-			System.out.println("RoomBegin.isComplete");
-			return true;
-		}
-		return false;
+//		if (startButton.isReleased()) {
+//			System.out.println("startButton.setRelease" + false);
+//			startButton.setRelease(false);
+//			System.out.println("RoomBegin.isComplete");
+//			return true;
+//		}
+		return startButton.isReleased();
 	}
 	
 	/**
@@ -115,7 +115,9 @@ public class RoomBegin extends Room {
 
 	@Override
 	public void render(Graphics g) {
-		
+		g.setColor(new Color(200, 0, 0));
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 75));
+		g.drawString("Don't Get Gamed!", 150, 200);
 	}
 
 	@Override

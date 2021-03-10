@@ -111,14 +111,14 @@ public class RoomOne extends Room {
 				resetCool = 0;
 			}
 		}
-		if (Game.isdead) {
-			for (int i = 0; i<handler.objects.size(); i++) {
-				if (handler.objects.get(i).getlevelID() == lvl) {
-					handler.removeObject(handler.objects.get(i));
-					i--;
-				}
-			}
-		}
+//		if (Game.isdead) {
+//			for (int i = 0; i<handler.objects.size(); i++) {
+//				if (handler.objects.get(i).getlevelID() == lvl) {
+//					handler.removeObject(handler.objects.get(i));
+//					i--;
+//				}
+//			}
+//		}
 	}
 	/**
 	 * Removes the KonamiArrow that the player touches and makes a new one, also adding it to collectedArrows
@@ -308,13 +308,13 @@ public class RoomOne extends Room {
 		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(7)+10, ID.Enemy, lvl, mazeIncrementX(6)+10, 1, 8, 30, "x"));
 		handler.addObject(new StaticEnemy(mazeIncrementX(0)+10, mazeIncrementY(8)+10, ID.Enemy, lvl, mazeIncrementX(4)+10, 2, 11, 40, "x"));
 		
-		
+		System.out.println("ONE START");
 	}
 
 	@Override
 	public void reset() {
 		//reset cooldown needed to prevent spamming
-		if (canReset && !Game.win && !Game.isdead) {
+		if (canReset) {
 			//System.out.println("ree");
 			//removes the konami arrows
 			for (int i = 0; i<handler.objects.size(); i++) {

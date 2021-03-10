@@ -102,6 +102,7 @@ public class Levels {
 			
 			else if (level == deathLevel) {
 				resetDefault();
+				System.out.println("deathlvl reset");
 				level = 0;
 				room.get(level).startLevel();
 				System.out.println(level);
@@ -168,6 +169,7 @@ public class Levels {
 			//go to leaderboards page
 			if (((RoomBegin) room.get(0)).goLead()) {
 				//((RoomBegin) room.get(0)).getButton("lead").setRelease(false);
+				System.out.println("removed in go lead");
 				removeLevelObjects();
 				level = leadLevel;
 				room.get(level).startLevel();
@@ -178,7 +180,9 @@ public class Levels {
 		//if the player is dead then move to the death level regardless if level is complete.
 		if (HUD.lives == 0) {
 			System.out.println("hecc");
+			System.out.println("removed in death");
 			removeLevelObjects();
+			Game.gameStarted = false;
 			HUD.lives = 3;
 			level = deathLevel;
 			room.get(level).startLevel();
@@ -227,6 +231,7 @@ public class Levels {
 	 * Removes all level specific objects
 	 */
 	public void removeLevelObjects() {
+		System.out.println("removeLevelObjects hecc");
 		for (int i = 0; i<handler.objects.size(); i++) {
 			GameObject temp = handler.objects.get(i);
 			if (temp.getlevelID() == level) {
@@ -256,6 +261,7 @@ public class Levels {
 		}
 		
 		//init = false;
+		System.out.println("removed in resetDefaults");
 		removeLevelObjects();
 		Game.health = 100;
 		Game.keys.reset();

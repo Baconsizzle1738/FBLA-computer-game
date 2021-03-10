@@ -48,6 +48,7 @@ public class GameHandler {
 	 * @param o	<code>GameObject</code> to be removed.
 	 */
 	public void removeObject(GameObject o) {
+		System.out.println("removed");
 		objects.remove(o);
 	}
 }

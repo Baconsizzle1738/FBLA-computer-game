@@ -173,7 +173,7 @@ public class HUD {
 		
 		//stuff here only shows when game is started
 		//health  bar, level and life indicator
-		if (Game.gameStarted && !Game.isdead && !Game.win) {
+		if (Game.gameStarted) {
 			g.setFont(new Font(Font.MONOSPACED, 0, 12));
 			//health bar outline
 			g.setColor(Color.white);
